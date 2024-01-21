@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blog
 
-## Getting Started
+## 选菜
 
-First, run the development server:
+参考的博客:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [前端指南](https://rualc.me/)
+- [larcasts](https://laracasts.com/discuss)
+- [Ben Holmes](https://bholmes.dev/)
+- [d](https://www.dalelarroder.com/)
+- [排版](https://chirpy.cotes.page/posts/getting-started/)
+- [抄](https://www.joshwcomeau.com/blog/how-i-built-my-blog/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+前端技术栈
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- nextjs
+- tailwind
+- radix-ui
+- shadcn/ui
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+----
+其他
 
-To learn more about Next.js, take a look at the following resources:
+- [Epic Stack 参考](https://www.epicweb.dev/epic-stack)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- wordpress
+- next-auth
+- google analytics
+- google tag manager
+- Mantine UI
+- Zustand
+- tRPC&Zod
+- Prisma
+- gRpc
+- Stripe SDK 支付
+- Clickhouse
