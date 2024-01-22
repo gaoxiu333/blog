@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import { PageHeader } from "@/components/page-header";
+import { PageFooter } from "@/components/page-footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body className={inter.className}>
-        <PageHeader />
-        {children}</body>
+    <html className="h-full">
+      <body className={`${inter.className} flex flex-col h-full`}>
+        <div className="flex-1">
+          <PageHeader />
+          <main> {children}</main>
+        </div>
+        <PageFooter className="flex-none" />
+      </body>
     </html>
   );
 }
