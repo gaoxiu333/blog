@@ -77,7 +77,7 @@ const config = {
     },
   },
   darkmode: "class",
-  plugins: [require("tailwindcss-animate"), nextui()],
+  plugins: [require("tailwindcss-animate"),require("daisyui"), nextui()],
 } satisfies Config;
 
 export default config;

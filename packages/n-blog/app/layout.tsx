@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "前端学习指南",
   description: "程序正在构建中...",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/icons/javascript.svg",
   },
 };
 
