@@ -1,17 +1,16 @@
 "use client";
 
-import { Disclosure } from "@headlessui/react";
+import { Card, CardBody } from "@nextui-org/react";
 
 export default function Home() {
   return (
-    <div className="container border">
-      <p>我是首页内容</p>
-      <Disclosure>
-        <Disclosure.Button className="py-2">我是一个按钮</Disclosure.Button>
-        <Disclosure.Panel className="text-gray-500">
-          我是一个面板
-        </Disclosure.Panel>
-      </Disclosure>
+    <div className="container mt-9">
+      <Card>
+        <CardBody>
+          <h3 className="font-bold">标题1</h3>
+          <p className="text-sm">2022-10-01 22:10</p>
+        </CardBody>
+      </Card>
     </div>
   );
 }
