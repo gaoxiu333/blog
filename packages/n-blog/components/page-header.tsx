@@ -3,6 +3,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@nextui-org/button";
 
 interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
