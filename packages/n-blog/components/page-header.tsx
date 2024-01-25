@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/navbar";
 import React from "react";
 import { Image, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 
 interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
@@ -43,7 +44,15 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   const Comp = asChild ? Slot : "header";
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const { theme, setTheme } = useTheme();
+  const onTheme = (event: any) => {
+    console.log(event.target.value, event.target.checked);
+    if (event.target.checked) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  };
   return (
     <Comp
       className={`container flex h-[3.75rem] items-center justify-between ${className}`}
@@ -62,6 +71,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
               alt="logo"
             />
           </NavbarBrand>
+          {/* <p suppressHydrationWarning>当前主题：{theme || ""}</p> */}
         </NavbarContent>
 
         <NavbarContent className="hidden gap-4 sm:flex" justify="center">
@@ -78,7 +88,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         <NavbarContent justify="end">
           <NavbarItem>
             <label className="swap swap-rotate">
-              <input type="checkbox" />
+              <input type="checkbox" onChange={onTheme} />
               <svg
                 className="swap-on size-5 fill-current"
                 xmlns="http://www.w3.org/2000/svg"

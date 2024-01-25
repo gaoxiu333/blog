@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="h-full">
+    <html className="h-full" suppressHydrationWarning data-theme="synthwave">
       <body className={`${inter.className} h-full`}>
         <Providers>
           <main className="flex h-full flex-col">

@@ -17,6 +17,8 @@
 - tailwind
 - radix-ui
 - shadcn/ui
+- nextui
+- daisyui
 
 
 ----
