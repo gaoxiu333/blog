@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import { nextui } from "@nextui-org/react";
 
 const config = {
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: ["class", '[data-mode="dark"]'],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -76,7 +76,12 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("daisyui"), nextui()],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwindcss-animate"),
+    require("daisyui"),
+    nextui(),
+  ],
   daisyui: {
     // themes: false,
     themes: ["light", "dark", "synthwave"],
