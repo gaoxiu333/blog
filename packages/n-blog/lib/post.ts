@@ -23,3 +23,14 @@ export function getSortedPostsData() {
     return a?.date < b?.date ? 1 : -1;
   });
 }
+
+export function getOnePostData(id: string) {
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  console.log('================fullpath',fullPath)
+  const fileContnts = fs.readFileSync(fullPath, "utf8");
+  // const matterResult = matter(fileContnts);
+  return {
+    id,
+    content: fileContnts,
+  };
+}
