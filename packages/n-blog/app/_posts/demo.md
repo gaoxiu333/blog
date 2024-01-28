@@ -93,6 +93,25 @@ Indented code
 
 Block code "fences"
 
+js
+
+```js
+let a = 1;
+console.log(a)
+function fn(){
+  // code ...
+}
+```
+javascript
+
+```javascript
+let a = 1;
+console.log(a)
+function fn(){
+  // code ...
+}
+```
+
 ```
 Sample text here...
 ```

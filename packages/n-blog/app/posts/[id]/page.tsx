@@ -1,6 +1,9 @@
 import { getHost } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { serialize } from "next-mdx-remote/serialize";
+import rehypeHighlight from "rehype-highlight";
+import rehypePrism from "rehype-prism-plus";
+
 
 const getData = async (id: string) => {
   const res = await fetch(`${getHost()}/api/article?id=${id}`);
@@ -9,11 +12,7 @@ const getData = async (id: string) => {
 
 // 自定义组件样式，现在使用的是 tailwindcss，所以不需要这个了。
 const components = {
-  h1: (props: any) => (
-    <h1 {...props}>
-      {props.children}
-    </h1>
-  ),
+  h1: (props: any) => <h1 {...props}>{props.children}</h1>,
 };
 
 const Page = async (props: any) => {
@@ -23,7 +22,15 @@ const Page = async (props: any) => {
   return (
     <div>
       Post:{props.params.id}
-      <MDXRemote source={data.md} components={components} />
+      <MDXRemote
+        source={data.md}
+        components={components}
+        options={{
+          mdxOptions: {
+            rehypePlugins: [rehypeHighlight as any],
+          },
+        }}
+      />
       {/* <MDXRemote
         source={`# Hello World
       This is from Server Components!
