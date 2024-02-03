@@ -1,9 +1,8 @@
 import { getHost } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { serialize } from "next-mdx-remote/serialize";
 import rehypeHighlight from "rehype-highlight";
 import rehypePrism from "rehype-prism-plus";
-
+import remarkGfm from "remark-gfm";
 
 const getData = async (id: string) => {
   const res = await fetch(`${getHost()}/api/article?id=${id}`);
@@ -20,14 +19,15 @@ const Page = async (props: any) => {
   // TODO serialize 有什么作用？当前使用nextjs的服务端渲染，已经不需要这个方法了。
   // const source = await serialize(data.md);
   return (
-    <div>
+    <article>
       Post:{props.params.id}
       <MDXRemote
         source={data.md}
         components={components}
         options={{
           mdxOptions: {
-            rehypePlugins: [rehypeHighlight as any],
+            remarkPlugins: [remarkGfm as any],
+            rehypePlugins: [rehypePrism as any],
           },
         }}
       />
@@ -36,7 +36,7 @@ const Page = async (props: any) => {
       This is from Server Components!
     `}
       /> */}
-    </div>
+    </article>
   );
 };
 

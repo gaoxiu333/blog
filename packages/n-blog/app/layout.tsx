@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
+import "../styles/prism.css";
 import { PageHeader } from "@/components/page-header";
 import { PageFooter } from "@/components/page-footer";
 import { Providers } from "./providers";
