@@ -3,10 +3,16 @@
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider } from "next-themes";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className: string
+}) {
   return (
     <ThemeProvider attribute="data-theme" defaultTheme="system">
-      <NextUIProvider className="h-full">{children}</NextUIProvider>
+      <NextUIProvider className={className}>{children}</NextUIProvider>
     </ThemeProvider>
   );
 }

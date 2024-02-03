@@ -23,12 +23,12 @@ export default function RootLayout({
 }) {
   return (
     <html className="h-full" suppressHydrationWarning data-theme="synthwave">
-      <body className={`${inter.className} h-full`}>
-        <Providers>
-          <main className="flex h-full flex-col">
+      <body className={`${inter.className} min-h-full flex flex-col`}>
+        <Providers className="flex-1 flex flex-col">
+          <main className="flex-1 flex flex-col">
             <div className="flex-1">
               <PageHeader />
-              <main> {children}</main>
+              <main>{children}</main>
             </div>
             <PageFooter className="flex-none" />
           </main>
