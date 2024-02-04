@@ -4,6 +4,7 @@ import { getHost } from "@/lib/utils";
 
 const getPosts = async () => {
   const res = await fetch(`${getHost()}/api/posts`);
+
   return await res.json();
   // return posts;
 };
@@ -16,8 +17,8 @@ export default async function Home() {
         {list.map((item: any, idx: number) => {
           return (
             <CardBody key={idx}>
-              <h3 className="font-bold">{item.title}</h3>
-              <p className="text-sm">{item.date}</p>
+              <h3 className="font-bold">{item.id}</h3>
+              {/* <p className="text-sm">{item.date}</p> */}
             </CardBody>
           );
         })}

@@ -11,7 +11,7 @@ export function Providers({
   className: string
 }) {
   return (
-    <ThemeProvider attribute="data-theme" defaultTheme="system">
+    <ThemeProvider attribute="data-theme" enableSystem={true}>
       <NextUIProvider className={className}>{children}</NextUIProvider>
     </ThemeProvider>
   );

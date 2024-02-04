@@ -9,10 +9,11 @@ import {
   NavbarItem,
   NavbarMenuToggle,
 } from "@nextui-org/navbar";
-import React from "react";
-import { Image, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import React, { use, useEffect } from "react";
+import { Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import LogoSvg from "@/public/icons/javascript.svg";
+import { useThemeSession } from "@/app/hooks/useThemeSection";
 
 interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
@@ -44,15 +45,16 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 }) => {
   const Comp = asChild ? Slot : "header";
   const pathName = usePathname();
+  const { theme, switchTheme, mounted } = useThemeSession();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const { theme, setTheme } = useTheme();
   const onTheme = (event: any) => {
     if (event.target.checked) {
-      setTheme("light");
+      switchTheme("light");
     } else {
-      setTheme("dark");
+      switchTheme("dark");
     }
   };
+
   return (
     <Comp
       className={`container flex h-[3.75rem] items-center justify-between ${className}`}
@@ -92,7 +94,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         <NavbarContent justify="end">
           <NavbarItem>
             <label className="swap swap-rotate">
-              <input type="checkbox" onChange={onTheme} />
+              <input
+                type="checkbox"
+                checked={theme === "light"}
+                onChange={onTheme}
+              />
               <svg
                 className="swap-on size-5 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
