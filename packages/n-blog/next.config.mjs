@@ -4,6 +4,29 @@ import createMDX from "@next/mdx";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  // 处理SVG：将SVG转为React组件
+  webpack(config) {
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.(".svg"),
+    );
+    config.module.rules.push(
+      {
+        ...fileLoaderRule,
+        test: /\.svg$/i,
+        resourceQuery: /url/,
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        resourceQuery: { not: /url/ },
+        use: ["@svgr/webpack"],
+      },
+    );
+
+    fileLoaderRule.exclude = /\.svg$/i;
+
+    return config;
+  },
 };
 
 // 这里的配置针对哪个依赖？现在设置似乎无效，尤其是代码高亮那段。

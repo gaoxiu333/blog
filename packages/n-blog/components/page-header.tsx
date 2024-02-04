@@ -12,6 +12,7 @@ import {
 import React from "react";
 import { Image, Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import { useTheme } from "next-themes";
+import LogoSvg from "@/public/icons/javascript.svg";
 
 interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
@@ -65,10 +66,14 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             className="sm:hidden"
           />
           <NavbarBrand>
-            <Image
-              className="size-6 rounded-none"
+            {/* <Image
+              className="size-6 rounded-none dark:bg-white"
               src="/icons/javascript.svg"
               alt="logo"
+            /> */}
+            <LogoSvg
+              size={12}
+              className={`currentColor h-5 w-5 fill-current`}
             />
           </NavbarBrand>
           {/* <p suppressHydrationWarning>当前主题：{theme || ""}</p> */}
