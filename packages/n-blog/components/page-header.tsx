@@ -47,7 +47,6 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { theme, setTheme } = useTheme();
   const onTheme = (event: any) => {
-    console.log(event.target.value, event.target.checked);
     if (event.target.checked) {
       setTheme("light");
     } else {
