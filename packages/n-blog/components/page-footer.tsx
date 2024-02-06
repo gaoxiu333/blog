@@ -13,7 +13,7 @@ const PageFooter: React.FC<PageFooterPaops> = ({
     <Comp className={`w-full border ${className}`}>
       <footer className="footer footer-center bg-base-300 p-4 text-base-content">
         <aside>
-          <p>Copyright © 2024 - All right reserved by Nextjs Industries Ltd</p>
+          <p>由Nextjs + MDX 构建，开发中...</p>
         </aside>
       </footer>
     </Comp>
