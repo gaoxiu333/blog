@@ -73,6 +73,7 @@ async function fetchNpmLatest(packageName: string) {
     const metadata = await response.json();
     const latestVersion = metadata["dist-tags"].latest;
     const updateTime = metadata.time[latestVersion];
+    console.log('meta',updateTime)
     return [null, { updateTime, latestVersion }];
   } catch (error) {
     return ["npm info error", { updateTime: "", latestVersion: "" }];
@@ -123,8 +124,8 @@ const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
   return {
     name,
     version: npmVersions!.latestVersion,
-    updateDate: dayjs(npmVersions!.update).format("YYYY-MM-DD"),
-    updateDateText: dayjs().to(npmVersions!.update),
+    updateDate: dayjs(npmVersions!.updateTime).format("YYYY-MM-DD"),
+    updateDateText: dayjs().to(npmVersions!.updateTime),
     stars: formatNumber(stars),
     createdAt: dayjs(createdAt).format("YYYY-MM-DD"),
     createdAtText: dayjs().to(createdAt),
@@ -138,7 +139,8 @@ const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
     language,
     issuesUrl,
     openIssuesCount,
-    downloads: formatNumber(npmDownloads)
+    downloads: formatNumber(npmDownloads),
+    errors: error
   };
 };
 
