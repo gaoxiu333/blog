@@ -14,6 +14,7 @@ export function getHost(){
 // 数量级表示法
 
 export function formatNumber(num:number){
+  if(!num) return num
   if(num>1000){
     return Math.round(num/10)/100 + 'k'
   }

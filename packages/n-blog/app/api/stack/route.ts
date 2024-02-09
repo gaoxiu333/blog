@@ -4,14 +4,12 @@ import "dayjs/locale/zh-cn";
 import { formatNumber } from "@/lib/utils";
 import { groupBy } from "lodash";
 import { repos } from "./_constant";
-import awk from "refractor/lang/awk";
 
 dayjs.locale("zh-cn");
 dayjs.extend(relativeTime);
 
 
 const token = `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`;
-
 const fetchConfig = {
   headers: {
     Authorization: `Bearer ${token}`
@@ -21,61 +19,131 @@ const fetchConfig = {
   }
 };
 
-const fetchNpmDownloads = async ({ packageName }: any) => {
-
+async function fetchRepoInfo(repo: string) {
   try {
-    // 获取npm周下载量
-    const npmResponse = await fetch(`https://api.npmjs.org/downloads/point/last-week/${packageName}`);
-    const { downloads } = await npmResponse.json();
-    return downloads;
-  } catch (err) {
-    return null;
-  }
-};
-
-const fetchNpmInfo = async ({ packageName }: any) => {
-  try {
-    const response = await fetch(`https://registry.npmjs.org/${packageName}/latest`, { cache: "force-cache" });
+    const response = await fetch(`https://api.github.com/repos/${repo}`, fetchConfig);
     const result = await response.json();
-
-    const { name, repository, version } = result;
-    const githubRepoSplit = repository.url.split("/");
-    const githubOwner = githubRepoSplit.pop();
-    const githubRepo = githubRepoSplit.pop();
-    return {
-      name, version, githubRepoName: githubRepo + "/" + githubOwner.replace(".git", "")
-    };
+    return [null, result];
   } catch (error) {
-    return null;
+    return [error, {}];
   }
-};
+}
 
-const fetchRepoDetails = async (repo: string) => {
+async function fetchContributors(repo: string) {
   try {
-    const repoResponse = await fetch(`https://api.github.com/repos/${repo}`, fetchConfig);
-    const repoInfo = await repoResponse.json();
-    const { stargazers_count: stars } = repoInfo;
-    return stars
-  } catch (err) {
-    return null;
+    const response = await fetch(`https://api.github.com/repos/${repo}/contributors?per_page=1`, fetchConfig);
+    const contributorsLink = response.headers.get("link");
+    const contributorsLastPageMatch = contributorsLink!.match(/&page=(\d+)>; rel="last"/);
+    const contributorsCount = contributorsLastPageMatch ? Number(contributorsLastPageMatch[1]) : 0;
+    return [null, contributorsCount];
+  } catch (error) {
+    return [error, 0];
   }
-};
+}
 
-const getData = async (npm: any) => {
-  const packageDetail = await fetchNpmInfo(npm);
-  const weeklyDownloads = await fetchNpmDownloads(packageDetail!.name);
-  const stars = await fetchRepoDetails(packageDetail!.githubRepoName)
-  const results = {
-    ...packageDetail,
-    weeklyDownloads: formatNumber(weeklyDownloads),
-    stars:formatNumber(stars)
+async function fetchCommitDetail(repo: string) {
+  try {
+    const commitsResponse = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, fetchConfig);
+    const commitsLink = commitsResponse.headers.get("link");
+    const commitsLastPageMatch = commitsLink!.match(/&page=(\d+)>; rel="last"/);
+    const commitsCount = commitsLastPageMatch ? Number(commitsLastPageMatch[1]) : 0;
+    return [null, commitsCount];
+  } catch (error) {
+    return [error, {}];
+  }
+}
+
+// 获取 npm 下载量
+async function fetchNpmInfo(packageName: string) {
+  try {
+    const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${packageName}`);
+    const result = await response.json();
+    console.log("npm", result);
+    const { downloads } = result;
+    return [null, downloads];
+  } catch (error) {
+    return ["npm error"];
+  }
+}
+
+// 获取 npm 的最新版本以及更新时间
+async function fetchNpmLatest(packageName: string) {
+  try {
+    const response = await fetch(`https://registry.npmjs.org/${packageName}`);
+    const metadata = await response.json();
+    const latestVersion = metadata["dist-tags"].latest;
+    const updateTime = metadata.time[latestVersion];
+    return [null, { updateTime, latestVersion }];
+  } catch (error) {
+    return ["npm info error", { updateTime: "", latestVersion: "" }];
+  }
+}
+
+const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
+  const error = [];
+  // 获取仓库信息
+
+  const [repoError, repoInfo] = await fetchRepoInfo(repo);
+  if (repoError) {
+    error.push("repo error");
+  }
+  const {
+    name,
+    updated_at: updateDate,
+    language,
+    issues_url: issuesUrl,
+    open_issues_count: openIssuesCount,
+    stargazers_count: stars,
+    homepage,
+    license,
+    description,
+    created_at: createdAt
+  } = repoInfo;
+
+  // 获取贡献人数
+  const [contributorsError, contributorsCount] = await fetchContributors(repo);
+  if (contributorsError) {
+    error.push("contributors error");
+  }
+  // 获取提交数量
+  const [commitError, commitsCount] = await fetchCommitDetail(repo);
+  if (commitError) {
+    error.push(commitError);
+  }
+  // 获取 NPM 下载量
+  const [npmError, npmDownloads] = await fetchNpmInfo(packageName);
+  if (npmError) {
+    error.push("npm download error");
+  }
+  // 获取 NPM 版本信息
+  const [npmVerError, npmVersions]: any = await fetchNpmLatest(packageName);
+  if (npmVerError) {
+    error.push("npm versions error");
+  }
+  return {
+    name,
+    version: npmVersions!.latestVersion,
+    updateDate: dayjs(npmVersions!.update).format("YYYY-MM-DD"),
+    updateDateText: dayjs().to(npmVersions!.update),
+    stars: formatNumber(stars),
+    createdAt: dayjs(createdAt).format("YYYY-MM-DD"),
+    createdAtText: dayjs().to(createdAt),
+    contributorsCount: formatNumber(contributorsCount as any),
+    commitsCount: formatNumber(commitsCount as any),
+    repo,
+    tag,
+    homepage,
+    license,
+    description,
+    language,
+    issuesUrl,
+    openIssuesCount,
+    downloads: formatNumber(npmDownloads)
   };
-  console.log("result", results);
-  return results;
 };
 
 export async function GET() {
-  const results = await Promise.all(repos.map(repo => getData(repo)));
+  const results = await Promise.all(repos.map(repo => fetchRepoDetails(repo)));
   return new Response(JSON.stringify(groupBy(results, "tag")), {
     headers: {
       "content-type": "application/json"

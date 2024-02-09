@@ -1,6 +1,6 @@
 import { Card, CardBody } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
-import { CircleDot, GitCommitHorizontal, Star, UsersRound } from "lucide-react";
+import { CircleDot, Download, GitCommitHorizontal, Star, UsersRound } from "lucide-react";
 import { Link } from "@nextui-org/react";
 import { Image } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -27,7 +27,9 @@ export function Item(props: any) {
               </div>
             </div>
             <div className="text-small text-default-400 flex">
-              <Chip size="sm">{item.updateDateText} · {item.version}</Chip>
+              {/*<Chip size="sm">{item.updateDateText} · {item.version}</Chip>*/}
+              <span>{item.updateDateText} · {item.version}</span>
+              {/*<span></span>*/}
             </div>
             <div className="flex justify-between text-default-400 ">
               <div className="flex gap-2">
@@ -35,10 +37,11 @@ export function Item(props: any) {
                 </div>
                 ·
                 <div className="flex gap-1 items-center text-sm"><UsersRound size={14} />{item.contributorsCount}</div>
+                <div className="flex gap-1 items-center text-sm"><Download size={14} />{item.downloads}</div>
               </div>
               <Link href={`https://github.com/${item.repo}/issues`} target="_blank">
                 <div className="flex gap-1 items-center text-small text-default-400">
-                  <span className='scale-75 origin-right'>{item.language}</span>
+                  <span className="scale-75 origin-right">{item.language}</span>
                   <CircleDot size={14} />{item.openIssuesCount}
                 </div>
               </Link>
