@@ -4,6 +4,7 @@ import "dayjs/locale/zh-cn";
 import { formatNumber } from "@/lib/utils";
 import { groupBy } from "lodash";
 import { repos } from "./_constant";
+import awk from "refractor/lang/awk";
 
 dayjs.locale("zh-cn");
 dayjs.extend(relativeTime);
@@ -19,78 +20,62 @@ const fetchConfig = {
     revalidate: 1000 * 10
   }
 };
-const fetchRepoDetails = async ({ repo, tag }: any) => {
+
+const fetchNpmDownloads = async ({ packageName }: any) => {
+
   try {
-    const testResponse = await fetch("http://localhost:8080/template");
-    // 获取仓库信息
-    const repoResponse = await fetch(`https://api.github.com/repos/${repo}`, fetchConfig);
-    const repoInfo = await repoResponse.json();
-    console.log('res',repoInfo)
-    const {name,updated_at,language,issues_url:issuesUrl,open_issues_count:openIssuesCount, stargazers_count: stars, homepage, license, description, created_at: createdAt } = repoInfo;
-
-    // 获取最新版本标签
-    const response = await fetch(`https://api.github.com/repos/${repo}/tags`, fetchConfig);
-    const tags = await response.json();
-    const latestTag = tags[0];
-
-    // 获取最新标签的提交日期
-    const commitResponses = await fetch(latestTag.commit.url);
-    const commit = await commitResponses.json();
-    const updateDate = commit.commit.committer.date || "";// fix: 有可能是 undefined
-
-    // 获取贡献人数
-    const contributorsResponse = await fetch(`https://api.github.com/repos/${repo}/contributors?per_page=1`, fetchConfig);
-    const contributorsLink = contributorsResponse.headers.get("link");
-    const contributorsLastPageMatch = contributorsLink!.match(/&page=(\d+)>; rel="last"/);
-    const contributorsCount = contributorsLastPageMatch ? Number(contributorsLastPageMatch[1]) : 0;
-
-    // 获取提交数量
-    const commitsResponse = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, fetchConfig);
-    const commitsLink = commitsResponse.headers.get("link");
-    const commitsLastPageMatch = commitsLink!.match(/&page=(\d+)>; rel="last"/);
-    const commitsCount = commitsLastPageMatch ? Number(commitsLastPageMatch[1]) : 0;
-
-    return {
-      name,
-      version: latestTag.name,
-      updateDate: dayjs(updateDate).format("YYYY-MM-DD"),
-      updateDateText: dayjs().to(updateDate),
-      stars: formatNumber(stars),
-      createdAt: dayjs(createdAt).format("YYYY-MM-DD"),
-      createdAtText: dayjs().to(createdAt),
-      contributorsCount: formatNumber(contributorsCount),
-      commitsCount: formatNumber(commitsCount),
-      repo,
-      tag,
-      homepage,
-      license,
-      description,
-      language,
-      issuesUrl,
-      openIssuesCount
-    };
-
+    // 获取npm周下载量
+    const npmResponse = await fetch(`https://api.npmjs.org/downloads/point/last-week/${packageName}`);
+    const { downloads } = await npmResponse.json();
+    return downloads;
   } catch (err) {
-    console.log("error");
-    return {
-      name:'',
-      version: "未知",
-      updateDate: "未知",
-      updateDateText: "未知",
-      stars: "未知",
-      createdAt: "未知",
-      createdAtText: "未知",
-      contributorsCount: "未知",
-      commitsCount: "未知",
-      repo,
-      tag
-
-    };
+    return null;
   }
 };
 
+const fetchNpmInfo = async ({ packageName }: any) => {
+  try {
+    const response = await fetch(`https://registry.npmjs.org/${packageName}/latest`, { cache: "force-cache" });
+    const result = await response.json();
+
+    const { name, repository, version } = result;
+    const githubRepoSplit = repository.url.split("/");
+    const githubOwner = githubRepoSplit.pop();
+    const githubRepo = githubRepoSplit.pop();
+    return {
+      name, version, githubRepoName: githubRepo + "/" + githubOwner.replace(".git", "")
+    };
+  } catch (error) {
+    return null;
+  }
+};
+
+const fetchRepoDetails = async (repo: string) => {
+  try {
+    const repoResponse = await fetch(`https://api.github.com/repos/${repo}`, fetchConfig);
+    const repoInfo = await repoResponse.json();
+    const { stargazers_count: stars } = repoInfo;
+    return stars
+  } catch (err) {
+    return null;
+  }
+};
+
+const getData = async (npm: any) => {
+  const packageDetail = await fetchNpmInfo(npm);
+  const weeklyDownloads = await fetchNpmDownloads(packageDetail!.name);
+  const stars = await fetchRepoDetails(packageDetail!.githubRepoName)
+  const results = {
+    ...packageDetail,
+    weeklyDownloads: formatNumber(weeklyDownloads),
+    stars:formatNumber(stars)
+  };
+  console.log("result", results);
+  return results;
+};
+
 export async function GET() {
-  const results = await Promise.all(repos.map(repo => fetchRepoDetails(repo)));
+  const results = await Promise.all(repos.map(repo => getData(repo)));
   return new Response(JSON.stringify(groupBy(results, "tag")), {
     headers: {
       "content-type": "application/json"
