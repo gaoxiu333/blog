@@ -23,7 +23,7 @@ export function Item(props: any) {
                 <Link href={`https://github.com/${item.repo}`} target="_blank">{item.name}</Link>
               </Tooltip>
               <div className="flex gap-1 items-center text-small text-default-400"><span
-                className="scale-75 origin-right">{item.createdAtText}</span> · <Star size={14} />{formatNumber(item.stars)}</div>
+                className="scale-75 origin-right">{dateToFormat(item.createdDate)}</span> · <Star size={14} />{formatNumber(item.stars)}</div>
             </div>
             <div className="h-12">
               <div className="text-small text-default-400 line-clamp-2">
@@ -31,7 +31,7 @@ export function Item(props: any) {
               </div>
             </div>
             <div className="text-small text-default-400 flex">
-              <span>{dateToFormat(item.updateDate)} · {item.version}</span>
+              <span>{dateToFormat(item.updateDate)} · v{item.version}</span>
             </div>
             <div className="flex justify-between text-default-400 ">
               <div className="flex gap-2">

@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn";
-import { formatNumber } from "@/lib/utils";
 import { groupBy } from "lodash";
 import { repos } from "./_constant";
 import { PrismaClient } from "@prisma/client";
+import _ from "lodash";
 
 dayjs.locale("zh-cn");
 dayjs.extend(relativeTime);
@@ -21,6 +21,7 @@ const fetchConfig = {
   }
 };
 
+// 获取Github仓库信息
 async function fetchRepoInfo(repo: string) {
   try {
     const response = await fetch(`https://api.github.com/repos/${repo}`, fetchConfig);
@@ -31,6 +32,7 @@ async function fetchRepoInfo(repo: string) {
   }
 }
 
+// 获取Github贡献人数
 async function fetchContributors(repo: string) {
   try {
     const response = await fetch(`https://api.github.com/repos/${repo}/contributors?per_page=1`, fetchConfig);
@@ -43,6 +45,7 @@ async function fetchContributors(repo: string) {
   }
 }
 
+// 获取Github提交数量
 async function fetchCommitDetail(repo: string) {
   try {
     const commitsResponse = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, fetchConfig);
@@ -73,25 +76,32 @@ async function fetchNpmLatest(packageName: string) {
   try {
     const response = await fetch(`https://registry.npmjs.org/${packageName}`);
     const metadata = await response.json();
+    const { name } = metadata;
     const latestVersion = metadata["dist-tags"].latest;
     const updateTime = metadata.time[latestVersion];
-    console.log("meta", updateTime);
-    return [null, { updateTime, latestVersion }];
+    const repo = _.chain(metadata.repository.url).replace(".git", "").split("/").takeRight(2).join("/").value();
+    return [null, { updateTime, latestVersion, name, repo }];
   } catch (error) {
     return ["npm info error", { updateTime: "", latestVersion: "" }];
   }
 }
 
-const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
+const fetchRepoDetails = async ({ tag, packageName }: any) => {
   const error = [];
-  // 获取仓库信息
 
+  // 获取 NPM 版本信息
+  const [npmVerError, npmVersions]: any = await fetchNpmLatest(packageName);
+  if (npmVerError) {
+    error.push("npm versions error");
+  }
+  console.log("npm versions", npmVersions);
+  const { repo, name, latestVersion, updateTime } = npmVersions;
+  // 获取仓库信息
   const [repoError, repoInfo] = await fetchRepoInfo(repo);
   if (repoError) {
     error.push("repo error");
   }
   const {
-    name,
     updated_at: updateDate,
     language,
     issues_url: issuesUrl,
@@ -118,19 +128,14 @@ const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
   if (npmError) {
     error.push("npm download error");
   }
-  // 获取 NPM 版本信息
-  const [npmVerError, npmVersions]: any = await fetchNpmLatest(packageName);
-  if (npmVerError) {
-    error.push("npm versions error");
-  }
   const result = {
     name,
     tag,
     packageName,
-    version: npmVersions!.latestVersion,
-    updateDate: dayjs(npmVersions!.updateTime).format("YYYY-MM-DD"),
+    version: latestVersion,
+    updateDate: dayjs(updateTime).format("YYYY-MM-DD"),
     stars: stars,
-    // createdAt: dayjs(createdAt).format("YYYY-MM-DD"),
+    createdDate: createdAt,
     contributorsCount: contributorsCount,
     commitsCount: commitsCount,
     description,
@@ -141,13 +146,12 @@ const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
     openIssuesCount,
     downloads: npmDownloads,
     errors: error.join(",")
-    // createdAt:new Date(),
   };
 
   try {
     const res = await prisma.package.upsert({
       where: {
-        name: name as string
+        name: result.name as string
       },
       update: { ...result } as any,
       create: { ...result } as any
@@ -160,11 +164,19 @@ const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
 };
 
 export async function GET() {
-
   const packages = await prisma.package.findMany();
-  console.log("package", packages);
-  // repos.map(repo => fetchRepoDetails(repo));
+
+
   return new Response(JSON.stringify(groupBy(packages, "tag")), {
+    headers: {
+      "content-type": "application/json"
+    }
+  });
+}
+
+export async function PUT() {
+  repos.map(repo => fetchRepoDetails(repo));
+  return new Response("ok", {
     headers: {
       "content-type": "application/json"
     }

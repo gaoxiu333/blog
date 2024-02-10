@@ -26,5 +26,6 @@ model Package{
   openIssuesCount Int
   downloads Int
   errors String
+  createdDate DateTime?
   updatedAt DateTime @updatedAt
 }
