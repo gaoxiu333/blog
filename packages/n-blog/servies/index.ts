@@ -1,15 +1,14 @@
+import { repos } from "./_constant";
+import { PrismaClient } from "@prisma/client";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn";
 import { formatNumber } from "@/lib/utils";
-import { groupBy } from "lodash";
-import { repos } from "./_constant";
-import { PrismaClient } from "@prisma/client";
 
 dayjs.locale("zh-cn");
 dayjs.extend(relativeTime);
 
-const prisma = new PrismaClient();
 
 const token = `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`;
 const fetchConfig = {
@@ -20,6 +19,8 @@ const fetchConfig = {
     revalidate: 1000 * 10
   }
 };
+
+const prisma = new PrismaClient();
 
 async function fetchRepoInfo(repo: string) {
   try {
@@ -123,50 +124,58 @@ const fetchRepoDetails = async ({ repo, tag, packageName }: any) => {
   if (npmVerError) {
     error.push("npm versions error");
   }
-  const result = {
+  return {
     name,
     tag,
     packageName,
     version: npmVersions!.latestVersion,
     updateDate: dayjs(npmVersions!.updateTime).format("YYYY-MM-DD"),
     stars: stars,
-    // createdAt: dayjs(createdAt).format("YYYY-MM-DD"),
+    createdAt: dayjs(createdAt).format("YYYY-MM-DD"),
     contributorsCount: contributorsCount,
     commitsCount: commitsCount,
-    description,
     repo,
     homepage,
+    license,
+    description,
     language,
     issuesUrl,
     openIssuesCount,
     downloads: npmDownloads,
-    errors: error.join(",")
-    // createdAt:new Date(),
+    errors: error
   };
-
-  try {
-    const res = await prisma.package.upsert({
-      where: {
-        name: name as string
-      },
-      update: { ...result } as any,
-      create: { ...result } as any
-    });
-  } catch (err) {
-    console.log("update error", err);
-  }
-
-  return result;
 };
 
-export async function GET() {
-
-  const packages = await prisma.package.findMany();
-  console.log("package", packages);
-  // repos.map(repo => fetchRepoDetails(repo));
-  return new Response(JSON.stringify(groupBy(packages, "tag")), {
-    headers: {
-      "content-type": "application/json"
-    }
-  });
+async function main() {
+  const results = await Promise.all(repos.map(repo => fetchRepoDetails(repo)));
+  // results.
 }
+
+main().then(async () => {
+}).finally(() => {
+  prisma.$disconnect();
+});
+
+
+//
+// model Package{
+//   id Int @id @default(autoincrement())
+//   name String
+//   tag String
+//   packageName String
+//   version String
+//   updateDate String
+//   stars Int
+//   createAt String
+//   contributorsCount Int
+//   commitsCount Int
+//   repo String
+//   homepage String
+//   description String
+//   language String
+//   issuesUrl String
+//   openIssuesCount String
+//   downloads Int
+//   errors String[]
+//   updatedAt DateTime @updatedAt
+// }
