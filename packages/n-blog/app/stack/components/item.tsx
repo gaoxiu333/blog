@@ -5,11 +5,10 @@ import { Log } from "@/components/log";
 import { dateToFormat } from "@/lib/time";
 import { formatNumber } from "@/lib/utils";
 
-
 export function Item(props: any) {
-  return <div className="grid grid-cols-2 gap-4">
+  return <div className="grid grid-cols-1 gap-4">
     {props.data.map((item: any, idx: number) => {
-      return <div key={idx} className="flex-initial basis-1/2">
+      return <div key={idx} className="flex-initial">
         <Log info={item} />
         <Card className="relative">
           <CardBody className="flex flex-col gap-2 ">
@@ -23,23 +22,25 @@ export function Item(props: any) {
                 <Link href={`https://github.com/${item.repo}`} target="_blank">{item.name}</Link>
               </Tooltip>
               <div className="flex gap-1 items-center text-small text-default-400"><span
-                className="scale-75 origin-right">{dateToFormat(item.createdDate)}</span> · <Star size={14} />{formatNumber(item.stars)}</div>
+                className="scale-75 origin-right">{dateToFormat(item.createdDate)}</span> · <Star
+                size={14} />{formatNumber(item.stars)}</div>
             </div>
-            <div className="h-12">
-              <div className="text-small text-default-400 line-clamp-2">
-                {item.description}
-              </div>
+            <div className="text-small text-default-400 truncate">
+              {item.description}
             </div>
             <div className="text-small text-default-400 flex">
               <span>{dateToFormat(item.updateDate)} · v{item.version}</span>
             </div>
             <div className="flex justify-between text-default-400 ">
               <div className="flex gap-2">
-                <div className="flex gap-1 items-center text-sm"><GitCommitHorizontal size={14} />{formatNumber(item.commitsCount)}
+                <div className="flex gap-1 items-center text-sm"><GitCommitHorizontal
+                  size={14} />{formatNumber(item.commitsCount)}
                 </div>
                 ·
-                <div className="flex gap-1 items-center text-sm"><UsersRound size={14} />{formatNumber(item.contributorsCount)}</div>
-                <div className="flex gap-1 items-center text-sm"><Download size={14} />{formatNumber(item.downloads)}</div>
+                <div className="flex gap-1 items-center text-sm"><UsersRound
+                  size={14} />{formatNumber(item.contributorsCount)}</div>
+                <div className="flex gap-1 items-center text-sm"><Download size={14} />{formatNumber(item.downloads)}
+                </div>
               </div>
               <Link href={`https://github.com/${item.repo}/issues`} target="_blank">
                 <div className="flex gap-1 items-center text-small text-default-400">

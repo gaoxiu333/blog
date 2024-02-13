@@ -1,5 +1,4 @@
 import { type ClassValue, clsx } from "clsx"
-import { headers } from "next/headers"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -7,8 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getHost(){
-  const host = headers().get("host")
-  return `http://${host}`
+  return `http://${process.env.BASE_URL}`
 }
 
 // 数量级表示法

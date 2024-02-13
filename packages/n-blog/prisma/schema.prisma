@@ -9,23 +9,34 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-model Package{
-  name String @id @unique
-  tag String
-  packageName String
-  version String
-  updateDate String
-  stars Int
+
+model Projects {
+  packageName String @id @unique
+  tag         String
+}
+
+model Stack {
+  name  String @id @unique
+  count Int?   @default(0)
+}
+
+model Package {
+  name              String    @id @unique
+  tag               String
+  packageName       String
+  version           String
+  updateDate        String
+  stars             Int
   contributorsCount Int
-  commitsCount Int
-  repo String
-  homepage String
-  description String
-  language String
-  issuesUrl String
-  openIssuesCount Int
-  downloads Int
-  errors String
-  createdDate DateTime?
-  updatedAt DateTime @updatedAt
+  commitsCount      Int
+  repo              String
+  homepage          String
+  description       String
+  language          String
+  issuesUrl         String
+  openIssuesCount   Int
+  downloads         Int
+  errors            String
+  createdDate       DateTime?
+  updatedAt         DateTime  @updatedAt
 }

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "init": "ts-node ./servies/index.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -37,7 +38,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/lodash": "^4.14.202",
     "@types/mdx": "^2.0.10",
-    "@types/node": "^20",
+    "@types/node": "^20.11.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
@@ -52,6 +53,10 @@
     "rehype-prism-plus": "^2.0.0",
     "remark-gfm": "^3.0.1",
     "tailwindcss": "^3.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
+  },
+  "prisma": {
+    "seep": "ts-node prisma/seed.ts"
   }
 }

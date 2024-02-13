@@ -1,21 +1,33 @@
-export const repos = [
+export const projects =[
   {
     name: "React",
     repo: "facebook/react",
     packageName: "react",
-    tag: "React 生态"
+    tag: "前端框架"
+  },
+  {
+    name: "Vue3",
+    repo: "vuejs/core",
+    packageName: "vue",
+    tag: "前端框架"
+  },
+  {
+    name: "Angular",
+    repo: "angular/angular",
+    packageName: "@angular/core",
+    tag: "前端框架"
+  },
+  {
+    name: "svelte",
+    repo: "svelte",
+    packageName: "svelte",
+    tag: "前端框架"
   },
   {
     name: "React Native",
     repo: "facebook/react-native",
     packageName: "react-native",
     tag: "React 生态"
-  },
-  {
-    name: "Vue3",
-    repo: "vuejs/core",
-    packageName: "vue",
-    tag: "Vue 生态"
   },
   {
     name: "shadcn/ui",
