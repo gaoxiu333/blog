@@ -1,165 +1,154 @@
-export const projects =[
+export const projects = [
   {
-    name: "React",
-    repo: "facebook/react",
     packageName: "react",
     tag: "前端框架"
   },
   {
-    name: "Vue3",
-    repo: "vuejs/core",
     packageName: "vue",
     tag: "前端框架"
   },
   {
-    name: "Angular",
-    repo: "angular/angular",
     packageName: "@angular/core",
     tag: "前端框架"
   },
   {
-    name: "svelte",
-    repo: "svelte",
     packageName: "svelte",
     tag: "前端框架"
   },
   {
-    name: "React Native",
-    repo: "facebook/react-native",
     packageName: "react-native",
     tag: "React 生态"
   },
   {
-    name: "shadcn/ui",
-    repo: "shadcn-ui/ui",
     packageName: "shadcn-ui",
     tag: "UI"
   },
   {
-    name: "Next.js",
-    repo: "vercel/next.js",
     packageName: "next",
     tag: "React 生态"
 
   },
   {
-    name: "Tailwindcss",
-    repo: "tailwindlabs/tailwindcss",
     packageName: "tailwindcss",
     tag: "UI"
   },
   {
-    name: "zustand",
-    repo: "pmndrs/zustand",
     packageName: "zustand",
     tag: "React 生态"
   },
   {
-    name: "Ant Design",
-    repo: "ant-design/ant-design",
     packageName: "antd",
     tag: "UI"
   },
   {
-    name: "Vite",
-    repo: "vitejs/vite",
     packageName: "vite",
-    tag: "tools"
+    tag: "tool"
   },
   {
-    name: "Pinia",
-    repo: "vuejs/pinia",
     packageName: "pinia",
     tag: "Vue 生态"
   },
   {
-    name: "nextUI",
-    repo: "nextui-org/nextui",
     packageName: "@nextui-org/react",
     tag: "UI"
   },
   {
-    name: "TypeScript",
-    repo: "microsoft/TypeScript",
-    packageName: "typescript",
-    tag: "lng"
-  },
-  {
-    name: "radix-ui",
-    repo: "radix-ui/primitives",
     packageName: "@radix-ui/primitive",
     tag: "UI"
   },
   {
-    name: "NervJS/taro",
-    repo: "NervJS/taro",
     packageName: "@tarojs/taro",
     tag: "React 生态"
   },
   {
-    name: "umijs/qiankun",
-    repo: "umijs/qiankun",
     packageName: "qiankun",
     tag: "微前端"
   },
   {
-    name: "micro-zoe/micro-app",
-    repo: "micro-zoe/micro-app",
     packageName: "@micro-zoe/micro-app",
     tag: "微前端"
   },
   {
-    name: "tailwindlabs/headlessui",
-    repo: "tailwindlabs/headlessui",
     packageName: "@headlessui/react",
     tag: "UI"
   },
   {
-    name: "framer/motion",
-    repo: "framer/motion",
     packageName: "framer-motion",
     tag: "动画"
   },
   {
-    name: "lodash/lodash",
-    repo: "lodash/lodash",
     packageName: "lodash",
-    tag: "tools"
+    tag: "tool"
   },
   {
-    name: "iamkun/dayjs",
-    repo: "iamkun/dayjs",
     packageName: "dayjs",
-    tag: "tools"
+    tag: "tool"
   },
   {
-    name: "lucide-icons/lucide",
-    repo: "lucide-icons/lucide",
     packageName: "lucide-react",
     tag: "icon"
   },
   {
-    name: "pacocoursey/next-themes",
-    repo: "pacocoursey/next-themes",
     packageName: "next-themes",
     tag: "UI"
   },
   {
-    name: "immerjs/immer",
-    repo: "immerjs/immer",
     packageName: "immer",
     tag: "tool"
   },
   {
-    name: "saadeghi/daisyui",
-    repo: "saadeghi/daisyui",
     packageName: "daisyui",
     tag: "UI"
   },
   {
-    name: "tanstack/query",
-    repo: "tanstack/query",
     packageName: "@tanstack/react-query",
     tag: "React 生态"
-  }
+  },
+  {
+    packageName: "drizzle-orm",
+    tag: "数据库"
+  },
+  {
+    packageName: "next",
+    tag: "Vue 生态"
+  },
+  {
+    packageName: "@stylexjs/stylex",
+    tag: "CSS"
+  },
+  {
+    packageName: "zod",
+    tag: "React 生态"
+  },
+  {
+    packageName: "@trpc/server",
+    tag: "tool"
+  },
+  {
+    packageName: "@nestjs/core",
+    tag: "nodejs"
+  },
+  {
+    packageName: "three",
+    tag: "3D"
+  },
+  {
+    packageName: "primevue",
+    tag: "Vue 生态"
+  },
+  {
+    packageName: "react-router",
+    tag: "React 生态"
+  },
+  {
+    packageName: "react-use",
+    tag: "React 生态"
+  },
+  {
+    packageName: "swr",
+    tag: "React 生态"
+  },
+  // {
+  //   packageName:''
+  // }
 ];

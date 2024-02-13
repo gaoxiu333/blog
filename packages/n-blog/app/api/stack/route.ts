@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/zh-cn";
 import { groupBy } from "lodash";
-import { repos } from "./_constant";
 import { PrismaClient } from "@prisma/client";
 import _ from "lodash";
 
@@ -11,7 +10,7 @@ dayjs.extend(relativeTime);
 
 const prisma = new PrismaClient();
 
-const token = `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`;
+const token = `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`;
 const fetchConfig = {
   headers: {
     Authorization: `Bearer ${token}`
@@ -63,7 +62,6 @@ async function fetchNpmInfo(packageName: string) {
   try {
     const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${packageName}`);
     const result = await response.json();
-    console.log("npm", result);
     const { downloads } = result;
     return [null, downloads];
   } catch (error) {
@@ -88,13 +86,11 @@ async function fetchNpmLatest(packageName: string) {
 
 const fetchRepoDetails = async ({ tag, packageName }: any) => {
   const error = [];
-
   // 获取 NPM 版本信息
   const [npmVerError, npmVersions]: any = await fetchNpmLatest(packageName);
   if (npmVerError) {
     error.push("npm versions error");
   }
-  console.log("npm versions", npmVersions);
   const { repo, name, latestVersion, updateTime } = npmVersions;
   // 获取仓库信息
   const [repoError, repoInfo] = await fetchRepoInfo(repo);
@@ -129,12 +125,12 @@ const fetchRepoDetails = async ({ tag, packageName }: any) => {
     error.push("npm download error");
   }
   const result = {
-    name,
+    name: name || packageName,
     tag,
     packageName,
     version: latestVersion,
     updateDate: dayjs(updateTime).format("YYYY-MM-DD"),
-    stars: stars,
+    stars: stars || 0,
     createdDate: createdAt,
     contributorsCount: contributorsCount,
     commitsCount: commitsCount,
@@ -163,6 +159,32 @@ const fetchRepoDetails = async ({ tag, packageName }: any) => {
   return result;
 };
 
+const fetchNpmDetails = async (packageName: string) => {
+
+  // 下载量
+  try {
+    const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${packageName}`);
+    const result = await response.json();
+    const { downloads } = result;
+    return [null, downloads];
+  } catch (error) {
+    return ["npm error"];
+  }
+
+  // npm 版本信息
+  try {
+    const response = await fetch(`https://registry.npmjs.org/${packageName}`);
+    const metadata = await response.json();
+    const { name } = metadata;
+    const latestVersion = metadata["dist-tags"].latest;
+    const updateTime = metadata.time[latestVersion];
+    const repo = _.chain(metadata.repository.url).replace(".git", "").split("/").takeRight(2).join("/").value();
+    return [null, { updateTime, latestVersion, name, repo }];
+  } catch (error) {
+    return ["npm info error", { updateTime: "", latestVersion: "" }];
+  }
+};
+
 export async function GET() {
   const packages = await prisma.package.findMany();
 
@@ -175,6 +197,7 @@ export async function GET() {
 }
 
 export async function PUT() {
+  const repos = await prisma.projects.findMany();
   repos.map(repo => fetchRepoDetails(repo));
   return new Response("ok", {
     headers: {

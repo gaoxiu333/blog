@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "init": "ts-node ./servies/index.ts"
+    "init": "ts-node prisma/seep.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
