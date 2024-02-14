@@ -1,14 +1,4 @@
-// 获取 npm 下载量
-// async function fetchNpmInfo(packageName: string) {
-//   try {
-//     const response = await fetch(`https://api.npmjs.org/downloads/point/last-week/${packageName}`);
-//     const result = await response.json();
-//     const { downloads } = result;
-//     return [null, downloads];
-//   } catch (error) {
-//     return ["npm error"];
-//   }
-// }
+import _ from "lodash";
 
 // 获取 npm 的最新版本以及更新时间
 async function fetchNpmInfo(packageName: string) {
@@ -28,8 +18,7 @@ async function fetchDownloads(packageName: string) {
   return { downloads };
 }
 
-const fetchNpmDetails = async (packageName: string) => {
-
+export const fetchNpmDetails = async (packageName: string) => {
   const npmInfo = await fetchNpmInfo(packageName);
   const npmDownloads = await fetchDownloads(packageName);
   return { ...npmInfo, ...npmDownloads };

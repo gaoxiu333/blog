@@ -11,7 +11,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
     <RefreshBtn />
     <div className="flex gap-2 pt-2 flex-wrap">
       {doc.map((project: any, idx: number) => {
-        return <Link key={idx} href={project.name}> <Button size="sm">{project.name}</Button></Link>;
+        return <Link key={idx} href={`/stack/${project.name}`}> <Button size="sm">{project.name}</Button></Link>;
       })}
     </div>
     {children}
