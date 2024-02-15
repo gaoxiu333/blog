@@ -41,7 +41,11 @@ async function featchRepoInfo(repo: string) {
   return result;
 }
 
-// 获取Github贡献人数
+/**
+ * 获取github贡献人数
+ * 但是不准确，通常只记录500人，超过500人，记录为匿名贡献者，获取不到
+ * 加上 anon 字段，可以获取匿名贡献者，但是数量对不上，会比实际贡献者多。
+ */
 async function fetchContributors(repo: string) {
   const response = await fetch(
     `https://api.github.com/repos/${repo}/contributors?per_page=1`,
@@ -54,7 +58,6 @@ async function fetchContributors(repo: string) {
   const contributorsCount = contributorsLastPageMatch
     ? Number(contributorsLastPageMatch[1])
     : 0;
-
   return { contributorsCount };
 }
 

@@ -13,35 +13,6 @@ const prisma = new PrismaClient();
 
 
 async function main() {
-  const result = await Promise.all(projects.map(item => {
-    return prisma.projects.upsert({
-      where: {
-        packageName: item.packageName as string
-      },
-      update: {
-        packageName: item.packageName as string,
-        tag: item.tag
-      },
-      create: {
-        packageName: item.packageName as string,
-        tag: item.tag
-      }
-    });
-  }));
-  const group = _.chain(result).groupBy("tag").keys().value();
-  const stack = await Promise.all(group.map(item => {
-    return prisma.stack.upsert({
-      where: {
-        name: item as string
-      },
-      update: {
-        name: item
-      },
-      create: {
-        name: item
-      }
-    });
-  }));
 
 }
 

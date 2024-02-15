@@ -10,32 +10,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Projects {
-  packageName String @id @unique
-  tag         String
-}
+// model Projects {
+//   packageName String @id @unique
+//   tag         String
+// }
+
+// model Stack {
+//   name  String @id @unique
+//   count Int?   @default(0)
+// }
+
+// model Package {
+//   name              String    @id @unique
+//   tag               String
+//   packageName       String
+//   version           String
+//   updateDate        String // 最新版本更新时间
+//   stars             Int
+//   contributorsCount Int
+//   commitsCount      Int
+//   repo              String
+//   homepage          String
+//   description       String
+//   language          String
+//   issuesUrl         String
+//   openIssuesCount   Int
+//   downloads         Int
+//   createdDate       DateTime? // 项目创建时间
+//   updatedAt         DateTime  @updatedAt
+// }
 
 model Stack {
-  name  String @id @unique
-  count Int?   @default(0)
+  name      String   @id @unique
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  repo      String
+  npm       String
 }
 
-model Package {
-  name              String    @id @unique
-  tag               String
-  packageName       String
-  version           String
-  updateDate        String // 最新版本更新时间
-  stars             Int
-  contributorsCount Int
-  commitsCount      Int
-  repo              String
-  homepage          String
-  description       String
-  language          String
-  issuesUrl         String
-  openIssuesCount   Int
-  downloads         Int
-  createdDate       DateTime? // 项目创建时间
-  updatedAt         DateTime  @updatedAt
+model Npm {
+  name      String   @id @unique
+  createdAt DateTime
+  updateAt  DateTime
+}
+
+model Github {
+  name      String   @id @unique
+  createdAt DateTime
+  updateAt  DateTime
 }
