@@ -1,7 +1,8 @@
-const token = `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`;
+import { githubToken } from "@/_keys";
+
 const fetchConfig = {
   headers: {
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${githubToken}`,
   },
   next: {
     revalidate: 1000 * 10,
@@ -16,7 +17,7 @@ async function featchRepoInfo(repo: string) {
   );
   const data = await response.json();
   const {
-    updated_at: updateDate,
+    // updated_at: updateDate,
     language,
     issues_url: issuesUrl,
     open_issues_count: openIssuesCount,
@@ -24,18 +25,18 @@ async function featchRepoInfo(repo: string) {
     homepage,
     license,
     description,
-    created_at: createdAt,
+    created_at: createdDate,
   } = data;
   const result = {
-    updateDate,
+    // updateDate,
     language,
     issuesUrl,
     openIssuesCount,
     stars,
     homepage,
-    license,
+    // license,
     description,
-    createdAt,
+    createdDate,
   };
   return result;
 }
@@ -72,13 +73,13 @@ async function fetchCommit(repo: string) {
 }
 
 // 获取Github信息
-async function fetchGithubInfo(repo:string){
-    const [result1, result2, result3] = await Promise.all([
-      featchRepoInfo(repo),
-      fetchContributors(repo),
-      fetchCommit(repo),
-    ]);
-    return { ...result1, ...result2, ...result3 };
+async function fetchGithubInfo(repo: string) {
+  const [result1, result2, result3] = await Promise.all([
+    featchRepoInfo(repo),
+    fetchContributors(repo),
+    fetchCommit(repo),
+  ]);
+  return { ...result1, ...result2, ...result3 };
 }
 
 export { fetchGithubInfo };

@@ -25,7 +25,7 @@ model Package {
   tag               String
   packageName       String
   version           String
-  updateDate        String
+  updateDate        String // 最新版本更新时间
   stars             Int
   contributorsCount Int
   commitsCount      Int
@@ -36,7 +36,6 @@ model Package {
   issuesUrl         String
   openIssuesCount   Int
   downloads         Int
-  errors            String
-  createdDate       DateTime?
+  createdDate       DateTime? // 项目创建时间
   updatedAt         DateTime  @updatedAt
 }

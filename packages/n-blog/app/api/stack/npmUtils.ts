@@ -5,10 +5,10 @@ async function fetchNpmInfo(packageName: string) {
   const response = await fetch(`https://registry.npmjs.org/${packageName}`);
   const metadata = await response.json();
   const { name } = metadata;
-  const latestVersion = metadata["dist-tags"].latest;
-  const updateTime = metadata.time[latestVersion];
+  const version = metadata["dist-tags"].latest;
+  const updateDate = metadata.time[version];
   const repo = _.chain(metadata.repository.url).replace(".git", "").split("/").takeRight(2).join("/").value();
-  return { updateTime, latestVersion, name, repo };
+  return { updateDate,version, name, repo };
 }
 
 async function fetchDownloads(packageName: string) {
