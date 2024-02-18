@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { PrismaClient } from "@prisma/client";
 import { Log } from "@/components/log";
+import Image from "next/image";
 
 const prisma = new PrismaClient();
 
@@ -20,6 +21,12 @@ export function StackCard({ item }: any) {
     <Card className="relative">
       <CardBody className="flex flex-col gap-2 ">
         <div className="flex items-center justify-between">
+          <Image
+            width={24}
+            height={24}
+            src={item.organizationAvatar}
+            alt={item.name}
+          />
           <Tooltip
             content={
               <div>

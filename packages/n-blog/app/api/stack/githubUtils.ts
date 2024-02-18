@@ -18,7 +18,7 @@ async function featchRepoInfo({ repo, name }: { repo: string; name: string }) {
   const commit = await fetchCommit(repo);
   const contributor = await fetchContributors(repo);
   const data = await response.json();
-  console.log('time',name,data.create_at)
+  console.log("time", name, data.create_at);
   const {
     created_at: createdAt,
     updated_at: updateAt,
@@ -27,6 +27,8 @@ async function featchRepoInfo({ repo, name }: { repo: string; name: string }) {
     open_issues_count: issues,
     stargazers_count: stars,
     description,
+    organization,
+    owner,
   } = data;
   const result = {
     name,
@@ -40,6 +42,7 @@ async function featchRepoInfo({ repo, name }: { repo: string; name: string }) {
     issuesLink,
     description,
     language,
+    organizationAvatar: organization.avatar_url || owner.avatar_url || "",
   };
   return result;
 }

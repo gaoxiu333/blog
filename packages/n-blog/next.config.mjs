@@ -27,6 +27,14 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
+  },
 };
 
 // 这里的配置针对哪个依赖？现在设置似乎无效，尤其是代码高亮那段。

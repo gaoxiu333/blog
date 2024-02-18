@@ -31,7 +31,8 @@ CREATE TABLE "Github" (
     "issuesLink" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "language" TEXT NOT NULL,
-    "tag" TEXT NOT NULL
+    "tag" TEXT NOT NULL,
+    "organizationAvatar" TEXT NOT NULL
 );
 
 -- CreateIndex

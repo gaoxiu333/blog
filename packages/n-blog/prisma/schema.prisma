@@ -31,16 +31,17 @@ model Npm {
 }
 
 model Github {
-  name         String   @id @unique
-  createdAt    DateTime
-  updateAt     DateTime
-  version      String
-  stars        Int
-  commits      Int
-  contributors Int
-  issues       Int
-  issuesLink   String
-  description  String
-  language     String
-  tag          String
+  name               String   @id @unique
+  createdAt          DateTime
+  updateAt           DateTime
+  version            String
+  stars              Int
+  commits            Int
+  contributors       Int
+  issues             Int
+  issuesLink         String
+  description        String
+  language           String
+  tag                String
+  organizationAvatar String
 }
