@@ -10,33 +10,36 @@ const fetchConfig = {
 };
 
 // 获取Github仓库信息
-async function featchRepoInfo(repo: string) {
+async function featchRepoInfo({ repo, name }: { repo: string; name: string }) {
   const response = await fetch(
     `https://api.github.com/repos/${repo}`,
     fetchConfig,
   );
+  const commit = await fetchCommit(repo);
+  const contributor = await fetchContributors(repo);
   const data = await response.json();
+  console.log('time',name,data.create_at)
   const {
-    // updated_at: updateDate,
+    created_at: createdAt,
+    updated_at: updateAt,
     language,
-    issues_url: issuesUrl,
-    open_issues_count: openIssuesCount,
+    issues_url: issuesLink,
+    open_issues_count: issues,
     stargazers_count: stars,
-    homepage,
-    license,
     description,
-    created_at: createdDate,
   } = data;
   const result = {
-    // updateDate,
-    language,
-    issuesUrl,
-    openIssuesCount,
+    name,
+    createdAt,
+    updateAt,
+    version: "0.0.0",
     stars,
-    homepage,
-    // license,
+    ...commit,
+    ...contributor,
+    issues,
+    issuesLink,
     description,
-    createdDate,
+    language,
   };
   return result;
 }
@@ -55,10 +58,10 @@ async function fetchContributors(repo: string) {
   const contributorsLastPageMatch = contributorsLink!.match(
     /&page=(\d+)>; rel="last"/,
   );
-  const contributorsCount = contributorsLastPageMatch
+  const contributors = contributorsLastPageMatch
     ? Number(contributorsLastPageMatch[1])
     : 0;
-  return { contributorsCount };
+  return { contributors };
 }
 
 // 获取Github提交数量
@@ -69,20 +72,14 @@ async function fetchCommit(repo: string) {
   );
   const commitsLink = commitsResponse.headers.get("link");
   const commitsLastPageMatch = commitsLink!.match(/&page=(\d+)>; rel="last"/);
-  const commitsCount = commitsLastPageMatch
-    ? Number(commitsLastPageMatch[1])
-    : 0;
-  return { commitsCount };
+  const commits = commitsLastPageMatch ? Number(commitsLastPageMatch[1]) : 0;
+  return { commits };
 }
 
 // 获取Github信息
-async function fetchGithubInfo(repo: string) {
-  const [result1, result2, result3] = await Promise.all([
-    featchRepoInfo(repo),
-    fetchContributors(repo),
-    fetchCommit(repo),
-  ]);
-  return { ...result1, ...result2, ...result3 };
+async function fetchGithubInfo(stack: any) {
+  const result = await featchRepoInfo(stack);
+  return result;
 }
 
 export { fetchGithubInfo };

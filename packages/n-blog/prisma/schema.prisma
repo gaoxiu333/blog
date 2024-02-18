@@ -10,35 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model Projects {
-//   packageName String @id @unique
-//   tag         String
-// }
-
-// model Stack {
-//   name  String @id @unique
-//   count Int?   @default(0)
-// }
-
-// model Package {
-//   name              String    @id @unique
-//   tag               String
-//   packageName       String
-//   version           String
-//   updateDate        String // 最新版本更新时间
-//   stars             Int
-//   contributorsCount Int
-//   commitsCount      Int
-//   repo              String
-//   homepage          String
-//   description       String
-//   language          String
-//   issuesUrl         String
-//   openIssuesCount   Int
-//   downloads         Int
-//   createdDate       DateTime? // 项目创建时间
-//   updatedAt         DateTime  @updatedAt
-// }
+//TODO 定义一个stack字段，来区分
 
 model Stack {
   name      String   @id @unique
@@ -46,16 +18,29 @@ model Stack {
   createdAt DateTime @default(now())
   repo      String
   npm       String
+  tag       String
 }
 
 model Npm {
   name      String   @id @unique
   createdAt DateTime
   updateAt  DateTime
+  downloads Int
+  version   String
+  tag       String
 }
 
 model Github {
-  name      String   @id @unique
-  createdAt DateTime
-  updateAt  DateTime
+  name         String   @id @unique
+  createdAt    DateTime
+  updateAt     DateTime
+  version      String
+  stars        Int
+  commits      Int
+  contributors Int
+  issues       Int
+  issuesLink   String
+  description  String
+  language     String
+  tag          String
 }
