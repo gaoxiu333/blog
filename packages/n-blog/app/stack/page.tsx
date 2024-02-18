@@ -1,9 +1,9 @@
-import { Item } from "./components/item";
 import { Chip, Divider, Link } from "@nextui-org/react";
-import { RefreshBtn } from "@/app/stack/components/refreshBtn";
-import { getHost } from "@/lib/utils";
 import { PrismaClient } from "@prisma/client";
 import { Log } from "@/components/log";
+import _ from "lodash";
+import { TAG_MAP } from "@/prisma/_constant";
+import { Panel } from "./components/panel";
 
 const prisma = new PrismaClient();
 
@@ -23,10 +23,7 @@ export default async function Page() {
   const list = await getFrontend();
   return (
     <main>
-      <div className="q flex gap-2 pt-2.5"></div>
       <Divider />
-      <h1>{process.env.BASE_URL}</h1>
-      {/*<Stack tag={""} />*/}
       <Log info={list} />
       {list.map((item: any, idx: number) => {
         return (
@@ -35,6 +32,7 @@ export default async function Page() {
           </Link>
         );
       })}
+      <Panel type="all" />
     </main>
   );
 }

@@ -10,15 +10,25 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const doc: any = [];
+  const data: any = await prisma.stack.findMany();
+  const doc = [
+    {
+      name: "全部",
+      href: "",
+    },
+    ...data
+      .filter((item: any) => ~item.tag.indexOf("前端框架"))
+      .map((item: any) => ({ ...item, href: item.name })),
+  ];
   return (
     <section className="container">
-      <RefreshBtn />
+      <div className="flex justify-end">
+        <RefreshBtn />
+      </div>
       <div className="flex flex-wrap gap-2 pt-2">
         {doc.map((project: any, idx: number) => {
           return (
-            <Link key={idx} href={`/stack/${project.name}`}>
-              {" "}
+            <Link key={idx} href={`/stack/${project.href}`}>
               <Button size="sm">{project.name}</Button>
             </Link>
           );

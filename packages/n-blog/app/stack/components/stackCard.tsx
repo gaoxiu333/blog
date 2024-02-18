@@ -92,7 +92,7 @@ export function StackCard({ item }: any) {
   );
 }
 
-async function getStack(tag: string) {
+async function getStack(tag: string, prject: string, stack: string) {
   const stacks = await prisma.stack.findMany();
   const npm = await prisma.npm.findMany();
   const github = await prisma.github.findMany();
@@ -102,10 +102,15 @@ async function getStack(tag: string) {
       ...github.find((g) => g.name === item.name),
       ...npm.find((n) => n.name === item.name),
     }))
-    .filter((item) => ~item.tag.indexOf(tag));
+    .filter(
+      (item) =>
+        ~item.tag.indexOf(tag) &&
+        ~item.tag.indexOf(stack) &&
+        ~item.tag.indexOf(prject),
+    );
 }
 export async function StackList(props: any) {
-  const list = await getStack(props.tag);
+  const list = await getStack(props.tag, props.project, props.stack);
   return (
     <section className="flex-1">
       <Log info={list.filter((item) => ~item.tag.indexOf(props.tag))} />

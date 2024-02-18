@@ -2,10 +2,6 @@ import { join } from "lodash";
 
 export const _projects = [
   {
-    packageName: "pinia",
-    tag: "Vue 生态",
-  },
-  {
     packageName: "qiankun",
     tag: "微前端",
   },
@@ -54,19 +50,19 @@ export const _projects = [
 // 前端框架
 const frontEnds = [
   {
-    name: "React",
+    name: "react",
     repo: "facebook/react",
     npm: "react",
     types: ["react"],
   },
   {
-    name: "Vue3",
+    name: "vue",
     repo: "vuejs/core",
     npm: "vue",
     types: ["vue"],
   },
   {
-    name: "Angular",
+    name: "angular",
     repo: "angular/angular",
     npm: "@angular/core",
     types: ["angular"],
@@ -228,6 +224,12 @@ const libraries = [
     npm: "swr",
     types: ["react"],
   },
+  {
+    name: "Pinia",
+    repo: "vuejs/pinia",
+    npm: "pinia",
+    types: ["vue"],
+  },
 ];
 // 样式
 const styles = [
@@ -274,6 +276,21 @@ const animations = [
     types: ["react"],
   },
 ];
+// 微前端
+const microFrontEnds = [
+  {
+    name: "Qiankun",
+    repo: "umijs/qiankun",
+    npm: "qiankun",
+    types: ["react"],
+  },
+  {
+    name: "Micro app",
+    repo: "micro-zoe/micro-app",
+    npm: "@micro-zoe/micro-app",
+    types: ["react"],
+  },
+];
 export const projects = [
   ...frontEnds.map((item) => ({
     ...item,
@@ -304,4 +321,20 @@ export const projects = [
     ...item,
     tag: `animation,${join(item.types, ",")}`,
   })),
+  ...microFrontEnds.map((item) => ({
+    ...item,
+    tag: `micro,${join(item.types, ",")}`,
+  })),
+];
+
+export const TAG_MAP = [
+  { key: "前端框架", name: "前端框架" },
+  { key: "platform", name: "构建平台" },
+  { key: "ui", name: "UI" },
+  { key: "database", name: "数据库" },
+  { key: "library", name: "工具库" },
+  { key: "mobile", name: "移动端" },
+  { key: "animation", name: "动画库" },
+  { key: "style", name: "样式库" },
+  { key: "micro", name: "微前端" },
 ];
