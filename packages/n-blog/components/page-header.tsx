@@ -9,9 +9,8 @@ import {
   NavbarItem,
   NavbarMenuToggle,
 } from "@nextui-org/navbar";
-import React, { use, useEffect } from "react";
+import React from "react";
 import { Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
-import { useTheme } from "next-themes";
 import LogoSvg from "@/public/icons/javascript.svg";
 import { useThemeSession } from "@/app/hooks/useThemeSection";
 
@@ -36,6 +35,11 @@ const navItems = [
     href: "/about",
     current: false,
   },
+  {
+    name: "堆栈",
+    href: "/stack",
+    current: false,
+  },
 ];
 
 const PageHeader: React.FC<PageHeaderProps> = ({
@@ -57,29 +61,22 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
   return (
     <Comp
-      className={`container flex h-[3.75rem] items-center justify-between ${className}`}
+      className={`flex h-[3.75rem] items-center justify-between ${className}`}
       {...props}
     >
-      <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full">
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
           />
-          <NavbarBrand>
-            {/* <Image
-              className="size-6 rounded-none dark:bg-white"
-              src="/icons/javascript.svg"
-              alt="logo"
-            /> */}
+          <NavbarBrand>           
             <LogoSvg
               size={12}
               className={`currentColor h-5 w-5 fill-current`}
             />
           </NavbarBrand>
-          {/* <p suppressHydrationWarning>当前主题：{theme || ""}</p> */}
         </NavbarContent>
-
         <NavbarContent className="hidden gap-4 sm:flex" justify="center">
           {navItems.map((item) => {
             return (

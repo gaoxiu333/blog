@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Card, CardBody, CardHeader, Image, Link } from "@nextui-org/react";
 import _ from "lodash";
-import { TAG_MAP } from "@/prisma/_constant";
+import { FRONTEND_TAP_MAP } from "@/prisma/_constant";
 
 const prisma = new PrismaClient();
 async function getTag(type: string) {
@@ -26,10 +26,10 @@ export async function Panel({ type }: { type: any }) {
   const { stacks } = await getTag(type);
 
   return (
-    <section className="flex flex-wrap justify-center gap-2">
-      {TAG_MAP.map(({ key, name }: any, idx: number) => {
+    <section className="grid grid-cols-4 gap-4">
+      {FRONTEND_TAP_MAP.map(({ key, name }: any, idx: number) => {
         return (
-          <Card key={idx} className="block w-1/4" isPressable isBlurred>
+          <Card key={idx} className="block" isPressable isBlurred>
             <CardHeader>
               <Link href={`/stack/${type}/${key}`}>
                 <h3>{name}</h3>

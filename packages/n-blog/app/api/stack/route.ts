@@ -30,10 +30,10 @@ async function refreshDatabase() {
           name: project.name,
         },
         create: {
-          ...omit(project, "types"),
+          ...omit(project, "tags"),
         } as any,
         update: {
-          ...omit(project, "types"),
+          ...omit(project, "tags"),
         },
       });
     }),

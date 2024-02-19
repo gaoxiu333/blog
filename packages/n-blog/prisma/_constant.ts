@@ -1,21 +1,9 @@
-import { join } from "lodash";
+import _, { join } from "lodash";
 
 export const _projects = [
   {
-    packageName: "qiankun",
-    tag: "微前端",
-  },
-  {
-    packageName: "@micro-zoe/micro-app",
-    tag: "微前端",
-  },
-  {
     packageName: "lucide-react",
     tag: "icon",
-  },
-  {
-    packageName: "@tanstack/react-query",
-    tag: "React 生态",
   },
 
   {
@@ -53,25 +41,25 @@ const frontEnds = [
     name: "react",
     repo: "facebook/react",
     npm: "react",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "vue",
     repo: "vuejs/core",
     npm: "vue",
-    types: ["vue"],
+    tags: ["vue"],
   },
   {
     name: "angular",
     repo: "angular/angular",
     npm: "@angular/core",
-    types: ["angular"],
+    tags: ["angular"],
   },
   {
     name: "svelte",
     repo: "sveltejs/svelte",
     npm: "svelte",
-    types: ["svelte"],
+    tags: ["svelte"],
   },
 ];
 
@@ -81,19 +69,19 @@ const platforms = [
     name: "Vite",
     repo: "vitejs/vite",
     npm: "vite",
-    types: ["vue", "react"],
+    tags: ["vue", "react"],
   },
   {
     name: "Nextjs",
     repo: "vercel/next.js",
     npm: "next",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Refine",
     repo: "refinedev/refine",
     npm: "@refinedev/core",
-    types: ["react"],
+    tags: ["react"],
   },
 ];
 // UI 框架
@@ -102,43 +90,43 @@ const uiFrameworks = [
     name: "Ant Design",
     repo: "ant-design/ant-design",
     npm: "antd",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Shadcn UI",
     repo: "shadcn-ui/ui",
     npm: "shadcn-ui",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "NextUI",
     repo: "nextui-org/nextui",
     npm: "@nextui-org/react",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Radix",
     repo: "radix-ui/primitives",
     npm: "@radix-ui/primitive",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Headless UI",
     repo: "tailwindlabs/headlessui",
     npm: "@headlessui/react",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Theme UI",
     repo: "system-ui/theme-ui",
     npm: "theme-ui",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "DaisyUI",
     repo: "saadeghi/daisyui",
     npm: "daisyui",
-    types: ["react"],
+    tags: ["react"],
   },
 ];
 // 鉴权
@@ -153,25 +141,25 @@ const databases = [
     name: "Prisma",
     repo: "prisma/prisma",
     npm: "@prisma/client",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Drizzle ORM",
     repo: "drizzle-team/drizzle-orm",
     npm: "drizzle-orm",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "tRPC",
     repo: "trpc/trpc",
     npm: "@trpc/server",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Prisma",
     repo: "prisma/prisma",
     npm: "@prisma/client",
-    types: ["react"],
+    tags: ["react"],
   },
 ];
 // 工具/集成
@@ -180,55 +168,65 @@ const libraries = [
     name: "Zustand",
     repo: "pmndrs/zustand",
     npm: "zustand",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Lodash",
     repo: "lodash/lodash",
     npm: "lodash",
-    types: ["react", "vue", "nodejs", "angular", "svelte"],
+    tags: ["react", "vue", "nodejs", "angular", "svelte"],
   },
   {
     name: "Recoil",
     repo: "facebookexperimental/Recoil",
     npm: "recoil",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "dayjs",
     repo: "iamkun/dayjs",
     npm: "dayjs",
-    types: ["react", "vue", "nodejs", "angular", "svelte"],
+    tags: ["react", "vue", "nodejs", "angular", "svelte"],
   },
   {
     name: "Immer",
     repo: "immerjs/immer",
     npm: "immer",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Zod",
     repo: "colinhacks/zod",
     npm: "zod",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "React use",
     repo: "streamich/react-use",
     npm: "react-use",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "SWT",
     repo: "vercel/swr",
     npm: "swr",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Pinia",
     repo: "vuejs/pinia",
     npm: "pinia",
-    types: ["vue"],
+    tags: ["vue"],
+  },
+  {
+    name: "Axios",
+    repo: "axios/axios",
+    npm: "axios",
+  },
+  {
+    name: "TanStack Query",
+    repo: "TanStack/query",
+    npm: "@tanstack/react-query",
   },
 ];
 // 样式
@@ -237,19 +235,19 @@ const styles = [
     name: "TailwindCSS",
     repo: "tailwindlabs/tailwindcss",
     npm: "tailwindcss",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Styled Components",
     repo: "styled-components/styled-components",
     npm: "styled-components",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Stylex",
     repo: "facebook/stylex",
     npm: "@stylexjs/stylex",
-    types: ["react"],
+    tags: ["react"],
   },
 ];
 // 移动端
@@ -258,13 +256,13 @@ const mobiles = [
     name: "React native",
     repo: "facebook/react-native",
     npm: "react-native",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Taro",
     repo: "NervJS/taro",
     npm: "taro",
-    types: ["react"],
+    tags: ["react"],
   },
 ];
 // 动画
@@ -273,7 +271,7 @@ const animations = [
     name: "Framer Motion",
     repo: "framer/motion",
     npm: "framer-motion",
-    types: ["react"],
+    tags: ["react"],
   },
 ];
 // 微前端
@@ -282,53 +280,88 @@ const microFrontEnds = [
     name: "Qiankun",
     repo: "umijs/qiankun",
     npm: "qiankun",
-    types: ["react"],
+    tags: ["react"],
   },
   {
     name: "Micro app",
     repo: "micro-zoe/micro-app",
     npm: "@micro-zoe/micro-app",
-    types: ["react"],
+    tags: ["react"],
   },
 ];
+// nodejs
+
+const nodejs = [
+  {
+    name: "Express",
+    repo: "expressjs/express",
+    npm: "express",
+    tags: [],
+  },
+  {
+    name: "Nest",
+    repo: "nestjs/nest",
+    npm: "@nestjs/core",
+    tags: [],
+  },
+];
+
 export const projects = [
   ...frontEnds.map((item) => ({
     ...item,
-    tag: `前端框架,${join(item.types, ",")}`,
+    tag: `frontEnd,${join(item.tags, ",")}`,
   })),
   ...platforms.map((item) => ({
     ...item,
-    tag: `platform,${join(item.types, ",")}`,
+    tag: `platform,${join(item.tags, ",")}`,
   })),
   ...uiFrameworks.map((item) => ({
     ...item,
-    tag: `ui,${join(item.types, ",")}`,
+    tag: `ui,${join(item.tags, ",")}`,
   })),
   ...databases.map((item) => ({
     ...item,
-    tag: `database,${join(item.types, ",")}`,
+    tag: `database,${join(item.tags, ",")}`,
   })),
   ...libraries.map((item) => ({
     ...item,
-    tag: `library,${join(item.types, ",")}`,
+    tag: `library,${join(item.tags, ",")}`,
   })),
-  ...styles.map((item) => ({ ...item, tag: `style,${join(item.types, ",")}` })),
+  ...styles.map((item) => ({ ...item, tag: `style,${join(item.tags, ",")}` })),
   ...mobiles.map((item) => ({
     ...item,
-    tag: `mobile,${join(item.types, ",")}`,
+    tag: `mobile,${join(item.tags, ",")}`,
   })),
   ...animations.map((item) => ({
     ...item,
-    tag: `animation,${join(item.types, ",")}`,
+    tag: `animation,${join(item.tags, ",")}`,
   })),
   ...microFrontEnds.map((item) => ({
     ...item,
-    tag: `micro,${join(item.types, ",")}`,
+    tag: `micro,${join(item.tags, ",")}`,
   })),
+  ...nodejs.map((item) => ({ ...item, tag: `nodejs,${join(item.tags, ",")}` })),
+].map((item) => _.omit(item, "tags"));
+
+export const ALL_TAG = _.chain(projects)
+  .map("tag")
+  .join(",")
+  .split(",")
+  .compact()
+  .union()
+  .value();
+
+const _DOC = ["react", "vue", "angular", "svelte", "nodejs"];
+export const DOC = [
+  {
+    name: "全部",
+    href: "",
+  },
+  ..._DOC.map((item) => ({ name: item, href: item })),
 ];
 
-export const TAG_MAP = [
-  { key: "前端框架", name: "前端框架" },
+export const FRONTEND_TAP_MAP = [
+  { key: "frontEnd", name: "前端框架" },
   { key: "platform", name: "构建平台" },
   { key: "ui", name: "UI" },
   { key: "database", name: "数据库" },

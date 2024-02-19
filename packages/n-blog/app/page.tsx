@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { getHost } from "@/lib/utils";
 
 const getPosts = async () => {
-  const res = await fetch(`${getHost()}/api/posts`);
+  const res = await fetch(`${process.env.BASE_URL}/api/posts`);
 
   return await res.json();
 };
