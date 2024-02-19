@@ -4,7 +4,7 @@ export default async function Page(props: any) {
 
   return (
     <main>
-       <Panel type={props.params.stack} />
+       {/* <Panel type={props.params.stack} /> */}
     </main>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-import { Button, Link, Listbox, ListboxItem } from "@nextui-org/react";
-import { RefreshBtn } from "@/app/stack/components/refreshBtn";
-import { DOC } from "@/prisma/_constant";
+import { Listbox, ListboxItem } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
 const NAV = [
@@ -17,6 +15,10 @@ const NAV = [
   {
     name: "Python",
     key: "python",
+  },
+  {
+    name: "开源项目",
+    key: "openSource",
   },
 ];
 
@@ -38,21 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           })}
         </Listbox>
       </nav>
-      <main className="flex-1">
-        <nav className="flex items-center justify-between">
-          <RefreshBtn />
-          <div className="flex flex-wrap gap-2 pt-2">
-            {DOC.map((project: any, idx: number) => {
-              return (
-                <Link key={idx} href={`/stack/${project.href}`}>
-                  <Button size="sm">{project.name}</Button>
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
       <div className="flex-none">目录</div>
     </section>
   );

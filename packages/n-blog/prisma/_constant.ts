@@ -1,40 +1,5 @@
 import _, { join } from "lodash";
 
-export const _projects = [
-  {
-    packageName: "lucide-react",
-    tag: "icon",
-  },
-
-  {
-    packageName: "next",
-    tag: "Vue 生态",
-  },
-  {
-    packageName: "@nestjs/core",
-    tag: "nodejs",
-  },
-  {
-    packageName: "three",
-    tag: "3D",
-  },
-  {
-    packageName: "primevue",
-    tag: "Vue 生态",
-  },
-  {
-    packageName: "react-router",
-    tag: "React 生态",
-  },
-  {
-    packageName: "@prisma/client",
-    tag: "数据库",
-  },
-  {
-    packageName: "typeorm/typeorm",
-    tag: "数据库",
-  },
-];
 // 前端框架
 const frontEnds = [
   {
@@ -82,6 +47,12 @@ const platforms = [
     repo: "refinedev/refine",
     npm: "@refinedev/core",
     tags: ["react"],
+  },
+  {
+    name: "Nuxt",
+    repo: "nuxtjs/nuxt",
+    npm: "nuxt",
+    tags: ["vue"],
   },
 ];
 // UI 框架
@@ -159,6 +130,12 @@ const databases = [
     name: "Prisma",
     repo: "prisma/prisma",
     npm: "@prisma/client",
+    tags: ["react"],
+  },
+  {
+    name: "TypeORM",
+    repo: "typeorm/typeorm",
+    npm: "typeorm",
     tags: ["react"],
   },
 ];
@@ -290,7 +267,6 @@ const microFrontEnds = [
   },
 ];
 // nodejs
-
 const nodejs = [
   {
     name: "Express",
@@ -303,6 +279,27 @@ const nodejs = [
     repo: "nestjs/nest",
     npm: "@nestjs/core",
     tags: [],
+  },
+];
+// 杂项
+const others = [
+  {
+    name: "Lucide",
+    repo: "lucide-icons/lucide",
+    npm: "lucide-react",
+    tags: ["react", "vue"],
+  },
+  {
+    name: "Three.js",
+    repo: "mrdoob/three.js",
+    npm: "three",
+    tag: ["react", "vue"],
+  },
+  {
+    name: "React Router",
+    repo: "remix-run/react-router",
+    npm: "react-router",
+    tag: ["react"],
   },
 ];
 
@@ -340,6 +337,7 @@ export const projects = [
     ...item,
     tag: `micro,${join(item.tags, ",")}`,
   })),
+  ...others.map((item) => ({ ...item, tag: `other,${join(item.tags, ",")}` })),
   ...nodejs.map((item) => ({ ...item, tag: `nodejs,${join(item.tags, ",")}` })),
 ].map((item) => _.omit(item, "tags"));
 
@@ -351,7 +349,7 @@ export const ALL_TAG = _.chain(projects)
   .union()
   .value();
 
-const _DOC = ["react", "vue", "angular", "svelte", "nodejs"];
+const _DOC = ["react", "vue", "angular", "svelte"];
 export const DOC = [
   {
     name: "全部",
