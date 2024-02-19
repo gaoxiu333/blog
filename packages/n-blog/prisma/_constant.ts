@@ -50,7 +50,7 @@ const platforms = [
   },
   {
     name: "Nuxt",
-    repo: "nuxtjs/nuxt",
+    repo: "nuxt/nuxt",
     npm: "nuxt",
     tags: ["vue"],
   },

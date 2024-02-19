@@ -1,3 +1,9 @@
+import { Panel } from "../components/panel";
+
 export default function Page() {
-  return <div>Nodejs</div>;
+  return (
+    <div>
+      <Panel tag={`nodejs`} name={"nodejs框架"} />
+    </div>
+  );
 }

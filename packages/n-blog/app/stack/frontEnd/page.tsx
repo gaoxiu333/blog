@@ -1,6 +1,6 @@
 "use client";
 import { DOC, FRONTEND_TAP_MAP } from "@/prisma/_constant";
-import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
+import { Tab, Tabs } from "@nextui-org/react";
 import { Panel } from "../components/panel";
 
 export default function Page() {
