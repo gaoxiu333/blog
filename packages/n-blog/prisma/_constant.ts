@@ -260,6 +260,18 @@ const libraries = [
     npm: "rx",
     tags: ["angular"],
   },
+  {
+    name: "Tempo",
+    repo: "formkit/tempo",
+    npm: "@formkit/tempo",
+    tags: ["vue", "react"],
+  },
+  {
+    name: "date-fns",
+    repo: "date-fns/date-fns",
+    npm: "date-fns",
+    tags: ["angular"],
+  },
 ];
 // 样式
 const styles = [
