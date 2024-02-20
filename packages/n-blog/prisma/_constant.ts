@@ -54,6 +54,12 @@ const platforms = [
     npm: "nuxt",
     tags: ["vue"],
   },
+  {
+    name: "UniJS",
+    repo: "umijs/umi",
+    npm: "umi",
+    tags: ["react"],
+  },
 ];
 // UI 框架
 const uiFrameworks = [
@@ -98,6 +104,24 @@ const uiFrameworks = [
     repo: "saadeghi/daisyui",
     npm: "daisyui",
     tags: ["react"],
+  },
+  {
+    name: "Element Plus",
+    repo: "element-plus/element-plus",
+    npm: "element-plus",
+    tags: ["vue"],
+  },
+  {
+    name: "Element Plus",
+    repo: "ElemeFE/element",
+    npm: "element-ui",
+    tags: ["vue"],
+  },
+  {
+    name: "Ant Design Vue",
+    repo: "vueComponent/ant-design-vue",
+    npm: "ant-design-vue",
+    tags: ["vue"],
   },
 ];
 // 鉴权
@@ -184,6 +208,11 @@ const libraries = [
     tags: ["react"],
   },
   {
+    name: "ahooks",
+    repo: "alibaba/hooks",
+    npm: "ahooks",
+  },
+  {
     name: "SWT",
     repo: "vercel/swr",
     npm: "swr",
@@ -199,11 +228,19 @@ const libraries = [
     name: "Axios",
     repo: "axios/axios",
     npm: "axios",
+    tags: ["react", "vue", "nodejs"],
   },
   {
     name: "TanStack Query",
     repo: "TanStack/query",
     npm: "@tanstack/react-query",
+    tags: ["react"],
+  },
+  {
+    name: "VueUse",
+    repo: "vueuse/vueuse",
+    npm: "@vueuse/core",
+    tags: ["vue"],
   },
 ];
 // 样式
@@ -240,6 +277,12 @@ const mobiles = [
     repo: "NervJS/taro",
     npm: "taro",
     tags: ["react"],
+  },
+  {
+    name: "Uni APP",
+    repo: "dcloudio/uni-app",
+    npm: "@dcloudio/uni-app",
+    tags: ["vue"],
   },
 ];
 // 动画
@@ -383,7 +426,7 @@ export const FRONTEND_TAP_MAP = [
   { key: "ui", name: "UI" },
   { key: "database", name: "数据库" },
   { key: "library", name: "工具库" },
-  { key: "mobile", name: "移动端" },
+  { key: "mobile", name: "移动端&跨端" },
   { key: "animation", name: "动画库" },
   { key: "style", name: "样式库" },
   { key: "micro", name: "微前端" },
