@@ -10,11 +10,8 @@ import {
   Star,
   UsersRound,
 } from "lucide-react";
-import { PrismaClient } from "@prisma/client";
-import { Log } from "@/components/log";
-import Image from "next/image";
 
-const prisma = new PrismaClient();
+import Image from "next/image";
 
 export function StackCard({ item }: any) {
   return (
@@ -92,31 +89,12 @@ export function StackCard({ item }: any) {
   );
 }
 
-async function getStack(tag: string, prject: string, stack: string) {
-  const stacks = await prisma.stack.findMany();
-  const npm = await prisma.npm.findMany();
-  const github = await prisma.github.findMany();
-  return stacks
-    .map((item) => ({
-      ...item,
-      ...github.find((g) => g.name === item.name),
-      ...npm.find((n) => n.name === item.name),
-    }))
-    .filter(
-      (item) =>
-        ~item.tag.indexOf(tag) &&
-        ~item.tag.indexOf(stack) &&
-        ~item.tag.indexOf(prject),
-    );
-}
-export async function StackList(props: any) {
-  const list = await getStack(props.tag, props.project, props.stack);
+export function StackList(props: any) {
   return (
     <section className="flex-1">
-      <Log info={list.filter((item) => ~item.tag.indexOf(props.tag))} />
       <h2 className="py-3 text-xl font-bold">{props.name}</h2>
       <main className="grid grid-cols-1 gap-2">
-        {list.map((item: any, idx: number) => {
+        {props.data.map((item: any, idx: number) => {
           return <StackCard item={item} key={idx} />;
         })}
       </main>

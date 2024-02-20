@@ -3,25 +3,25 @@ import _, { join } from "lodash";
 // 前端框架
 const frontEnds = [
   {
-    name: "react",
+    name: "React",
     repo: "facebook/react",
     npm: "react",
     tags: ["react"],
   },
   {
-    name: "vue",
+    name: "Vue",
     repo: "vuejs/core",
     npm: "vue",
     tags: ["vue"],
   },
   {
-    name: "angular",
+    name: "Angular",
     repo: "angular/angular",
     npm: "@angular/core",
     tags: ["angular"],
   },
   {
-    name: "svelte",
+    name: "Svelte",
     repo: "sveltejs/svelte",
     npm: "svelte",
     tags: ["svelte"],
@@ -302,6 +302,21 @@ const others = [
     tag: ["react"],
   },
 ];
+// 代码格式化
+const formatters = [
+  {
+    name: "Prettier",
+    repo: "prettier/prettier",
+    npm: "prettier",
+    tags: ["react", "vue", "nodejs"],
+  },
+  {
+    name: "Eslint",
+    repo: "eslint/eslint",
+    npm: "eslint",
+    tags: ["react", "vue", "nodejs"],
+  },
+];
 
 export const projects = [
   ...frontEnds.map((item) => ({
@@ -339,6 +354,10 @@ export const projects = [
   })),
   ...others.map((item) => ({ ...item, tag: `other,${join(item.tags, ",")}` })),
   ...nodejs.map((item) => ({ ...item, tag: `nodejs,${join(item.tags, ",")}` })),
+  ...formatters.map((item) => ({
+    ...item,
+    tag: `format,${join(item.tags, ",")}`,
+  })),
 ].map((item) => _.omit(item, "tags"));
 
 export const ALL_TAG = _.chain(projects)
@@ -368,4 +387,6 @@ export const FRONTEND_TAP_MAP = [
   { key: "animation", name: "动画库" },
   { key: "style", name: "样式库" },
   { key: "micro", name: "微前端" },
+  { key: "other", name: "杂项" },
+  { key: "format", name: "代码格式化" },
 ];
