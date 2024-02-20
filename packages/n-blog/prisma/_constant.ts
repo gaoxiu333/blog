@@ -123,6 +123,18 @@ const uiFrameworks = [
     npm: "ant-design-vue",
     tags: ["vue"],
   },
+  {
+    name: "ngx-admin",
+    repo: "akveo/ngx-admin",
+    npm: "ngx-admin",
+    tags: ["angular"],
+  },
+  {
+    name: "NG-ZORRO",
+    repo: "NG-ZORRO/ng-zorro-antd",
+    npm: "ng-zorro-antd",
+    tags: ["angular"],
+  },
 ];
 // 鉴权
 const auth = [
@@ -241,6 +253,12 @@ const libraries = [
     repo: "vueuse/vueuse",
     npm: "@vueuse/core",
     tags: ["vue"],
+  },
+  {
+    name: "RxJS",
+    repo: "ReactiveX/rxjs",
+    npm: "rx",
+    tags: ["angular"],
   },
 ];
 // 样式
