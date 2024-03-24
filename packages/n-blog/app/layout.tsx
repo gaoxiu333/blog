@@ -9,10 +9,10 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "前端学习指南",
+  title: "olOwOlo",
   description: "程序正在构建中...",
   icons: {
-    icon: "/icons/javascript.svg",
+    icon: "/favicon.ico",
   },
 };
 

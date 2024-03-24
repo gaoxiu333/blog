@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getHost(){
-  return `http://${process.env.BASE_URL}`
+  return `http://${process.env.NEXT_PUBLIC_BASE_URL}`;
 }
 
 // 数量级表示法

@@ -353,6 +353,18 @@ const nodejs = [
     npm: "@nestjs/core",
     tags: [],
   },
+  {
+    name:'Koa',
+    repo:'koajs/koa',
+    npm:'koa',
+    tags:[]
+  },
+  {
+    name:'Fastify',
+    repo:'fastify/fastify',
+    npm:'fastify',
+    tags:[]
+  }
 ];
 // 杂项
 const others = [
