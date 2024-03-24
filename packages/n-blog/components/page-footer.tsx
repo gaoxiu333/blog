@@ -8,10 +8,10 @@ const PageFooter: React.FC<PageFooterPaops> = ({
   asChild = false,
   className = "",
 }) => {
-  const Comp = asChild ? Slot : "div"
+  const Comp = asChild ? Slot : "div";
   return (
-    <Comp className={`w-full border ${className}`}>
-      <footer className="footer footer-center bg-base-300 p-4 text-base-content">
+    <Comp className={`w-full ${className}`}>
+      <footer className="p-4 text-center text-default-500 text-sm">
         <aside>
           <p>由Nextjs + MDX 构建，开发中...</p>
         </aside>

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 import { getHost } from "@/lib/utils";
 
 const getPosts = async () => {
@@ -9,16 +9,25 @@ const getPosts = async () => {
 export default async function Home() {
   const list = await getPosts();
   return (
-    <div className="container mt-9">
+    <ul className="container mt-9">
       {list.map((item: any, idx: number) => {
         return (
-          <h3  key={idx}>
-            <Link prefetch={true} href={`/posts/${item.id}`} className='font-bold text-1xl leading-relaxed cursor-pointer hover:accent-red-500'>
+          <li key={idx} className='py-1 cursor-pointer'>
+            <Link
+              prefetch={true}
+              href={`/posts/${item.id}`}
+              className="text-1xl cursor-pointer font-bold leading-relaxe"
+            >
               {item.id}
             </Link>
-          </h3>
+            <div>
+              <p className="text-xs text-gray-400">
+                {12} · {333}
+              </p>
+            </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }

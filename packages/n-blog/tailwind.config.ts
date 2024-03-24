@@ -79,14 +79,8 @@ const config = {
   plugins: [
     require("@tailwindcss/typography"),
     require("tailwindcss-animate"),
-    require("daisyui"),
     nextui(),
   ],
-  daisyui: {
-    // themes: false,
-    themes: ["light", "dark", "synthwave"],
-    // styled: false,
-  },
 } satisfies Config;
 
 export default config;
