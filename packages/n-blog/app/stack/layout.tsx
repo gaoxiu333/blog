@@ -52,25 +52,29 @@ function Nav() {
   );
 }
 
+// export default function Layout({ children }: { children: React.ReactNode }) {
+//   const router = useRouter();
+//   return (
+//     <section className="flex">
+//       <nav className="w-48 flex-none">
+//         <Listbox
+//           aria-label="Actions"
+//           onAction={(key) => router.push(`/stack/${key}`)}
+//         >
+//           {NAV.map((item) => {
+//             return (
+//               <ListboxItem key={item.key} value={item.key}>
+//                 {item.name}
+//               </ListboxItem>
+//             );
+//           })}
+//         </Listbox>
+//       </nav>
+//       <main className="flex-1">{children}</main>
+//     </section>
+//   );
+// }
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  return (
-    <section className="flex">
-      <nav className="w-48 flex-none">
-        <Listbox
-          aria-label="Actions"
-          onAction={(key) => router.push(`/stack/${key}`)}
-        >
-          {NAV.map((item) => {
-            return (
-              <ListboxItem key={item.key} value={item.key}>
-                {item.name}
-              </ListboxItem>
-            );
-          })}
-        </Listbox>
-      </nav>
-      <main className="flex-1">{children}</main>
-    </section>
-  );
+  return <>{children}</>;
 }

@@ -22,7 +22,7 @@ const Page = async (props: any) => {
     <main className="container">
       <Log info={matter} />
 
-      <header>
+      <header className="my-6">
         <h2 className="text-center text-3xl font-black text-default-700">
           {matter.title}
         </h2>
@@ -31,7 +31,7 @@ const Page = async (props: any) => {
         </p>
       </header>
 
-      <article className="prose dark:prose-invert">
+      <article className="prose !max-w-none dark:prose-invert">
         <MDXRemote
           source={mdCode}
           components={components}
