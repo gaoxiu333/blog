@@ -92,7 +92,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
   return (
     <Comp
-      className={`flex h-[3.75rem] items-center justify-between ${className}`}
+      className={`flex h-[3.75rem] items-center justify-between ${className} sticky z-10 top-0`}
       {...props}
     >
       <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full">

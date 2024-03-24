@@ -5,7 +5,15 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const id = searchParams.get("id");
   const data = getOnePostData(id!);
-  return new Response(JSON.stringify({ md: data.content, r: request.url }), {
-    headers: { "content-type": "application/json" },
-  });
+  return new Response(
+    JSON.stringify({
+      mdCode: data.mdCode,
+      doc: "",
+      matter: data.matter,
+      r: request.url,
+    }),
+    {
+      headers: { "content-type": "application/json" },
+    },
+  );
 }
