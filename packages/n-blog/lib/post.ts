@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import dayjs from "dayjs";
+import readingTime from "reading-time";
 
 const postsDirectory = path.join(process.cwd(), "app/_posts");
 
@@ -14,13 +16,16 @@ export function getSortedPostsData() {
     const fileContnts = fs.readFileSync(fullPath, "utf8");
     // 使用gray-matter解析md文件元数据部分
     const matterResult = matter(fileContnts);
+    const { createdAt } = matterResult as any;
     return {
       id,
       ...matterResult.data,
+      createdAt: dayjs(createdAt).format("YYYY-MM-DD HH:mm:ss"),
+      readingTime: readingTime(matterResult.content).text,
     };
   });
   return allPostsData.sort((a: any, b: any) => {
-    return a?.date < b?.date ? 1 : -1;
+    return a?.createdAt < b?.createdAt ? 1 : -1;
   });
 }
 
