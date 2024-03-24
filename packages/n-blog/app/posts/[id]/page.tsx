@@ -31,7 +31,7 @@ const Page = async (props: any) => {
         </p>
       </header>
 
-      <article className="prose">
+      <article className="prose dark:prose-invert">
         <MDXRemote
           source={mdCode}
           components={components}
