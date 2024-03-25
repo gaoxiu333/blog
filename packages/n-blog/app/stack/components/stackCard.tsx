@@ -92,7 +92,6 @@ export function StackCard({ item }: any) {
 export function StackList(props: any) {
   return (
     <section className="flex-1">
-      <h2 className="py-3 text-xl font-bold">{props.name}</h2>
       <main className="grid grid-cols-1 gap-2">
         {props.data.map((item: any, idx: number) => {
           return <StackCard item={item} key={idx} />;
