@@ -1,8 +1,9 @@
 import { Log } from "@/components/log";
+import { getAllArticlesData } from "@/lib/mdx";
+import dayjs from "dayjs";
 import Link from "next/link";
 
 const getPosts = async () => {
-  console.log("fetch");
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
     cache: "no-cache",
   });
@@ -10,27 +11,21 @@ const getPosts = async () => {
   return await res.json();
 };
 export default async function Home() {
-  const list = await getPosts();
+  const data = getAllArticlesData();
 
   return (
     <ul className="container mt-9">
-      <Log info={list} />
-      {list.map((item: any, idx: number) => {
+      {data.map(({ fileName, frontmatter, readingTime }, idx) => {
         return (
-          <li key={idx} className="cursor-pointer py-1">
-            <Link
-              prefetch={true}
-              href={`/posts/${item.id}`}
-              className="text-1xl leading-relaxe cursor-pointer font-bold"
-            >
-              {item.title}
+          <div className="py-3" key={idx}>
+            <Link className="text-2xl font-bold" href={`/articles/${fileName}`}>
+              {frontmatter.title}
             </Link>
-            <div>
-              <p className="text-xs text-gray-400">
-                {item.createdAt} · {item.readingTime}
-              </p>
-            </div>
-          </li>
+            <p className="mt-1 text-sm text-default-400">
+              <span>{dayjs(frontmatter.createdAt).format("YYYY-MM-DD")}</span> ·{" "}
+              <span>{readingTime}</span>
+            </p>
+          </div>
         );
       })}
     </ul>

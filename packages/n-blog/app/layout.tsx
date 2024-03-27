@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html className="h-full" suppressHydrationWarning>
       <body className={` flex min-h-full flex-col`}>
-                <Providers className="flex flex-1 flex-col">
+        <Providers className="flex flex-1 flex-col">
           <main className="flex flex-1 flex-col">
             <div className="flex-1">
               <PageHeader />

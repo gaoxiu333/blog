@@ -1,4 +1,5 @@
 import { Log } from "@/components/log";
+import { getArticlesData } from "@/lib/mdx";
 import { getHost } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrism from "rehype-prism-plus";
@@ -16,24 +17,24 @@ const components = {
   h1: (props: any) => <h1 {...props}>{props.children}</h1>,
 };
 
-const Page = async (props: any) => {
-  const { mdCode, matter } = await getData(props.params.id);
+const Page = async ({ params }: any) => {
+  const { content, frontmatter, readingTime } = getArticlesData(
+    decodeURIComponent(params.id),
+  );
   return (
     <main className="container">
-      <Log info={matter} />
-
       <header className="my-6">
         <h2 className="text-center text-3xl font-black text-default-700">
-          {matter.title}
+          {frontmatter.title}
         </h2>
         <p className="text-center text-sm  text-default-400">
-          {matter.createdAt} · {matter.readingTime}
+          {frontmatter.createdAt} · {readingTime}
         </p>
       </header>
 
       <article className="prose !max-w-none dark:prose-invert">
         <MDXRemote
-          source={mdCode}
+          source={content}
           components={components}
           options={{
             parseFrontmatter: true,
