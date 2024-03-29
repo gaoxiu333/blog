@@ -7,9 +7,10 @@ import remarkGfm from "remark-gfm";
 import remarkSmartypants from "@silvenon/remark-smartypants";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeToc from "@jsdevtools/rehype-toc";
+import rehypeToc from "./rehypeToc";
 
 export async function getBundleMDXData(fullPath: string) {
+  let TOC: any[] = [];
   const result = await bundleMDX({
     file: fullPath,
     mdxOptions: (options) => {
@@ -22,17 +23,12 @@ export async function getBundleMDXData(fullPath: string) {
         ...(options.rehypePlugins ?? []),
         rehypeSlug, // 给标题添加id属性
         rehypeAutolinkHeadings, // 给标题添加锚点
-        [
-          rehypeToc, // 生成目录
-          {
-            headings: ["h1", "h2", "h3"],
-          },
-        ],
+        [rehypeToc, { TOC }],
         rehypeCodeTitles, // 代码块增加标题
         rehypePrism, // 代码高亮
       ];
       return options;
     },
   });
-  return result;
+  return { ...result, TOC };
 }

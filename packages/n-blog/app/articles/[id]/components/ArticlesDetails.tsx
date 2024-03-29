@@ -8,7 +8,6 @@ const ArticlesDetails = (props: { content: string }) => {
     () => getMDXComponent(props.content),
     [props.content],
   );
-
   return (
     <>
       <article className="prose !max-w-none dark:prose-invert">

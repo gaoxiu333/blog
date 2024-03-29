@@ -6,9 +6,9 @@ import { getBundleMDXData } from "./mdx";
 // 获取文章详情
 export async function getArticleDetails(fileName: string) {
   const fullPath = await getFilePath(fileName);
-  const { code, matter, frontmatter } = await getBundleMDXData(fullPath);
+  const { code, matter, frontmatter, TOC } = await getBundleMDXData(fullPath);
   const { text: readTime } = readingTime(code);
-  return { code, matter, frontmatter, readingTime: readTime };
+  return { code, matter, frontmatter, readingTime: readTime, TOC };
 }
 
 // 获取所有文章的元数据
