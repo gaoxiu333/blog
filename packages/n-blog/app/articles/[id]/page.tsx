@@ -49,21 +49,4 @@ const Page = async ({ params }: any) => {
   );
 };
 
-function OldHeaderPanle() {
-  return (
-    <>
-      <div
-        className="border border-sky-100 bg-sky-100 dark:border-sky-950 dark:bg-sky-950"
-        style={{ height: "100px", marginTop: "-100px" }}
-      ></div>
-      <header className="h-64 bg-sky-100 dark:bg-sky-950">
-        <div
-          className="sticky top-0 bg-sky-100 dark:bg-sky-950"
-          style={{ height: "64px" }}
-        ></div>
-      </header>
-    </>
-  );
-}
-
 export default Page;

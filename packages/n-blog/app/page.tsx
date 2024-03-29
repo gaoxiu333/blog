@@ -1,5 +1,5 @@
+import { ArticlesList } from "@/components/Articles";
 import { Log } from "@/components/log";
-import { getAllArticlesData } from "@/lib/mdx";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import dayjs from "dayjs";
 import Link from "next/link";
@@ -12,32 +12,13 @@ const getPosts = async () => {
   return await res.json();
 };
 export default async function Home() {
-  const data = getAllArticlesData();
-
   return (
     <>
       <Card className="container">
         <CardHeader>我的堆栈</CardHeader>
         <CardBody>...</CardBody>
       </Card>
-      <ul className="container mt-9">
-        {data.map(({ fileName, frontmatter, readingTime }, idx) => {
-          return (
-            <div className="py-3" key={idx}>
-              <Link
-                className="text-2xl font-bold"
-                href={`/articles/${fileName}`}
-              >
-                {frontmatter.title}
-              </Link>
-              <p className="mt-1 text-sm text-default-400">
-                <span>{dayjs(frontmatter.createdAt).format("YYYY-MM-DD")}</span>{" "}
-                · <span>{readingTime}</span>
-              </p>
-            </div>
-          );
-        })}
-      </ul>
+      <ArticlesList />
     </>
   );
 }
