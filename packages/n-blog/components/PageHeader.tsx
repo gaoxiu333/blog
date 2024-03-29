@@ -13,6 +13,7 @@ import React from "react";
 import { Link, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import { useThemeSession } from "@/app/hooks/useThemeSection";
 import GithubSvg from "@/public/icons/github.svg";
+import { PageSearch } from "./PageSearch";
 
 interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   asChild?: boolean;
@@ -92,7 +93,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
   return (
     <Comp
-      className={`flex h-[3.75rem] items-center justify-between ${className} sticky z-10 top-0`}
+      className={`container flex h-[3.75rem] items-center justify-between ${className} sticky top-0 z-10`}
       {...props}
     >
       <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full">
@@ -106,7 +107,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
           </NavbarBrand>
         </NavbarContent>
         <NavbarContent className="hidden gap-4 sm:flex" justify="center">
-          {navItems.map((item) => {
+          {/* {navItems.map((item) => {
             return (
               <NavbarItem key={item.href} isActive={item.href === pathName}>
                 <Link color="foreground" href={item.href}>
@@ -114,7 +115,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                 </Link>
               </NavbarItem>
             );
-          })}
+          })} */}
+          <PageSearch />
         </NavbarContent>
         <NavbarContent justify="end">
           <NavbarItem>

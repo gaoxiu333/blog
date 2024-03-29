@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import "../styles/prism.css";
-import { PageHeader } from "@/components/page-header";
-import { PageFooter } from "@/components/page-footer";
+import { PageHeader } from "@/components/PageHeader";
+import { PageFooter } from "@/components/PageFooter";
 import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,7 +28,7 @@ export default function RootLayout({
           <main className="flex flex-1 flex-col">
             <div className="flex-1">
               <PageHeader />
-              <main>{children}</main>
+              <main className="py-3">{children}</main>
             </div>
             <PageFooter className="flex-none" />
           </main>
