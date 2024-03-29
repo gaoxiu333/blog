@@ -7,7 +7,7 @@ export async function getArticlesMatter(fileName: string) {
   const { source } = await readMdxFile(fileName);
   const { content, data } = matter(source);
   const { text: readTime } = readingTime(content);
-  return { ...data, readingTime: readTime, fileName };
+  return { ...data, readingTime: readTime, fileName, content } as ArticleMatter;
 }
 
 interface ArticleMatter {
@@ -17,6 +17,7 @@ interface ArticleMatter {
   updatedAt?: string;
   readingTime?: string;
   fileName: string;
+  content: string;
 }
 // 获取所有文章的元数据
 export async function getAllArticlesMatter() {

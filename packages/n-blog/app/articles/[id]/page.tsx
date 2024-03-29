@@ -1,5 +1,5 @@
 import { Log } from "@/components/log";
-import { getArticlesData } from "@/lib/mdx";
+import { getArticlesMatter } from "@/lib/articles";
 import { getHost } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypePrism from "rehype-prism-plus";
@@ -18,17 +18,17 @@ const components = {
 };
 
 const Page = async ({ params }: any) => {
-  const { content, frontmatter, readingTime } = getArticlesData(
+  const { content, title, createdAt, readingTime } = await getArticlesMatter(
     decodeURIComponent(params.id),
   );
   return (
     <main className="container">
       <header className="my-6">
         <h2 className="text-center text-3xl font-black text-default-700">
-          {frontmatter.title}
+          {title}
         </h2>
         <p className="text-center text-sm  text-default-400">
-          {frontmatter.createdAt} · {readingTime}
+          {createdAt} · {readingTime}
         </p>
       </header>
 
