@@ -9,9 +9,8 @@ export async function readAllMdxFileNames() {
   return files.map((fileName) => fileName.split(".md").at(0));
 }
 
-// 通过文件名读取文章内容
-export async function readMdxFile(fileName: string) {
-  console.log("file", fileName);
+// 通过文件名获取文件路径
+export async function getFilePath(fileName: string) {
   let fullPath = path.join(articlesDirectory, `${fileName}`);
   try {
     const stars = await fs.stat(fullPath);
@@ -25,15 +24,5 @@ export async function readMdxFile(fileName: string) {
   } catch (error) {
     suffix = "md";
   }
-  const source = await fs.readFile(`${fullPath}.${suffix}`, "utf8");
-  return { source, fullPath: `${fullPath}${suffix}` };
-}
-
-// 读取所有文章内容
-export async function readAllMdxFiles() {
-  const fileNames = await readAllMdxFileNames();
-  const allMdxFiles = await Promise.all(
-    fileNames.map((fileName) => readMdxFile(fileName!)),
-  );
-  return allMdxFiles;
+  return `${fullPath}.${suffix}`;
 }

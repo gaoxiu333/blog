@@ -1,50 +1,21 @@
-import { Log } from "@/components/log";
-import { getArticlesMatter } from "@/lib/articles";
-import { getHost } from "@/lib/utils";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import rehypePrism from "rehype-prism-plus";
-import remarkGfm from "remark-gfm";
-
-const getData = async (id: string) => {
-  const res = await fetch(`${getHost()}/api/article?id=${id}`, {
-    cache: "no-cache",
-  });
-  return await res.json();
-};
-
-// 自定义组件样式，现在使用的是 tailwindcss，所以不需要这个了。
-const components = {
-  h1: (props: any) => <h1 {...props}>{props.children}</h1>,
-};
+import { getArticleDetails } from "@/lib/articles";
+import { ArticlesDetails } from "./components/ArticlesDetails";
 
 const Page = async ({ params }: any) => {
-  const { content, title, createdAt, readingTime } = await getArticlesMatter(
+  const { frontmatter, readingTime, code } = await getArticleDetails(
     decodeURIComponent(params.id),
   );
   return (
     <main className="container">
       <header className="my-6">
         <h2 className="text-center text-3xl font-black text-default-700">
-          {title}
+          {frontmatter.title}
         </h2>
         <p className="text-center text-sm  text-default-400">
-          {createdAt} · {readingTime}
+          {frontmatter.createdAt} · {readingTime}
         </p>
       </header>
-
-      <article className="prose !max-w-none dark:prose-invert">
-        <MDXRemote
-          source={content}
-          components={components}
-          options={{
-            parseFrontmatter: true,
-            mdxOptions: {
-              remarkPlugins: [remarkGfm as any],
-              rehypePlugins: [rehypePrism as any],
-            },
-          }}
-        />
-      </article>
+      <ArticlesDetails content={code} />
     </main>
   );
 };

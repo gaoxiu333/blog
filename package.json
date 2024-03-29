@@ -9,7 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@headlessui/react": "^1.7.18"
-  }
+  "dependencies": {}
 }
