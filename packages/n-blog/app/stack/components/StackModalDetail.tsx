@@ -1,11 +1,4 @@
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-} from "@nextui-org/react";
+import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { StackList } from "./stackCard";
 import { FRONTEND_TAP_MAP } from "@/prisma/_constant";

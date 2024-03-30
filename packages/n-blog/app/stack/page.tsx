@@ -1,20 +1,9 @@
 "use client";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Tab,
-  Tabs,
-  Tooltip,
-  useDisclosure,
-} from "@nextui-org/react";
+import { Card, CardBody, useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { FRONTEND_TAP_MAP } from "@/prisma/_constant";
-import { Panel } from "./components/panel";
 import StackModalDetail from "./components/StackModalDetail";
 
 const stacks = [
@@ -52,9 +41,6 @@ export default function Page() {
     <main className="m-auto max-w-[1200px]">
       <header className="py-6">
         <h2 className=" my-3 text-center text-2xl font-black">我的堆栈</h2>
-        {/* <p className="text-center text-sm text-default-400">
-          我使用过或者我也想学习的堆栈
-        </p> */}
         <div className="flex justify-end gap-2">
           {stacks.map((item) => {
             return (
