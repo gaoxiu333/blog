@@ -25,7 +25,7 @@ async function featchRepoInfo({ repo, name }: { repo: string; name: string }) {
   const data = await response.json();
   const {
     created_at: createdAt,
-    updated_at: updateAt,
+    updated_at: updatedAt,
     language,
     issues_url: issuesLink,
     open_issues_count: issues,
@@ -37,7 +37,7 @@ async function featchRepoInfo({ repo, name }: { repo: string; name: string }) {
   const result = {
     name,
     createdAt,
-    updateAt,
+    updatedAt,
     version: "0.0.0",
     stars,
     ...commit,
@@ -63,6 +63,7 @@ async function fetchContributors(repo: string) {
     fetchConfig,
   );
   const contributorsLink = response.headers.get("link");
+  if(!contributorsLink) return { contributors: 0 };
   const contributorsLastPageMatch = contributorsLink!.match(
     /&page=(\d+)>; rel="last"/,
   );
@@ -82,6 +83,8 @@ async function fetchCommit(repo: string) {
     fetchConfig,
   );
   const commitsLink = commitsResponse.headers.get("link");
+  console.log("commitsLink", commitsLink);
+  if(!commitsLink) return { commits: 0 };
   const commitsLastPageMatch = commitsLink!.match(/&page=(\d+)>; rel="last"/);
   const commits = commitsLastPageMatch ? Number(commitsLastPageMatch[1]) : 0;
   await new Promise((resolve) => setTimeout(resolve, 300));

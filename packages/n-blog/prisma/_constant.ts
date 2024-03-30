@@ -354,17 +354,17 @@ const nodejs = [
     tags: [],
   },
   {
-    name:'Koa',
-    repo:'koajs/koa',
-    npm:'koa',
-    tags:[]
+    name: "Koa",
+    repo: "koajs/koa",
+    npm: "koa",
+    tags: [],
   },
   {
-    name:'Fastify',
-    repo:'fastify/fastify',
-    npm:'fastify',
-    tags:[]
-  }
+    name: "Fastify",
+    repo: "fastify/fastify",
+    npm: "fastify",
+    tags: [],
+  },
 ];
 // 杂项
 const others = [
@@ -474,4 +474,27 @@ export const FRONTEND_TAP_MAP = [
   { key: "micro", name: "微前端" },
   { key: "other", name: "杂项" },
   { key: "format", name: "代码格式化" },
+];
+
+export const STACK_TAP_MAP = [
+  {
+    name: "react",
+    icon: "logos:react",
+  },
+  {
+    name: "vue",
+    icon: "logos:vue",
+  },
+  {
+    name: "angular",
+    icon: "logos:angular-icon",
+  },
+  {
+    name: "nodejs",
+    icon: "logos:nodejs",
+  },
+  // {
+  //   name: "python",
+  //   icon: "logos:python",
+  // },
 ];

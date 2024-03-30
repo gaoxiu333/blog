@@ -19,9 +19,6 @@ const PageSearch: React.FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [searchText, setSearchText] = useState("");
   useCmdKListener(onOpen);
-  useEffect(() => {
-    console.log("serchText", searchText);
-  }, [searchText]);
 
   return (
     <>

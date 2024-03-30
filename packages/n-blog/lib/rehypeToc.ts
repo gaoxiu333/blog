@@ -8,7 +8,6 @@ export default function rehypeToc(options: any) {
   return function (tree: any) {
     visit(tree, "element", function (node) {
       if (headingRank(node) && node.properties.id) {
-        console.log("node", node, toString(node as any));
         const id = node.properties.id;
         const text = toString(node);
         const depth = parseInt(node.tagName.slice(1));

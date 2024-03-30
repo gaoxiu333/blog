@@ -83,7 +83,6 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   const { theme, switchTheme, mounted } = useThemeSession();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const onTheme = (event: any) => {
-    console.log("theme", event);
     if (event === "dark") {
       switchTheme("light");
     } else {
@@ -97,7 +96,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         className={`flex h-[3.75rem] items-center justify-between ${className} sticky top-0 z-10`}
         {...props}
       >
-        <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth='sm'>
+        <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="sm">
           <NavbarContent>
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}

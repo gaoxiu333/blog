@@ -12,7 +12,7 @@ CREATE TABLE "Stack" (
 CREATE TABLE "Npm" (
     "name" TEXT NOT NULL PRIMARY KEY,
     "createdAt" DATETIME NOT NULL,
-    "updateAt" DATETIME NOT NULL,
+    "updatedAt" DATETIME,
     "downloads" INTEGER NOT NULL,
     "version" TEXT NOT NULL,
     "tag" TEXT NOT NULL
@@ -22,7 +22,7 @@ CREATE TABLE "Npm" (
 CREATE TABLE "Github" (
     "name" TEXT NOT NULL PRIMARY KEY,
     "createdAt" DATETIME NOT NULL,
-    "updateAt" DATETIME NOT NULL,
+    "updatedAt" DATETIME,
     "version" TEXT NOT NULL,
     "stars" INTEGER NOT NULL,
     "commits" INTEGER NOT NULL,

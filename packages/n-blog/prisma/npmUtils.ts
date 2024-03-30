@@ -6,7 +6,7 @@ async function fetchNpmInfo(npm: string) {
   const response = await fetch(`https://registry.npmjs.org/${npm}`);
   const metadata = await response.json();
   const version = metadata["dist-tags"].latest;
-  const updateAt = metadata.time[version];
+  const updatedAt = metadata.time[version];
   const createdAt = metadata.time.created;
   // const repo = _.chain(metadata.repository.url)
   //   .replace(".git", "")
@@ -14,7 +14,7 @@ async function fetchNpmInfo(npm: string) {
   //   .takeRight(2)
   //   .join("/")
   //   .value();
-  return { updateAt, createdAt, version };
+  return { updatedAt, createdAt, version };
 }
 
 async function fetchDownloads(packageName: string) {
@@ -24,6 +24,7 @@ async function fetchDownloads(packageName: string) {
   );
   const result = await response.json();
   const { downloads } = result;
+  console.log("npm下载量", downloads);
   await new Promise((resolve) => setTimeout(resolve, 300));
 
   return { downloads };

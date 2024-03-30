@@ -58,7 +58,7 @@ async function refreshDatabase() {
           },
         });
       } catch (error) {
-        console.log("error", project);
+        console.log("error", error);
       }
     }),
   );

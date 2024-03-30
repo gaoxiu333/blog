@@ -22,18 +22,18 @@ model Stack {
 }
 
 model Npm {
-  name      String   @id @unique
+  name      String    @id @unique
   createdAt DateTime
-  updateAt  DateTime
+  updatedAt DateTime?
   downloads Int
   version   String
   tag       String
 }
 
 model Github {
-  name               String   @id @unique
+  name               String    @id @unique
   createdAt          DateTime
-  updateAt           DateTime
+  updatedAt          DateTime?
   version            String
   stars              Int
   commits            Int
