@@ -36,6 +36,7 @@ const PageSearch: React.FC = () => {
         isOpen={isOpen}
         backdrop="blur"
         onOpenChange={onOpenChange}
+        placement='top-center'
         closeButton={false}
       >
         <ModalContent>

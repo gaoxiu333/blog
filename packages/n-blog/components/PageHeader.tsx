@@ -96,7 +96,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         className={`flex h-[3.75rem] items-center justify-between ${className} sticky top-0 z-10`}
         {...props}
       >
-        <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="sm">
+        <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="lg">
           <NavbarContent>
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}

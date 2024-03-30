@@ -42,3 +42,9 @@ export async function getTopStack(tag?: string) {
   const topStar = _.chain(data).sortBy("stars").take(3).value();
   return _.take(_.unionBy([...latest, ...topStar], "name"), 3);
 }
+
+// 随机获取m个堆栈
+export async function getRandomStack(m = 5) {
+  const data = await getAllStack();
+  return _.take(_.shuffle(data), m);
+}
