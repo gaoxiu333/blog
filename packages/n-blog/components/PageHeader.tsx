@@ -92,22 +92,23 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   };
 
   return (
-    <Comp
-      className={`container flex h-[3.75rem] items-center justify-between ${className} sticky top-0 z-10`}
-      {...props}
-    >
-      <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full">
-        <NavbarContent>
-          <NavbarMenuToggle
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="sm:hidden"
-          />
-          <NavbarBrand>
-            <Logo />
-          </NavbarBrand>
-        </NavbarContent>
-        <NavbarContent className="hidden gap-4 sm:flex" justify="center">
-          {/* {navItems.map((item) => {
+    <>
+      <Comp
+        className={`flex h-[3.75rem] items-center justify-between ${className} sticky top-0 z-10`}
+        {...props}
+      >
+        <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth='sm'>
+          <NavbarContent>
+            <NavbarMenuToggle
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className="sm:hidden"
+            />
+            <NavbarBrand>
+              <Logo />
+            </NavbarBrand>
+          </NavbarContent>
+          <NavbarContent className="hidden gap-4 sm:flex" justify="center">
+            {/* {navItems.map((item) => {
             return (
               <NavbarItem key={item.href} isActive={item.href === pathName}>
                 <Link color="foreground" href={item.href}>
@@ -116,36 +117,37 @@ const PageHeader: React.FC<PageHeaderProps> = ({
               </NavbarItem>
             );
           })} */}
-          <PageSearch />
-        </NavbarContent>
-        <NavbarContent justify="end">
-          <NavbarItem>
-            <div className="flex gap-3">
-              <div className="cursor-pointer" onClick={() => onTheme(theme)}>
-                {mounted && theme === "light" ? <SunIcon /> : <MoonIcon />}
+            <PageSearch />
+          </NavbarContent>
+          <NavbarContent justify="end">
+            <NavbarItem>
+              <div className="flex gap-3">
+                <div className="cursor-pointer" onClick={() => onTheme(theme)}>
+                  {mounted && theme === "light" ? <SunIcon /> : <MoonIcon />}
+                </div>
+                <Link href="https://github.com/gaoxiu333" target="_blank">
+                  <GithubSvg className={`currentColor h-5 w-5 fill-current`} />
+                </Link>
               </div>
-              <Link href="https://github.com/gaoxiu333" target="_blank">
-                <GithubSvg className={`currentColor h-5 w-5 fill-current`} />
-              </Link>
-            </div>
-          </NavbarItem>
-        </NavbarContent>
-        <NavbarMenu>
-          {navItems.map((item, index) => (
-            <NavbarMenuItem key={`${item.href}-${index}`}>
-              <Link
-                color={pathName === item.href ? "primary" : "foreground"}
-                className="w-full"
-                href={item.href}
-                size="lg"
-              >
-                {item.name}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </NavbarMenu>
-      </Navbar>
-    </Comp>
+            </NavbarItem>
+          </NavbarContent>
+          <NavbarMenu>
+            {navItems.map((item, index) => (
+              <NavbarMenuItem key={`${item.href}-${index}`}>
+                <Link
+                  color={pathName === item.href ? "primary" : "foreground"}
+                  className="w-full"
+                  href={item.href}
+                  size="lg"
+                >
+                  {item.name}
+                </Link>
+              </NavbarMenuItem>
+            ))}
+          </NavbarMenu>
+        </Navbar>
+      </Comp>
+    </>
   );
 };
 

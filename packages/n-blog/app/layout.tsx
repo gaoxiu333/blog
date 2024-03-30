@@ -22,10 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="h-full" suppressHydrationWarning>
-      <body className={` flex min-h-full flex-col`}>
+    <html
+      className="scroll-container h-full scroll-pt-20"
+      suppressHydrationWarning
+    >
+      <body className={`  flex min-h-full flex-col`}>
         <Providers className="flex flex-1 flex-col">
-          <main className="flex flex-1 flex-col">
+          <main className=" flex flex-1 flex-col">
             <div className="flex-1">
               <PageHeader />
               <main className="py-3">{children}</main>

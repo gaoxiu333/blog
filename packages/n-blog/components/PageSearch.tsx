@@ -1,34 +1,68 @@
-import { Input, Kbd } from "@nextui-org/react";
+"use client";
+
+import { useCmdKListener } from "@/hooks/eventsHooks";
+import {
+  Button,
+  Input,
+  Kbd,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  useDisclosure,
+} from "@nextui-org/react";
+import { Search } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const PageSearch: React.FC = () => {
+  // const inputRef = useRef<HTMLInputElement>(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [searchText, setSearchText] = useState("");
+  useCmdKListener(onOpen);
+  useEffect(() => {
+    console.log("serchText", searchText);
+  }, [searchText]);
+
   return (
     <>
-      <Input
+      <Button
+        onPress={onOpen}
         radius="full"
-        classNames={{
-          label: "text-black/50 dark:text-white/90",
-          input: [
-            "bg-transparent",
-            "text-black/90 dark:text-white/90",
-            "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-          ],
-          innerWrapper: "bg-transparent",
-          inputWrapper: [
-            "shadow-xl",
-            "bg-default-200/50",
-            "dark:bg-default/60",
-            "backdrop-blur-xl",
-            "backdrop-saturate-200",
-            "hover:bg-default-200/70",
-            "dark:hover:bg-default/70",
-            "group-data-[focused=true]:bg-default-200/50",
-            "dark:group-data-[focused=true]:bg-default/60",
-            "!cursor-text",
-          ],
-        }}
-        placeholder="搜索..."
-        startContent={<Kbd keys={["command", "shift"]}>K</Kbd>}
-      />
+        className="bg-default-400/20 dark:bg-default-500/20 "
+      >
+        <Search size={18} />
+        搜索...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Kbd keys={["command"]}>+ K</Kbd>
+      </Button>
+      <Modal
+        size="lg"
+        isOpen={isOpen}
+        backdrop="blur"
+        onOpenChange={onOpenChange}
+        closeButton={false}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <Input
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                // ref={inputRef}
+                autoFocus
+                startContent={<Search />}
+                endContent={
+                  <Button onPress={onClose} isIconOnly size="sm" radius="sm">
+                    ESC
+                  </Button>
+                }
+                size="lg"
+                placeholder="搜索..."
+              />
+              {/* <ModalBody></ModalBody> */}
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </>
   );
 };

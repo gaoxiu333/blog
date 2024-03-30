@@ -31,6 +31,7 @@ export function ArticlesToc({ TOC, minDepth }: any) {
         }
       >
         <CardHeader className="text-xl font-black text-default-300">
+          <header className="text-xl font-black text-default-300">目录</header>
           <Button
             isIconOnly
             color="primary"
@@ -40,8 +41,7 @@ export function ArticlesToc({ TOC, minDepth }: any) {
             <HeroiconsSolidChevronDoubleRight />
           </Button>
         </CardHeader>
-        <CardBody>
-          <header className="text-xl font-black text-default-300">目录</header>
+        <CardBody className="h-[400px] p-5">
           <nav>
             <ul>
               {TOC.map((item: any, idx: number) => (

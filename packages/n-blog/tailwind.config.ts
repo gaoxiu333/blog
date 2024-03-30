@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import { nextui } from "@nextui-org/react";
+const colors = require("tailwindcss/colors");
 
 const config = {
   darkMode: ["selector", '[data-theme="dark"]'],
@@ -19,61 +20,40 @@ const config = {
         "2xl": "960px",
       },
     },
+
     extend: {
+      // 继承可以保留tailwind原有的 theme
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        primary: "hsl(var(--color-primary) / 1)",
+        gray: colors.neutral,
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+      typography: (theme: (arg0: string) => any) => ({
+        DEFAULT: {
+          css: {
+            code: {
+              fontSize: "0.75em",
+              backgroundColor: "#F2F2F2",
+              padding: "0.2em 0.4em",
+              borderRadius: "0.3em",
+              fontWeight: "400",
+            },
+
+            "code::before": {
+              content: "none",
+            },
+            "code::after": {
+              content: "none",
+            },
+          },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        invert: {
+          css: {
+            code: {
+              backgroundColor: "#f2f2f23b",
+            },
+          },
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
+      }),
     },
   },
   plugins: [
