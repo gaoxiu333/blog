@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "init": "ts-node prisma/seep.ts"
+    "init": "ts-node prisma/seep.ts",
+    "g": "node generate/createBlog.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",

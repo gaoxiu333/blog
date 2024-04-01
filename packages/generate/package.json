@@ -1,0 +1,21 @@
+{
+  "name": "generate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "g": "node index.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "kolorist": "^1.8.0"
+  }
+}

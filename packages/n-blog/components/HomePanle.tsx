@@ -27,7 +27,7 @@ const STACKS = [
 export const HomePanle = async () => {
   const stacks = await getRandomStack(9);
   return (
-    <Card className="w-full" radius="none">
+    <Card className="w-full" radius="none" isBlurred shadow="none">
       <CardBody className="p-12">
         <main className="container flex flex-row flex-nowrap">
           <div className="flex basis-1/2 flex-col items-center justify-around py-12">
@@ -63,6 +63,8 @@ export const HomePanle = async () => {
                     <Image
                       src={stack.organizationAvatar}
                       alt={stack.name}
+                      isBlurred
+                      isZoomed
                       width={32}
                       height={32}
                       className="rounded-full"
