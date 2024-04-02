@@ -41,34 +41,7 @@ export function ArticlesToc({ TOC, minDepth }: any) {
             <HeroiconsSolidChevronDoubleRight />
           </Button>
         </CardHeader>
-        <CardBody className="h-[400px] p-5">
-          <nav>
-            <ul>
-              {TOC.map((item: any, idx: number) => (
-                <li key={idx} className={headingClass(item.depth - minDepth)}>
-                  <a href={"#" + item.id}>{item.text}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav>
-            <ul>
-              {TOC.map((item: any, idx: number) => (
-                <li key={idx} className={headingClass(item.depth - minDepth)}>
-                  <a href={"#" + item.id}>{item.text}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav>
-            <ul>
-              {TOC.map((item: any, idx: number) => (
-                <li key={idx} className={headingClass(item.depth - minDepth)}>
-                  <a href={"#" + item.id}>{item.text}</a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        <CardBody className="max-h-[400px] p-5">
           <nav>
             <ul>
               {TOC.map((item: any, idx: number) => (

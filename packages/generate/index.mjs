@@ -19,9 +19,8 @@ const { name, tag } = await prompts([
 
 const fileDir = path.join(rootDir, name);
 const filePath = path.join(fileDir, "index.md");
-const createdAt = dayjs().format("YYYY-MM-DD");
-const matter = `
----
+const createdAt = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
+const matter = `---
 title: ${name}
 createdAt: ${createdAt}
 updatedAt: ${createdAt}
@@ -35,4 +34,4 @@ const log = `${lightMagenta("🎉 MDX模版已创建：")} ${cyan(
   name + "/index.mdx"
 )}`;
 
-console.log(log);
+console.log(log,createdAt);
