@@ -78,7 +78,7 @@ export const HomePanle = async () => {
             </ul>
             <div className="text-center ">
               <Link className="text-small" href="/stack">
-                查看我使用的堆栈
+                查看我关注的堆栈
               </Link>
             </div>
           </div>

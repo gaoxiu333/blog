@@ -60,11 +60,11 @@ export function ArticlesToc({ TOC, minDepth }: any) {
 function headingClass(depth: number) {
   switch (depth) {
     case 0:
-      return "text-base text-default-400 leading-6";
+      return "text-base text-default-500 leading-8 ";
     case 1:
-      return "text-sm text-default-400 ml-3 leading-6";
+      return "text-sm text-default-500 ml-3 leading-8";
     default:
-      return "text-sm leading-6";
+      return "text-sm text-default-500 ml-3 leading-8";
   }
 }
 
