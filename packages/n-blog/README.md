@@ -1,5 +1,13 @@
 # Blog
 
+## 部署
+
+```bash
+# 构建容器
+docker build -t blog-docker .
+docker run -p 80:80 blog-docker
+```
+
 ## 选菜
 
 参考的博客:

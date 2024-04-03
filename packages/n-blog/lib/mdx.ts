@@ -8,8 +8,27 @@ import remarkSmartypants from "@silvenon/remark-smartypants";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "./rehypeToc";
+import path from "path";
+
+
 
 export async function getBundleMDXData(fullPath: string) {
+  if (process.platform === "win32") {
+    process.env.ESBUILD_BINARY_PATH = path.join(
+      process.cwd(),
+      "node_modules",
+      "esbuild",
+      "esbuild.exe",
+    );
+  } else {
+    process.env.ESBUILD_BINARY_PATH = path.join(
+      process.cwd(),
+      "node_modules",
+      "esbuild",
+      "bin",
+      "esbuild",
+    );
+  }
   let TOC: any[] = [];
   const result = await bundleMDX({
     file: fullPath,

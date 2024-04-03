@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "init": "ts-node prisma/seep.ts",
-    "g": "node generate/createBlog.mjs"
+    "g": "node generate/createBlog.mjs",
+    "docker": "docker build -t blog-docker ."
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
@@ -53,6 +54,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "esbuild": "0.20.2",
     "eslint": "^8",
     "eslint-config-next": "^14.1.0",
     "postcss": "^8",

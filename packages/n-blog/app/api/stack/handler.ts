@@ -16,13 +16,13 @@ export async function getAllStack(tag?: string) {
   const npm = await prisma.npm.findMany();
   const github = await prisma.github.findMany();
   const result = stack
-    .map((item) => ({
+    .map((item:any) => ({
       ...item,
-      ...github.find((g) => g.name === item.name),
-      ...npm.find((n) => n.name === item.name),
+      ...github.find((g:any) => g.name === item.name),
+      ...npm.find((n:any) => n.name === item.name),
     }))
-    .filter((item) =>
-      tags.length > 0 ? tags.every((tag) => ~item.tag.indexOf(tag)) : true,
+    .filter((item:any) =>
+      tags.length > 0 ? tags.every((tag:any) => ~item.tag.indexOf(tag)) : true,
     );
 
   return result;
