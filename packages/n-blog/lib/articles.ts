@@ -20,5 +20,9 @@ export async function getAllArticlesMatter() {
       return { frontmatter, readingTime, fileName };
     }),
   );
-  return allMdxFiles;
+  return allMdxFiles.sort(
+    (a, b) =>
+      new Date(b.frontmatter.createdAt).getTime() -
+      new Date(a.frontmatter.createdAt).getTime(),
+  );
 }
