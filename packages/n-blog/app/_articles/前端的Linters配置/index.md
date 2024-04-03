@@ -1,7 +1,7 @@
 ---
 title: 前端的Linters配置
-createdAt: 2024-03-22 21:20:41
-updatedAt: 2023-03-22 21:20:41
+createdAt: 2020-03-22 21:20:41
+updatedAt: 2022-06-21 22:32:22
 ---
 
 
