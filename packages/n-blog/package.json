@@ -9,7 +9,7 @@
     "lint": "next lint",
     "init": "ts-node prisma/seep.ts",
     "g": "node generate/createBlog.mjs",
-    "docker": "docker build -t blog-docker ."
+    "serve": "ts-node server.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",

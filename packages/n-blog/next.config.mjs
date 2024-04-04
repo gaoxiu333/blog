@@ -3,7 +3,7 @@ import createMDX from "@next/mdx";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // output: "standalone",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   // 处理SVG：将SVG转为React组件
   webpack(config) {
