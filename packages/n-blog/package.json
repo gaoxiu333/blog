@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "init": "ts-node prisma/seep.ts",
     "g": "node generate/createBlog.mjs",
+    "docker": "docker build -t n-blog .",
     "serve": "ts-node server.ts"
   },
   "dependencies": {
