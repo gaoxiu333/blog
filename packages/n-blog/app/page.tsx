@@ -1,6 +1,5 @@
 import { ArticlesList } from "@/components/Articles";
 import { STACK_TAP_MAP } from "@/prisma/_constant";
-import { Icon } from "@iconify/react";
 import {
   Card,
   CardBody,

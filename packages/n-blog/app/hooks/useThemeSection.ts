@@ -5,7 +5,7 @@ const useThemeSession = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    const sessionTheme = window.sessionStorage.getItem("theme");
+    const sessionTheme = window.localStorage.getItem("theme");
     const darkModeMediaQuery = window.matchMedia(
       "(prefers-color-scheme: dark)",
     );
@@ -34,7 +34,7 @@ const useThemeSession = () => {
   }, []);
   const switchTheme = (theme: string) => {
     setTheme(theme);
-    window.sessionStorage.setItem("theme", theme);
+    window.localStorage.setItem("theme", theme);
   };
   return { theme, switchTheme, mounted };
 };

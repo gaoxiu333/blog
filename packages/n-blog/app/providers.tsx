@@ -8,10 +8,14 @@ export function Providers({
   className,
 }: {
   children: React.ReactNode;
-  className: string
+  className: string;
 }) {
   return (
-    <ThemeProvider attribute="data-theme" enableSystem={true}>
+    <ThemeProvider
+      attribute="data-theme"
+      enableSystem={false}
+      defaultTheme="dark"
+    >
       <NextUIProvider className={className}>{children}</NextUIProvider>
     </ThemeProvider>
   );
