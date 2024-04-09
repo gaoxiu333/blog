@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = env("DATABASE_URL")
+// }
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// generator client {
+//   provider      = "prisma-client-js"
+//   binaryTargets = ["native", "debian-openssl-3.0.x"]
+// }
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//TODO 定义一个stack字段，来区分
+
+model Stack {
+  name      String   @id @unique
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  repo      String
+  npm       String
+  tag       String
+}
+
+model Npm {
+  name      String    @id @unique
+  createdAt DateTime
+  updatedAt DateTime?
+  downloads Int
+  version   String
+  tag       String
+}
+
+model Github {
+  name               String    @id @unique
+  createdAt          DateTime
+  updatedAt          DateTime?
+  version            String
+  stars              Int
+  commits            Int
+  contributors       Int
+  issues             Int
+  issuesLink         String
+  description        String
+  language           String
+  tag                String
+  organizationAvatar String
+}
