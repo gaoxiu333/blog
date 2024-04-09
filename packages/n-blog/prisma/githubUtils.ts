@@ -1,5 +1,5 @@
-import { githubToken } from "../_keys";
-
+// import { githubToken } from "../_keys";
+const githubToken = ''
 const fetchConfig = {
   headers: {
     Authorization: `Bearer ${githubToken}`,
