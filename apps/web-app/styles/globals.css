@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TODO: 添加到 tailwind.config.cjs */
+.scroll-container {
+  scroll-behavior: smooth;
+}
+
+/* 全屏动画 */
+/* .test-search { 
+  transform-origin: 50vw 50vh;
+  transform: perspective(1000px) translate3d(0, 50vh, 0) rotateX(30deg);
+  pointer-events: none;
+} */
+:root {
+  --primary-gradient-stop-0: #ff4785;
+  --primary-gradient-stop-1: #ff42b4;
+  --primary-gradient-stop-2: #ff3ddf;
+  --primary-gradient-stop-3: #ea39fe;
+  --primary-gradient-stop-4: #b734fe;
+  --primary-gradient-stop-5: #822ffe;
+  --primary-gradient-stop-6: #4a2afe;
+  --primary-gradient-stop-7: #253bfe;
+  --primary-gradient-stop-8: #2171fd;
+  --primary-gradient-stop-9: #1ca6fd;
+  --primary-gradient: linear-gradient(
+    90deg,
+    var(--primary-gradient-stop-0) 0%,
+    var(--primary-gradient-stop-1) 11%,
+    var(--primary-gradient-stop-2) 22%,
+    var(--primary-gradient-stop-3) 33%,
+    var(--primary-gradient-stop-4) 44%,
+    var(--primary-gradient-stop-5) 56%,
+    var(--primary-gradient-stop-6) 67%,
+    var(--primary-gradient-stop-7) 78%,
+    var(--primary-gradient-stop-8) 89%,
+    var(--primary-gradient-stop-9) 100%
+  );
+}
+
+.home-panle {
+  /* @apply bg-primary-foreground text-primary; */
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* display: inline; */
+  background-image: var(--primary-gradient);
+}
