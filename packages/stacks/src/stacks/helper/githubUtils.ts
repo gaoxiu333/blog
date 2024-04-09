@@ -1,5 +1,6 @@
 // import { githubToken } from "../_keys";
-const githubToken = porcess.env.GITHUB_TOKEN;
+const githubToken = process.env.GITHUB_TOKEN;
+
 const fetchConfig = {
   headers: {
     Authorization: `Bearer ${githubToken}`,
