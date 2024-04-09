@@ -1,6 +1,5 @@
 // import { githubToken } from "../_keys";
-const githubToken =
-  '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';
+const githubToken = porcess.env.GITHUB_TOKEN;
 const fetchConfig = {
   headers: {
     Authorization: `Bearer ${githubToken}`,
