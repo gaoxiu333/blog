@@ -1,6 +1,7 @@
 "use client";
 import { IfyIcon } from "@/client/components/IfyIcon";
 import { Card, CardBody, Link, Image } from "@nextui-org/react";
+import { shuffle, take } from "lodash";
 import { useEffect, useState } from "react";
 
 const STACKS = [
@@ -28,10 +29,11 @@ const STACKS = [
 export const HomePanle = () => {
   const [stacks, setStacks] = useState([]);
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/stacktop`)
+    fetch(`/stacks.json`)
       .then((res) => res.json())
       .then((res: any) => {
-        setStacks(res);
+        const current: any = take(shuffle(res), 8);
+        setStacks(current);
       });
   }, []);
   return (

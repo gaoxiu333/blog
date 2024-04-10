@@ -81,20 +81,18 @@ function StackCard({
   onClick: () => void;
 }) {
   const [stacks, setStacks] = useState<any[]>([]);
-  const [tags, setTags] = useState<any[]>([]);
   const [selected, setSelected] = useState<string>("all");
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/stacklist?tag=${data.name}`)
+    fetch(`/stacks.json`)
       .then((res) => res.json())
       .then((res: any) => {
-        const tags = [
-          ...new Set(res.map((item: any) => item.tag.split(",")[0])),
-        ].map((item) => {
-          const current = FRONTEND_TAP_MAP.find((i) => i.key === item);
-          return current || { name: item, key: item };
-        });
-        setTags([{ name: "全部", key: "all" }, ...tags]);
-        setStacks(res);
+        const tags = data.name?.split(",") || [];
+        const result = res.filter((item: any) =>
+          tags.length > 0
+            ? tags.every((tag: any) => ~item.tag.indexOf(tag))
+            : true
+        );
+        setStacks(result);
       });
   }, [data.name]);
 

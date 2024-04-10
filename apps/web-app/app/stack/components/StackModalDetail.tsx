@@ -14,17 +14,23 @@ export default function StackModalDetail({ isOpen, onOpenChange, stack }: any) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/stacklist?tag=${stack}`)
+    fetch(`stacks.json`)
       .then((res) => res.json())
       .then((res: any) => {
+        const _tags = stack?.split(",") || [];
+        const result = res.filter((item: any) =>
+          _tags.length > 0
+            ? _tags.every((tag: any) => ~item.tag.indexOf(tag))
+            : true
+        );
         const tags = [
-          ...new Set(res.map((item: any) => item.tag.split(",")[0])),
+          ...new Set(result.map((item: any) => item.tag.split(",")[0])),
         ].map((item) => {
           const current = FRONTEND_TAP_MAP.find((i) => i.key === item);
           return current || { name: item, key: item };
         });
         setTags([...tags]);
-        setData(res);
+        setData(result);
         setIsLoading(false);
       });
   }, [stack]);
