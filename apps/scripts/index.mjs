@@ -5,7 +5,7 @@ import path from "path";
 import prompts from "prompts";
 import { cyan, lightMagenta } from "kolorist";
 
-const rootDir = "../n-blog/app/_articles";
+const rootDir = "../web-app/app/_articles";
 
 const { name, tag } = await prompts([
   {

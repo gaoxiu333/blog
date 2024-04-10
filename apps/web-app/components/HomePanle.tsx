@@ -25,7 +25,6 @@ const STACKS = [
     icon: "logos:python",
   },
 ];
-// TODO: 如何配置环境变量TS提示类型
 export const HomePanle = () => {
   const [stacks, setStacks] = useState([]);
   useEffect(() => {
