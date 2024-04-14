@@ -10,6 +10,16 @@ export async function getArticleDetails(fileName: string) {
   return { code, matter, frontmatter, readingTime: readTime, TOC };
 }
 
+// 获取所有文章->生成静态路由
+export async function getAllArticles() {
+  const fileNames = await readAllMdxFileNames();
+  return fileNames.map((fileName) => {
+    return {
+      id: fileName,
+    };
+  });
+}
+
 // 获取所有文章的元数据
 export async function getAllArticlesMatter() {
   const fileNames = await readAllMdxFileNames();

@@ -6,13 +6,12 @@ import { PageHeader } from "@/components/PageHeader";
 import { PageFooter } from "@/components/PageFooter";
 import { Providers } from "./providers";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "olOwOlo",
   description: "程序正在构建中...",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/wwwww.ico",
   },
 };
 

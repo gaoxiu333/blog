@@ -1,11 +1,17 @@
-import { getArticleDetails } from "@/lib/articles";
+import { getAllArticles, getArticleDetails } from "@/lib/articles";
 import { ArticlesDetails } from "./components/ArticlesDetails";
 import { ArticlesToc } from "./components/ArticlesToc";
 import dayjs from "dayjs";
 
+export async function generateStaticParams() {
+  const list = await getAllArticles();
+  console.log("list", list);
+  return list;
+}
+
 const Page = async ({ params }: any) => {
   const { frontmatter, readingTime, code, TOC } = await getArticleDetails(
-    decodeURIComponent(params.id),
+    decodeURIComponent(params.id)
   );
   const minDepth = Math.min(...TOC.map((item: any) => item.depth));
   return (
@@ -15,7 +21,8 @@ const Page = async ({ params }: any) => {
           {frontmatter.title}
         </h2>
         <p className="text-center text-sm  text-default-400">
-          {dayjs(frontmatter.createdAt).format("YYYY年MM月DD日 HH:mm:ss")} · {readingTime}
+          {dayjs(frontmatter.createdAt).format("YYYY年MM月DD日 HH:mm:ss")} ·{" "}
+          {readingTime}
         </p>
       </header>
       <ArticlesToc TOC={TOC} minDepth={minDepth} />
