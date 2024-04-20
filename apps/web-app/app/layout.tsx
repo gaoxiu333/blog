@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import "../styles/prism.css";
-import { PageFooter } from "@/components/PageFooter";
+import { PageFooter } from "@/components/page-footer";
 import { Providers } from "./providers";
 import { PageHeader } from "@/components/page-header";
 
 export const metadata: Metadata = {
   title: "olOwOlo",
   description: "一个前端的自律笔记",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -31,7 +34,7 @@ export default function RootLayout({
               <PageHeader />
               <main className="py-3">{children}</main>
             </div>
-            <PageFooter className="flex-none" />
+            <PageFooter />
           </main>
         </Providers>
       </body>
