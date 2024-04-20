@@ -5,7 +5,6 @@ import dayjs from "dayjs";
 
 export async function generateStaticParams() {
   const list = await getAllArticles();
-  console.log("list", list);
   return list;
 }
 

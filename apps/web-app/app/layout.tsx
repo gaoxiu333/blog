@@ -2,16 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import "../styles/prism.css";
-import { PageHeader } from "@/components/PageHeader";
 import { PageFooter } from "@/components/PageFooter";
 import { Providers } from "./providers";
+import { PageHeader } from "@/components/page-header";
 
 export const metadata: Metadata = {
   title: "olOwOlo",
-  description: "程序正在构建中...",
-  // icons: {
-  //   icon: "/favicon.ico",
-  // }
+  description: "一个前端的自律笔记",
 };
 
 export default function RootLayout({
