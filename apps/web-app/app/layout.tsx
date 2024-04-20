@@ -6,13 +6,12 @@ import { PageHeader } from "@/components/PageHeader";
 import { PageFooter } from "@/components/PageFooter";
 import { Providers } from "./providers";
 
-
 export const metadata: Metadata = {
   title: "olOwOlo",
   description: "程序正在构建中...",
-  icons: {
-    icon: "/wwwww.ico",
-  },
+  // icons: {
+  //   icon: "/favicon.ico",
+  // }
 };
 
 export default function RootLayout({
@@ -25,6 +24,9 @@ export default function RootLayout({
       className="scroll-container h-full scroll-pt-20"
       suppressHydrationWarning
     >
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      </head>
       <body className={`  flex min-h-full flex-col`}>
         <Providers className="flex flex-1 flex-col">
           <main className=" flex flex-1 flex-col">
