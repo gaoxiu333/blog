@@ -8,26 +8,29 @@ import {
   NavbarItem,
   NavbarMenuToggle,
 } from "@nextui-org/navbar";
-import React from "react";
-import { Link, NavbarMenu } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import { Link } from "@nextui-org/react";
 import GithubSvg from "@/public/icons/github.svg";
 import { PageSearch } from "./componsnts/page-search";
-import { useThemeSession } from "@/client/hooks/useThemeSection";
 import { Logo } from "./componsnts/logo";
 import { MoonIcon, SunIcon } from "./componsnts/switch-icon";
+import { useTheme } from "next-themes";
 
 const PageHeader: React.FC = () => {
-  const pathName = usePathname();
-  const { theme, switchTheme, mounted } = useThemeSession();
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { theme, resolvedTheme, setTheme } = useTheme();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
   const onTheme = (event: any) => {
     if (event === "dark") {
-      switchTheme("light");
+      setTheme("light");
     } else {
-      switchTheme("dark");
+      setTheme("dark");
     }
   };
-
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <>
       <header
@@ -37,7 +40,7 @@ const PageHeader: React.FC = () => {
           <NavbarContent>
             <NavbarMenuToggle
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              className="sm:hidden"
+              className="hidden"
             />
             <NavbarBrand>
               <Logo />
@@ -50,7 +53,13 @@ const PageHeader: React.FC = () => {
             <NavbarItem>
               <div className="flex gap-3">
                 <div className="cursor-pointer" onClick={() => onTheme(theme)}>
-                  {mounted && theme === "light" ? <SunIcon /> : <MoonIcon />}
+                  {mounted ? (
+                    resolvedTheme === "light" ? (
+                      <SunIcon />
+                    ) : (
+                      <MoonIcon />
+                    )
+                  ) : null}
                 </div>
                 <Link href="https://github.com/gaoxiu333" target="_blank">
                   <GithubSvg className={`currentColor h-5 w-5 fill-current`} />
@@ -58,7 +67,7 @@ const PageHeader: React.FC = () => {
               </div>
             </NavbarItem>
           </NavbarContent>
-          <NavbarMenu>移动端显示</NavbarMenu>
+          {/* <NavbarMenu>移动端显示</NavbarMenu> */}
         </Navbar>
       </header>
     </>

@@ -9,7 +9,7 @@ import {
   ModalContent,
   useDisclosure,
 } from "@nextui-org/react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { IfyIcon } from "@/client/components/IfyIcon";
 
 const PageSearch: React.FC = () => {
