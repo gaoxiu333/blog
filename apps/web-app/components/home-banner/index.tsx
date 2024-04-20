@@ -5,9 +5,9 @@ import { shuffle, take } from "lodash";
 import { useEffect, useState } from "react";
 import { STACKS } from "./constans";
 
-const HomeBanner = () => {
-  const [stacks, setStacks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const HomeBanner: React.FC = () => {
+  const [stacks, setStacks] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     fetch(`/stacks.json`)
       .then((res) => res.json())
@@ -42,7 +42,7 @@ const HomeBanner = () => {
               })}
             </p>
           </div>
-          <div className="flex  basis-1/2 flex-col justify-end gap-6">
+          <div className="flex  basis-1/2 flex-col justify-end gap-12">
             <ul className="flex flex-wrap justify-center gap-8  h-[160px]">
               {stacks.map((stack: any) => {
                 return (
