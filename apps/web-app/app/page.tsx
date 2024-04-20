@@ -1,10 +1,10 @@
 import { ArticlesList } from "@/components/Articles";
-import { HomePanle } from "@/components/HomePanle";
+import { HomeBanner } from "@/components/home-banner";
 
 export default async function Home() {
   return (
     <>
-      <HomePanle />
+      <HomeBanner />
       <ArticlesList />
     </>
   );

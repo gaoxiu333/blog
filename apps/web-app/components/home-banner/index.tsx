@@ -1,39 +1,22 @@
 "use client";
 import { IfyIcon } from "@/client/components/IfyIcon";
-import { Card, CardBody, Link, Image } from "@nextui-org/react";
+import { Card, CardBody, Link, Image, Skeleton } from "@nextui-org/react";
 import { shuffle, take } from "lodash";
 import { useEffect, useState } from "react";
+import { STACKS } from "./constans";
 
-const STACKS = [
-  {
-    name: "react",
-    icon: "logos:react",
-  },
-  {
-    name: "vue",
-    icon: "logos:vue",
-  },
-  {
-    name: "angular",
-    icon: "logos:angular-icon",
-  },
-  {
-    name: "nodejs",
-    icon: "logos:nodejs",
-  },
-  {
-    name: "python",
-    icon: "logos:python",
-  },
-];
-export const HomePanle = () => {
+const HomeBanner = () => {
   const [stacks, setStacks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetch(`/stacks.json`)
       .then((res) => res.json())
       .then((res: any) => {
         const current: any = take(shuffle(res), 8);
         setStacks(current);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
   return (
@@ -46,7 +29,7 @@ export const HomePanle = () => {
             <span className="home-panle font-black">
               React、Vue、Angular、Nodejs...
             </span>
-            <p className="flex gap-2">
+            <p className="flex gap-2 h-3">
               {STACKS.map((stack: any) => {
                 return (
                   <IfyIcon
@@ -60,7 +43,7 @@ export const HomePanle = () => {
             </p>
           </div>
           <div className="flex  basis-1/2 flex-col justify-end gap-6">
-            <ul className="flex flex-wrap justify-center gap-8">
+            <ul className="flex flex-wrap justify-center gap-8  h-[160px]">
               {stacks.map((stack: any) => {
                 return (
                   <li
@@ -88,6 +71,7 @@ export const HomePanle = () => {
                 );
               })}
             </ul>
+
             <div className="text-center ">
               <Link className="text-small" href="/stack">
                 查看我关注的堆栈
@@ -99,3 +83,5 @@ export const HomePanle = () => {
     </Card>
   );
 };
+
+export { HomeBanner };
