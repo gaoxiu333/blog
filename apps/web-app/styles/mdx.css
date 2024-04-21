@@ -18,7 +18,7 @@
 
     &.highlighted,
     &.diff {
-      @apply -ml-4 -mr-5 inline-block w-[calc(100%+(theme(spacing.5)+theme(spacing.4)))] pl-4 pr-5;
+      @apply -ml-4 -mr-4 inline-block  pl-4 pr-4;
     }
 
     &.highlighted {
@@ -85,12 +85,9 @@ html.dark .shiki span:not(.line) {
 }
 
 .rehype-code-title {
-  @apply rounded-t-md !text-default-500  bg-purple-800/[8%] dark:bg-rose-100/[2%] px-2.5 py-1 text-xs text-rose-100/60;
+  @apply rounded-t-md text-default-600  bg-purple-800/[8%] dark:bg-rose-300/[2%] px-2.5 py-2 text-xs font-mono;
   & + .code-block > .shiki {
     @apply !rounded-t-none;
   }
 }
-/* 抗锯齿 */
-body {
-  -webkit-font-smoothing: antialiased;
-}
+

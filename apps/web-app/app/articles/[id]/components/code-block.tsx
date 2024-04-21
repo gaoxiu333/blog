@@ -1,12 +1,18 @@
 import { Button } from "@nextui-org/react";
+import clsx from "clsx";
 import { Check, Copy } from "lucide-react";
 import { useRef, useState } from "react";
 
 interface CodeBlockProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-export default function CodeBlock({ children, ...props }: CodeBlockProps) {
+export default function CodeBlock({
+  children,
+  className = "",
+  ...props
+}: CodeBlockProps) {
   const preRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
   async function copy() {
@@ -18,7 +24,11 @@ export default function CodeBlock({ children, ...props }: CodeBlockProps) {
 
   return (
     <div className="code-block relative group">
-      <pre {...props} ref={preRef}>
+      <pre
+        className={clsx("p-4 rounded-lg", className)}
+        {...props}
+        ref={preRef}
+      >
         {children}
       </pre>
       <Button

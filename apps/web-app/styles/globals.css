@@ -9,12 +9,6 @@
   scroll-behavior: smooth;
 }
 
-/* 全屏动画 */
-/* .test-search { 
-  transform-origin: 50vw 50vh;
-  transform: perspective(1000px) translate3d(0, 50vh, 0) rotateX(30deg);
-  pointer-events: none;
-} */
 :root {
   --primary-gradient-stop-0: #ff4785;
   --primary-gradient-stop-1: #ff42b4;
@@ -48,4 +42,9 @@
   background-clip: text;
   /* display: inline; */
   background-image: var(--primary-gradient);
+}
+
+/* 抗锯齿 */
+body {
+  -webkit-font-smoothing: antialiased;
 }

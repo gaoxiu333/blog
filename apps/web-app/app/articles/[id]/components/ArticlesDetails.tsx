@@ -2,7 +2,7 @@
 
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
-import CodeBlock from "./code-block";
+import { components } from "./mdx";
 
 const ArticlesDetails = (props: { content: any }) => {
   const Component = useMemo(
@@ -12,7 +12,7 @@ const ArticlesDetails = (props: { content: any }) => {
   return (
     <>
       <article className="prose !max-w-none dark:prose-invert">
-        <Component components={{ pre: CodeBlock as any }} />
+        <Component components={components} />
       </article>
     </>
   );
