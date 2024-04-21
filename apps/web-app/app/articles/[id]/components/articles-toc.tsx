@@ -1,14 +1,27 @@
 "use client";
+import { useScrollListener } from "@/client/hooks/scrollListener";
 import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { SVGProps } from "react";
 
 export function ArticlesToc({ TOC, minDepth }: any) {
-  // 是否显示导航
-  const [showToc, setShowToc] = useState(false);
+  const [showToc, setShowToc] = useState(false); // 是否显示导航
+  const { scrollY } = useScrollListener();
+  const [closeToc, setCloseToc] = useState(false); // 主动关闭后不再通过监听自动显示或者关闭导航
   const handleShowToc = () => {
     setShowToc(!showToc);
+    setCloseToc(true);
   };
+
+  useEffect(() => {
+    if (TOC.length === 0 || closeToc) return;
+    if (scrollY > 100) {
+      setShowToc(true);
+    } else {
+      setShowToc(false);
+    }
+  }, [scrollY]);
+
   return (
     <div className=" relative z-50">
       <div className="translate fixed right-0 top-1/2 h-0 w-0 ">

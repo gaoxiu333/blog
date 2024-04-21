@@ -1,5 +1,5 @@
 import { getAllArticles, getArticleDetails } from "@/lib/articles";
-import { ArticlesDetails } from "./components/ArticlesDetails";
+import { ArticlesDetails } from "./components/articles-details";
 import { ArticlesToc } from "./components/articles-toc";
 import dayjs from "dayjs";
 // import '@/styles/mdx.css'
@@ -25,7 +25,7 @@ const Page = async ({ params }: any) => {
           {readingTime}
         </p>
       </header>
-      <ArticlesToc TOC={TOC} minDepth={minDepth} />
+      {TOC.length > 0 && <ArticlesToc TOC={TOC} minDepth={minDepth} />}
       <ArticlesDetails content={code} />
     </main>
   );
