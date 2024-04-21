@@ -2,6 +2,7 @@
 title: 前端的Linters配置
 createdAt: 2020-03-22 21:20:41
 updatedAt: 2022-06-21 22:32:22
+descriptsion: Eslint刚发了V9，这篇文章也该更新了
 ---
 
 

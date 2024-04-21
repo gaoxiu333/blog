@@ -2,6 +2,7 @@
 title: web 2023
 createdAt: 2024-04-02 11:42:35
 updatedAt: 2024-04-02 11:42:35
+description: CSS 2023趋势以及新特性，以及React、Vue和JavaScript生态系统的更新， 2023年 Baseline 标准的推出，他让开发者更容易了解到，新特性能不能用于生产。
 ---
 ## Web 2023
 
