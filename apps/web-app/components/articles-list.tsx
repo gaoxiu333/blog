@@ -24,6 +24,9 @@ const ArticlesList: React.FC = async () => {
                       </span>{" "}
                       · <span>{readingTime}</span>
                     </p>
+                    <p className="mt-2 text-base">
+                      {frontmatter.description}
+                    </p>
                   </CardBody>
                 </Link>
               </Card>
