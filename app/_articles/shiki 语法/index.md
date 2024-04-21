@@ -1,9 +1,9 @@
 ---
 title: shiki 代码高亮特殊语法
 createdAt: 2024-04-21T16:29:37.000Z
-updatedAt: '2024-04-21T14:54:59.365Z'
+updatedAt: '2024-04-21T14:55:49.924Z'
 description: 代码高亮换了实现方式，记录一下shiki的特殊语法。
-published: false
+published: true
 ---
 
 简单记录下`shiki`代码高亮的语法。
