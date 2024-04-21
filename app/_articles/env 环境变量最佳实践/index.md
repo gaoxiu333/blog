@@ -2,7 +2,7 @@
 title: env 环境变量最佳实践
 createdAt: 2024-04-19 22:36:57
 updatedAt: 2024-04-19 22:36:57
-descriptsion: 给你的库或者应用程序一个更加健壮的环境变量配置。
+descriptsion: 给你的库或者应用程序一个更加健壮的环境变量配置
 ---
 
 ## 目的
@@ -153,7 +153,7 @@ export type AppConfig = {
 }
 ```
 
-**创建****`defineConfig`****帮助器**
+**创建** **`defineConfig`** **帮助器**
 
 ```typescript
 // config/defineConfig.ts
