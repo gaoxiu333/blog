@@ -12,20 +12,20 @@ const ArticlesList: React.FC = async () => {
           return (
             <li key={idx}>
               <Card className="py-3 bg-white/5" isHoverable>
-                <CardBody>
-                  <Link
-                    className="text-xl text-default-500/90 transition duration-300 line-clamp-2 hover:text-rose-100/90"
-                    href={`/articles/${fileName}`}
-                  >
+                <Link
+                  className="text-xl text-default-600/90 transition duration-300 line-clamp-2 "
+                  href={`/articles/${fileName}`}
+                >
+                  <CardBody>
                     {frontmatter.title}
-                  </Link>
-                  <p className="mt-1 text-sm text-default-400">
-                    <span>
-                      {dayjs(frontmatter.createdAt).format("YYYY-MM-DD")}
-                    </span>{" "}
-                    · <span>{readingTime}</span>
-                  </p>
-                </CardBody>
+                    <p className="mt-1 text-sm text-default-400">
+                      <span>
+                        {dayjs(frontmatter.createdAt).format("YYYY-MM-DD")}
+                      </span>{" "}
+                      · <span>{readingTime}</span>
+                    </p>
+                  </CardBody>
+                </Link>
               </Card>
             </li>
           );

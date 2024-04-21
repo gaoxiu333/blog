@@ -1,6 +1,13 @@
 "use client";
 import { IfyIcon } from "@/client/components/IfyIcon";
-import { Card, CardBody, Link, Image, Skeleton } from "@nextui-org/react";
+import {
+  Card,
+  CardBody,
+  Link,
+  Image,
+  Skeleton,
+  Button,
+} from "@nextui-org/react";
 import { shuffle, take } from "lodash";
 import { useEffect, useState } from "react";
 import { STACKS } from "./constans";
@@ -64,18 +71,19 @@ const HomeBanner: React.FC = () => {
                       height={32}
                       className="rounded-full"
                     />
-                    <span className="text-small text-default-300">
+                    <span className="text-small text-default-400">
                       {stack.name}
                     </span>
                   </li>
                 );
               })}
             </ul>
-
-            <div className="text-center ">
-              <Link className="text-small" href="/stack">
-                查看我关注的堆栈
-              </Link>
+            <div className="text-center">
+              <Button variant="ghost" className="border-none">
+                <Link className="text-small text-default-700" href="/stack">
+                  查看我关注的堆栈
+                </Link>
+              </Button>
             </div>
           </div>
         </main>
