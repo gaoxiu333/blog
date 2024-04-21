@@ -17,18 +17,17 @@ export default function CodeBlock({ children, ...props }: CodeBlockProps) {
   }
 
   return (
-    <div className="code-block relative">
+    <div className="code-block relative group">
       <pre {...props} ref={preRef}>
         {children}
       </pre>
       <Button
-        className="absolute border-none top-[14px] right-[14px]"
+        className="invisible group-hover:visible absolute border-none top-[6px] right-[8px]"
         isIconOnly
         variant="ghost"
         size="sm"
         onClick={copy}
       >
-        <span className="sr-only">Copy</span>
         {copied ? (
           <Check className="text-green-500" width={16} height={16} />
         ) : (
