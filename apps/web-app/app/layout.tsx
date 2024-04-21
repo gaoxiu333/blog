@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { PageFooter } from "@/components/page-footer";
 import { Providers } from "./providers";
 import { PageHeader } from "@/components/page-header";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "olOwOlo",
@@ -51,6 +52,7 @@ export default function RootLayout({
           </filter>
           <rect width="100%" height="100%" filter="url(#noise)"></rect>
         </svg>
+        <Analytics />
       </body>
     </html>
   );

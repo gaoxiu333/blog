@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.10",
+    "@vercel/analytics": "^1.2.2",
     "dayjs": "^1.11.10",
     "framer-motion": "^11.0.25",
     "lodash": "^4.17.21",
