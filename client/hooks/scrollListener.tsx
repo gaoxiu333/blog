@@ -5,11 +5,10 @@ export function useScrollListener() {
   const [scrollY, setScrollY] = useState<number>(0);
 
   useEffect(() => {
-    const handleScroll = (e: Event) => {
+    const throttledHandleScroll = throttle((e: Event) => {
       const scrollPosition = window.scrollY || window.pageYOffset;
       setScrollY(scrollPosition);
-    };
-    const throttledHandleScroll = throttle(handleScroll, 100);
+    }, 100);
     window.addEventListener("scroll", throttledHandleScroll);
     return () => window.removeEventListener("scroll", throttledHandleScroll);
   }, []);
