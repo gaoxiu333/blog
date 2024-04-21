@@ -3,6 +3,7 @@ title: 什么是提示工程？
 createdAt: 2023-10-21 22:11:38
 updatedAt: 2023-10-21 22:11:38
 description: ChatGPT 的 Prompts 通用技巧->TOT 思维树->对抗性提示->幻觉
+published: true
 ---
 
 ## 什么是提示工程

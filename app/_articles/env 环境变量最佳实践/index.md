@@ -3,6 +3,7 @@ title: env 环境变量最佳实践
 createdAt: 2024-04-19 22:36:57
 updatedAt: 2024-04-19 22:36:57
 descriptsion: 给你的库或者应用程序一个更加健壮的环境变量配置
+published: true
 ---
 
 ## 目的
