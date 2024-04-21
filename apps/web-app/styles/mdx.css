@@ -1,24 +1,11 @@
+/* 使用grid布局：为了让子元素占满父容器宽度 */
 .code-block code {
-  display: grid;
-}
-
-html.dark .shiki {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-html.dark .shiki span:not(.line) {
-  color: var(--shiki-dark) !important;
-  /* background-color: var(--shiki-dark-bg) !important; */
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
+  @apply grid;
 }
 
 .shiki {
+  @apply !mt-0 scrollbar-hide !bg-purple-500/5;
+
   counter-reset: step;
   counter-increment: step 0;
 
@@ -52,10 +39,10 @@ html.dark .shiki span:not(.line) {
         }
       }
       &.remove {
-        @apply border-orange-500  opacity-70 *:!text-neutral-400 before:text-orange-500;
+        @apply border-red-500  opacity-70  before:text-red-500;
         /* --shiki-dark-bg: rgb(249 115 22 / 0.3); */
         span:first-child::before {
-          @apply text-orange-500 content-["-"];
+          @apply text-red-500 content-["-"];
         }
       }
     }
@@ -66,21 +53,42 @@ html.dark .shiki span:not(.line) {
   }
 }
 
+/* 修复shiki中的代码高亮，支持dark模式 */
+html.dark .shiki {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.03),
+    10px 10px 17px -1px rgba(0, 0, 0, 0.03),
+    50px 50px 80px -3px rgba(0, 0, 0, 0.03);
+  background: linear-gradient(
+        160deg,
+        rgba(28, 25, 23, 0.8) 20%,
+        rgba(28, 25, 23, 0.9) 60%
+      )
+      padding-box,
+    radial-gradient(
+        at left top,
+        rgba(254, 205, 211, 0.25),
+        20%,
+        rgb(254 205 211/7%) 50%
+      )
+      border-box !important;
+}
+
+html.dark .shiki span:not(.line) {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
 .rehype-code-title {
-  /* margin-bottom: -0.6rem;
-  padding: 0.5em 1em;
-  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
-    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
-    "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
-    monospace;
-
-  background-color: black;
-  color: white;
-  z-index: 0;
-
-  border-top-left-radius: 0.3em;
-  border-top-right-radius: 0.3em; */
-  @apply rounded-t-md border-b border-rose-100/[3%] bg-rose-100/[2%] px-2.5 py-1 text-xs text-rose-100/60;
+  @apply rounded-t-md !text-default-500  bg-purple-800/[8%] dark:bg-rose-100/[2%] px-2.5 py-1 text-xs text-rose-100/60;
+  & + .code-block > .shiki {
+    @apply !rounded-t-none;
+  }
 }
 /* 抗锯齿 */
 body {

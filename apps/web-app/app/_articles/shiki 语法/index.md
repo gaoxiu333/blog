@@ -1,10 +1,10 @@
 ---
-title: demo
-createdAt: 2024-04-20 19:10:25
-updatedAt: 2024-04-20 19:10:25
+title: shiki 代码高亮语法
+createdAt: 2024-04-21 16:29:37
+updatedAt: 2024-04-21 16:29:37
 ---
 
-## 测试 shiki
+简单记录下`shiki`代码高亮的语法。
 
 使用 [!code ++] 和 [!code --] 来标记增删的行。
 
@@ -38,7 +38,7 @@ console.log("Focused"); // [!code focus]
 console.log("Not focused");
 ```
 
-Plain Text
+纯文本
 
 ```txt
 import { codeToHtml } from 'shiki'
@@ -70,12 +70,8 @@ ANSI
 [0;36m└[0m
 ```
 
+带标题/文件名字的代码块
 
-```js:title="..."
+```js:index.tsx
 111;
-```
-
-```js
-const multiply = (a, b) => a * b;
-multiply(2, 2); // 4
 ```

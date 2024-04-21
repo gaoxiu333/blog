@@ -1,4 +1,4 @@
-import { ArticlesList } from "@/components/Articles";
+import { ArticlesList } from "@/components/articles-list";
 import { HomeBanner } from "@/components/home-banner";
 
 export default async function Home() {

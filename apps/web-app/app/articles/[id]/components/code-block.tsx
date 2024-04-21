@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import { Check, Copy } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -16,38 +17,24 @@ export default function CodeBlock({ children, ...props }: CodeBlockProps) {
   }
 
   return (
-    <div className="code-block">
+    <div className="code-block relative">
       <pre {...props} ref={preRef}>
         {children}
       </pre>
-      <button onClick={copy} className="copy">
+      <Button
+        className="absolute border-none top-[14px] right-[14px]"
+        isIconOnly
+        variant="ghost"
+        size="sm"
+        onClick={copy}
+      >
         <span className="sr-only">Copy</span>
-        {copied ? <Check /> : <Copy />}
-      </button>
-
-      <style jsx>
-        {`
-          .code-block {
-            position: relative;
-          }
-
-          .copy {
-            cursor: pointer;
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            font-size: 1rem;
-            background: none;
-            border-radius: var(--border-base);
-            border: none;
-            transition: transform 0.1s ease;
-          }
-
-          .copy:active {
-            transform: scale(0.9);
-          }
-        `}
-      </style>
+        {copied ? (
+          <Check className="text-green-500" width={16} height={16} />
+        ) : (
+          <Copy width={16} height={16} />
+        )}
+      </Button>
     </div>
   );
 }

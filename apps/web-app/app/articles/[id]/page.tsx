@@ -1,6 +1,6 @@
 import { getAllArticles, getArticleDetails } from "@/lib/articles";
 import { ArticlesDetails } from "./components/ArticlesDetails";
-import { ArticlesToc } from "./components/ArticlesToc";
+import { ArticlesToc } from "./components/articles-toc";
 import dayjs from "dayjs";
 // import '@/styles/mdx.css'
 

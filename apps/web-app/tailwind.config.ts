@@ -93,7 +93,22 @@ const config = {
   plugins: [
     require("@tailwindcss/typography"),
     require("tailwindcss-animate"),
-    nextui(),
+    nextui({
+      themes: {
+        light: {
+          // ...colors,
+          colors: {
+            background: "DEFAULT",
+          },
+        },
+        dark: {
+          colors: {
+            background: `rgb(28 25 23/1)`,
+          },
+          // ...colors,
+        },
+      },
+    }),
   ],
 } satisfies Config;
 
