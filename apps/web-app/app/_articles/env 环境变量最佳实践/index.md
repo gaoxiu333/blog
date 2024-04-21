@@ -220,7 +220,7 @@ console.log(appConfig.apiURL)
 
 增加默认值也使你的配置灵活拓展
 
-```typescript
+```typescript:config/types.ts
 // config/types.ts
 export type AppConfig = {
   apiURL:string,
@@ -250,12 +250,11 @@ export function defineConfig(config: RequiredConfig): AppConfig {
     ...config,
   };
 }
-
 ```
 
 接下来你可以在你想配置的环境文件中添加`onlyLocal`，而不用关心其他环境变量是否需要配置。
 
-```typescript
+```typescript title="config/envs/local.ts"
 // config/envs/local.ts
 import { defineConfig } from "../defineConfig";
 
@@ -266,7 +265,6 @@ export function createLocalConfig() {
   });
 }
 // config/envs/prod.ts
-
 ```
 
 完～

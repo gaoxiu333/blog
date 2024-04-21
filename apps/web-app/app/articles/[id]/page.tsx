@@ -2,6 +2,7 @@ import { getAllArticles, getArticleDetails } from "@/lib/articles";
 import { ArticlesDetails } from "./components/ArticlesDetails";
 import { ArticlesToc } from "./components/ArticlesToc";
 import dayjs from "dayjs";
+// import '@/styles/mdx.css'
 
 export async function generateStaticParams() {
   const list = await getAllArticles();

@@ -12,7 +12,7 @@ export function Providers({
 }) {
   return (
     <ThemeProvider
-      attribute="data-theme"
+      attribute="class"
       enableSystem={false}
       defaultTheme="dark"
     >

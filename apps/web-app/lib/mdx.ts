@@ -9,8 +9,14 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "./rehypeToc";
 import path from "path";
-
-
+import rehypeShiki from "@shikijs/rehype";
+import {
+  transformerNotationDiff,
+  transformerNotationFocus,
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+  transformerCompactLineOptions,
+} from "@shikijs/transformers";
 
 export async function getBundleMDXData(fullPath: string) {
   if (process.platform === "win32") {
@@ -18,7 +24,7 @@ export async function getBundleMDXData(fullPath: string) {
       process.cwd(),
       "node_modules",
       "esbuild",
-      "esbuild.exe",
+      "esbuild.exe"
     );
   } else {
     process.env.ESBUILD_BINARY_PATH = path.join(
@@ -26,7 +32,7 @@ export async function getBundleMDXData(fullPath: string) {
       "node_modules",
       "esbuild",
       "bin",
-      "esbuild",
+      "esbuild"
     );
   }
   let TOC: any[] = [];
@@ -44,7 +50,25 @@ export async function getBundleMDXData(fullPath: string) {
         rehypeAutolinkHeadings, // 给标题添加锚点
         [rehypeToc, { TOC }],
         rehypeCodeTitles, // 代码块增加标题
-        rehypePrism, // 代码高亮
+        // rehypePrism, // 代码高亮
+        // [rehypePrettyCode, options],
+        [
+          rehypeShiki,
+          {
+            themes: {
+              light: "slack-ochin",
+              dark: "synthwave-84",
+            },
+            // defaultColor: false,
+            transformers: [
+              transformerNotationDiff(),
+              transformerNotationHighlight(),
+              transformerNotationWordHighlight(),
+              transformerNotationFocus(),
+              transformerCompactLineOptions(),
+            ],
+          },
+        ],
       ];
       return options;
     },

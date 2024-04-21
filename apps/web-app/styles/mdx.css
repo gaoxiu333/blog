@@ -1,0 +1,88 @@
+.code-block code {
+  display: grid;
+}
+
+html.dark .shiki {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+html.dark .shiki span:not(.line) {
+  color: var(--shiki-dark) !important;
+  /* background-color: var(--shiki-dark-bg) !important; */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.shiki {
+  counter-reset: step;
+  counter-increment: step 0;
+
+  .line {
+    @apply border-l-4 border-transparent;
+    &::before {
+      counter-increment: step;
+      @apply mr-6 inline-block w-4 border-transparent text-right text-neutral-600 content-[counter(step)];
+    }
+
+    &.highlighted,
+    &.diff {
+      @apply -ml-4 -mr-5 inline-block w-[calc(100%+(theme(spacing.5)+theme(spacing.4)))] pl-4 pr-5;
+    }
+
+    &.highlighted {
+      @apply !border-l-blue-700/80 bg-blue-800/[15%];
+    }
+
+    &.diff {
+      &.add,
+      &.remove {
+        span:first-child::before {
+          @apply -ml-4 inline-flex w-4;
+        }
+      }
+      &.add {
+        @apply border-green-500 before:text-green-500;
+        span:first-child::before {
+          @apply text-green-500 content-["+"];
+        }
+      }
+      &.remove {
+        @apply border-orange-500  opacity-70 *:!text-neutral-400 before:text-orange-500;
+        /* --shiki-dark-bg: rgb(249 115 22 / 0.3); */
+        span:first-child::before {
+          @apply text-orange-500 content-["-"];
+        }
+      }
+    }
+  }
+
+  .line:last-child {
+    display: none !important;
+  }
+}
+
+.rehype-code-title {
+  /* margin-bottom: -0.6rem;
+  padding: 0.5em 1em;
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console",
+    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+    "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier,
+    monospace;
+
+  background-color: black;
+  color: white;
+  z-index: 0;
+
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em; */
+  @apply rounded-t-md border-b border-rose-100/[3%] bg-rose-100/[2%] px-2.5 py-1 text-xs text-rose-100/60;
+}
+/* 抗锯齿 */
+body {
+  -webkit-font-smoothing: antialiased;
+}

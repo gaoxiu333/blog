@@ -3,7 +3,7 @@ import { nextui } from "@nextui-org/react";
 const colors = require("tailwindcss/colors");
 
 const config = {
-  darkMode: ["selector", '[data-theme="dark"]'],
+  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -39,14 +39,19 @@ const config = {
       colors: {
         primary: "hsl(var(--color-primary) / 1)",
         gray: colors.neutral,
+        accent: {
+          main: colors.pink[400],
+          start: colors.purple[500],
+          end: colors.pink[400],
+        },
       },
       typography: () => ({
         DEFAULT: {
           css: {
             lineHeight: 1.7,
             "p,code,pre,ul": {
-              marginTop: 0,
-              marginBottom: "1em !important",
+              // marginTop: 0,
+              // marginBottom: "1em !important",
             },
 
             li: {
@@ -54,31 +59,31 @@ const config = {
               marginBottom: "0",
             },
             code: {
-              fontSize: "0.75em",
-              backgroundColor: "#F2F2F2",
-              padding: "0.2em 0.4em",
-              borderRadius: "0.3em",
-              fontWeight: "400",
+              // fontSize: "0.75em",
+              // backgroundColor: "#F2F2F2",
+              // padding: "0.2em 0.4em",
+              // borderRadius: "0.3em",
+              // fontWeight: "400",
             },
-            blockquote: {
-              quotes: "none",
-              fontSize: "14px",
-              fontWeight: "400",
-              color: "var(--nextui-colors-gray)",
-              fontStyle: "normal",
-            },
-            "code::before": {
-              content: "none",
-            },
-            "code::after": {
-              content: "none",
-            },
+            // blockquote: {
+            //   quotes: "none",
+            //   fontSize: "14px",
+            //   fontWeight: "400",
+            //   color: "var(--nextui-colors-gray)",
+            //   fontStyle: "normal",
+            // },
+            // "code::before": {
+            //   content: "none",
+            // },
+            // "code::after": {
+            //   content: "none",
+            // },
           },
         },
         invert: {
           css: {
             code: {
-              backgroundColor: "#f2f2f23b",
+              // backgroundColor: "#f2f2f23b",
             },
           },
         },

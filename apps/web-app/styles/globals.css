@@ -1,6 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import './mdx.css';
 
 /* TODO: 添加到 tailwind.config.cjs */
 .scroll-container {
@@ -47,3 +50,33 @@
   /* display: inline; */
   background-image: var(--primary-gradient);
 }
+
+/* html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.shiki {
+  counter-reset: step;
+  counter-increment: step 0;
+  .line {
+    &::before {
+      counter-increment: step;
+      @apply mr-6 inline-block w-4 border-transparent text-right text-neutral-600 content-[counter(step)];
+    }
+  }
+} */
+/* 
+@layer components {
+  .main-border {
+    @apply border border-gray-300 dark:border-gray-600;
+  }
+  .gradient-title {
+    @apply bg-gradient-to-r from-accent-start to-accent-end bg-clip-text text-transparent;
+  }
+} */
+
