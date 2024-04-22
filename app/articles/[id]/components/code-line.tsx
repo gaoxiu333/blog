@@ -47,7 +47,7 @@ const MarkerLink: React.FC<React.AnchorHTMLAttributes<HTMLAnchorElement>> = ({
           className
         )}
       >
-        {isValidElement(props.children) ? 1 : 2} ssss{props.children}
+      
       </code>
       <style jsx>
         {`

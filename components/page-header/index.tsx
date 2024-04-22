@@ -10,17 +10,16 @@ import {
 } from "@nextui-org/navbar";
 import React, { useEffect, useState } from "react";
 import { Link } from "@nextui-org/react";
-import GithubSvg from "@/public/icons/github.svg";
 import { PageSearch } from "./componsnts/page-search";
 import { Logo } from "./componsnts/logo";
 import { MoonIcon, SunIcon } from "./componsnts/switch-icon";
 import { useTheme } from "next-themes";
+import { LogosGithubIcon } from "./componsnts/github";
 
-const PageHeader: React.FC = () => {
+const PageHeader = () => {
   const { theme, resolvedTheme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-
   const onTheme = (event: any) => {
     if (event === "dark") {
       setTheme("light");
@@ -62,7 +61,9 @@ const PageHeader: React.FC = () => {
                   ) : null}
                 </div>
                 <Link href="https://github.com/gaoxiu333" target="_blank">
-                  <GithubSvg className={`currentColor h-5 w-5 fill-current`} />
+                  <LogosGithubIcon
+                    className={`currentColor h-5 w-5 fill-current`}
+                  />
                 </Link>
               </div>
             </NavbarItem>

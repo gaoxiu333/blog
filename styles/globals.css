@@ -1,8 +1,9 @@
+@import "./mdx.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "./mdx.css";
 
 /* TODO: 添加到 tailwind.config.cjs */
 .scroll-container {
