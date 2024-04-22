@@ -1,8 +1,9 @@
 "use client";
 import { useScrollListener } from "@/client/hooks/scrollListener";
-import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
+import { Button, Card, CardBody } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import type { SVGProps } from "react";
+import { UnderlineLink } from "./under-line-link";
 
 export function ArticlesToc({ TOC, minDepth }: any) {
   const [showToc, setShowToc] = useState(false); // 是否显示导航
@@ -60,7 +61,9 @@ export function ArticlesToc({ TOC, minDepth }: any) {
               <ul>
                 {TOC.map((item: any, idx: number) => (
                   <li key={idx} className={headingClass(item.depth - minDepth)}>
-                    <a href={"#" + item.id}>{item.text}</a>
+                    <UnderlineLink href={"#" + item.id} target="_self">
+                      {item.text}
+                    </UnderlineLink>
                   </li>
                 ))}
               </ul>
