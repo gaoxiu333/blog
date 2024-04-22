@@ -2,6 +2,7 @@ import { Link } from "@nextui-org/react";
 import clsx from "clsx";
 import CodeBlock from "./code-block";
 import { UnderlineLink } from "./under-line-link";
+import { MarkerLink } from "./code-line";
 
 export const LINK_STYLES = `underline decoration-rose-200/20 underline-offset-2 transition-all`;
 export const FOCUS_VISIBLE_OUTLINE = `focus:outline-none focus-visible:outline-none focus-visible:ring-2`;
@@ -61,6 +62,7 @@ export const components = {
   del: (props: any) => (
     <del className="text-default-500/50 line-through" {...props} />
   ),
+  code: (props: any) => <MarkerLink {...props} />,
   pre: (props: any) => <CodeBlock {...props} />,
-  p: (props: any) => <p className="my-6" {...props} />,
+  p: (props: any) => <p className="my-6 leading-7" {...props} />,
 };

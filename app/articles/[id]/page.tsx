@@ -2,6 +2,7 @@ import { getAllArticles, getArticleDetails } from "@/lib/articles";
 import { ArticlesDetails } from "./components/articles-details";
 import { ArticlesToc } from "./components/articles-toc";
 import dayjs from "dayjs";
+import { MarkerFilter } from "./components/code-line";
 // import '@/styles/mdx.css'
 
 export async function generateStaticParams() {
@@ -27,6 +28,7 @@ const Page = async ({ params }: any) => {
       </header>
       {TOC.length > 0 && <ArticlesToc TOC={TOC} minDepth={minDepth} />}
       <ArticlesDetails content={code} />
+      <MarkerFilter />
     </main>
   );
 };

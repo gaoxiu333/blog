@@ -91,3 +91,6 @@ html.dark .shiki span:not(.line) {
   }
 }
 
+:not(pre) > code {
+  @apply inline-block px-1 rounded-md mx-1 text-pink-600 bg-pink-200/[30%] dark:bg-pink-100/[10%] leading-5;
+}
