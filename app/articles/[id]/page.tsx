@@ -10,7 +10,8 @@ export async function generateStaticParams() {
   return list;
 }
 
-const Page = async ({ params }: any) => {
+const Page = async (props: any) => {
+  const params = await props.params;
   const { frontmatter, readingTime, code, TOC } = await getArticleDetails(
     decodeURIComponent(params.id)
   );
