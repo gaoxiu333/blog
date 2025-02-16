@@ -7,7 +7,7 @@ import {
   Image,
   Skeleton,
   Button,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { shuffle, take } from "lodash";
 import { useEffect, useState } from "react";
 import { STACKS } from "./constans";

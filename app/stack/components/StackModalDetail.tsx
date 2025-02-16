@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
+import { Modal, ModalBody, ModalContent, ModalHeader } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { StackList } from "./stackCard";
 import { FRONTEND_TAP_MAP } from "@/lib/constant";

@@ -77,8 +77,8 @@ const uiFrameworks = [
   },
   {
     name: "NextUI",
-    repo: "nextui-org/nextui",
-    npm: "@nextui-org/react",
+    repo: "heroui-org/heroui",
+    npm: "@heroui/react",
     tags: ["react"],
   },
   {

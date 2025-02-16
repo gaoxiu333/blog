@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardBody, useDisclosure } from "@nextui-org/react";
+import { Card, CardBody, useDisclosure } from "@heroui/react";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";

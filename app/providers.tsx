@@ -1,6 +1,6 @@
 "use client";
 
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 import { ThemeProvider } from "next-themes";
 
 export function Providers({
@@ -16,7 +16,7 @@ export function Providers({
       enableSystem={false}
       defaultTheme="dark"
     >
-      <NextUIProvider className={className}>{children}</NextUIProvider>
+      <HeroUIProvider className={className}>{children}</HeroUIProvider>
     </ThemeProvider>
   );
 }

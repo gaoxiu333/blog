@@ -1,5 +1,5 @@
 import { getAllArticlesMatter } from "@/lib/articles";
-import { Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody } from "@heroui/react";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { ArticleItem } from "./article-item";

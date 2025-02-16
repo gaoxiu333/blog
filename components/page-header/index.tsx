@@ -7,9 +7,9 @@ import {
   NavbarContent,
   NavbarItem,
   NavbarMenuToggle,
-} from "@nextui-org/navbar";
+} from "@heroui/navbar";
 import React, { useEffect, useState } from "react";
-import { Link } from "@nextui-org/react";
+import { Link } from "@heroui/react";
 import { PageSearch } from "./componsnts/page-search";
 import { Logo } from "./componsnts/logo";
 import { MoonIcon, SunIcon } from "./componsnts/switch-icon";

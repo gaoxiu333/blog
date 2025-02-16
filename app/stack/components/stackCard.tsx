@@ -1,6 +1,6 @@
 import { dateToFormat } from "@/lib/time";
 import { formatNumber } from "@/lib/utils";
-import { Card, CardBody, Link, Tooltip } from "@nextui-org/react";
+import { Card, CardBody, Link, Tooltip } from "@heroui/react";
 import {
   CircleDot,
   Download,

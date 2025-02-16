@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardBody, Link } from "@nextui-org/react";
+import { Card, CardBody, Link } from "@heroui/react";
 import dayjs from "dayjs";
 
 export const ArticleItem = ({ frontmatter, readingTime, fileName }: any) => {

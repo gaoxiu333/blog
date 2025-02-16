@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import { nextui } from "@nextui-org/react";
+import { heroui } from "@heroui/react";
 const colors = require("tailwindcss/colors");
 
 const config = {
@@ -8,7 +8,7 @@ const config = {
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
   theme: {
@@ -49,7 +49,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    nextui({
+    heroui({
       themes: {
         light: {
           colors: {

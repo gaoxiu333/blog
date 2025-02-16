@@ -1,6 +1,6 @@
 "use client";
 import { useScrollListener } from "@/client/hooks/scrollListener";
-import { Button, Card, CardBody } from "@nextui-org/react";
+import { Button, Card, CardBody } from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import type { SVGProps } from "react";
 import { UnderlineLink } from "./under-line-link";
