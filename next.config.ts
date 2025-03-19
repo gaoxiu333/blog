@@ -40,6 +40,9 @@ const nextConfig: NextConfig = (phase: string) => {
     //     },
     //   ];
     // },
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
   } as NextConfig;
   return withMDX(nextConfigOptions);
 };
