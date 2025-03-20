@@ -9,6 +9,9 @@ import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 // @ts-expect-error this package has no types
 import nextPlugin from "@next/eslint-plugin-next";
 import * as mdxPlugin from "eslint-plugin-mdx";
+/**
+ * doc: eslint 注释：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/linting-in-vscode-using-extensions#disabling-rules-using-comments
+ */
 
 const eslintConfig = [
   {
@@ -23,7 +26,7 @@ const ignoresConfig = [
     name: "custom/eslint/ignores",
     // the ignores option needs to be in a separate configuration object
     // replaces the .eslintignore file
-    ignores: [".next/", ".vscode/", "public/"],
+    ignores: [".next/", ".vscode/", "public/",'.remarkrc.mjs'],
   },
 ] as FlatConfig.Config[];
 
