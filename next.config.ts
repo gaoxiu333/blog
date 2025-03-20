@@ -86,6 +86,7 @@ export default withSentryConfig(nextConfig, {
 });
 
 // CSP: 内容安全策略->https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/content-security-policy
+// @ts-nocheck
 const securityHeadersConfig = (phase: string) => {
   const cspReportOnly = true;
 

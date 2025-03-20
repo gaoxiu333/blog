@@ -1,5 +1,7 @@
 ## Sentry
+
 npx @sentry/wizard@latest -i nextjs --disable-telemetry
+
 ```
 
 ◇  Add the Sentry authentication token as an environment variable to your CI setup:

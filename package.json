@@ -9,7 +9,7 @@
     "start": "next start",
     "next-lint": "next lint",
     "lint": "eslint --cache --cache-location .next/cache/eslint/",
-    "lint-nocache": "eslint",
+    "lint-no-cache": "eslint",
     "lint-fix": "eslint --fix"
   },
   "dependencies": {
