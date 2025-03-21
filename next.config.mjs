@@ -1,15 +1,30 @@
 import { withSentryConfig } from "@sentry/nextjs";
-import type { NextConfig } from "next";
 import createMdx from "@next/mdx";
+import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeMDXImportMedia from "rehype-mdx-import-media";
 
-import { PHASE_DEVELOPMENT_SERVER } from "next/dist/shared/lib/constants";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
-const nextConfig: NextConfig = (phase: string) => {
+const nextConfig = (phase) => {
+  const remarkGFMOptions = {
+    singleTilde: false,
+  };
+
+  /** @type {import('rehype-pretty-code').Options} */
+  const rehypePrettyCodeOptions = {
+    theme: "dark-plus", // 自定义主题：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/code-highlighting-plugin#using-a-vscode-theme-from-a-git-repository
+    keepBackground: false,
+  };
+
   const withMDX = createMdx({
     extension: /\.mdx?$/,
     options: {
-      remarkPlugins: [],
-      rehypePlugins: [],
+      remarkPlugins: [[remarkGfm, remarkGFMOptions]],
+      rehypePlugins: [
+        [rehypePrettyCode, rehypePrettyCodeOptions],
+        rehypeMDXImportMedia,
+      ],
     },
   });
   switch (phase) {
@@ -43,7 +58,7 @@ const nextConfig: NextConfig = (phase: string) => {
     eslint: {
       ignoreDuringBuilds: true,
     },
-  } as NextConfig;
+  };
   return withMDX(nextConfigOptions);
 };
 
@@ -87,7 +102,7 @@ export default withSentryConfig(nextConfig, {
 
 // CSP: 内容安全策略->https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/content-security-policy
 // @ts-nocheck
-const securityHeadersConfig = (phase: string) => {
+const securityHeadersConfig = (phase) => {
   const cspReportOnly = true;
 
   const cspHeader = () => {
