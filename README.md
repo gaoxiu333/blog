@@ -1,6 +1,6 @@
 ## Sentry
 
-npx @sentry/wizard@latest -i nextjs --disable-telemetry
+npx @sentry/wizard\@latest -i nextjs --disable-telemetry
 
 ```
 

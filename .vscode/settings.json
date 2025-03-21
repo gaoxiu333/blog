@@ -1,5 +1,9 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  },
   "eslint.debug": true,
   "eslint.validate": [
     "markdown",
@@ -9,10 +13,19 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.options": {
-    "flags": ["unstable_ts_config"]
-  },
   "files.associations": {
     "*.mdx": "markdown"
-  }
+  },
+  "eslint.onIgnoredFiles": "warn",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "mdx"
+  ],
+  "editor.detectIndentation": false
 }

@@ -8,7 +8,6 @@ import reactHooksPlugin from "eslint-plugin-react-hooks";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 // @ts-expect-error this package has no types
 import nextPlugin from "@next/eslint-plugin-next";
-import * as mdxPlugin from "eslint-plugin-mdx";
 /**
  * doc: eslint 注释：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/linting-in-vscode-using-extensions#disabling-rules-using-comments
  */
@@ -26,7 +25,7 @@ const ignoresConfig = [
     name: "custom/eslint/ignores",
     // the ignores option needs to be in a separate configuration object
     // replaces the .eslintignore file
-    ignores: [".next/", ".vscode/", "public/",'.remarkrc.mjs'],
+    ignores: [".next/", ".vscode/", "public/", ".remarkrc.mjs"],
   },
 ] as FlatConfig.Config[];
 
@@ -61,22 +60,21 @@ const nextConfig = [
     plugins: {
       react: reactPlugin,
       "jsx-a11y": jsxA11yPlugin,
-       
+
       "react-hooks": reactHooksPlugin,
       "@next/next": nextPlugin,
       import: importPlugin,
-       
     },
     rules: {
       ...reactPlugin.configs.recommended.rules,
       ...reactPlugin.configs["jsx-runtime"].rules,
-       
+
       ...reactHooksPlugin.configs.recommended.rules,
       ...nextPlugin.configs.recommended.rules,
       // this is the nextjs strict mode
       ...nextPlugin.configs["core-web-vitals"].rules,
       ...importPlugin.configs.recommended.rules,
-       
+
       //...jsxA11yPlugin.configs.recommended.rules,
       // OR more strict a11y rules
       ...jsxA11yPlugin.configs.strict.rules,
@@ -107,38 +105,12 @@ const nextConfig = [
   },
 ] as FlatConfig.Config[];
 
-const mdxConfig = [
-  // https://github.com/mdx-js/eslint-mdx/blob/d6fc093fb32ab58fb226e8cf42ac77399b8a4758/README.md#flat-config
-  {
-    name: "custom/mdx/recommended",
-    files: ["**/*.mdx"],
-    ...mdxPlugin.flat,
-    processor: mdxPlugin.createRemarkProcessor({
-      // I disabled linting code blocks
-      // as I was having performance issues
-      lintCodeBlocks: false,
-      languageMapper: {},
-    }),
-  },
-  {
-    name: "custom/mdx/code-blocks",
-    files: ["**/*.mdx"],
-    ...mdxPlugin.flatCodeBlocks,
-    rules: {
-      ...mdxPlugin.flatCodeBlocks.rules,
-      "no-var": "error",
-      "prefer-const": "error",
-    },
-  },
-] as FlatConfig.Config[];
-
 export default [
   // ...compat.extends("next/core-web-vitals"),
   ...eslintConfig,
   ...ignoresConfig,
   ...tseslintConfig,
   ...nextConfig,
-  ...mdxConfig,
 ] satisfies FlatConfig.Config[];
 
 // import path, { dirname } from "path";
