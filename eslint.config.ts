@@ -3,7 +3,7 @@ import tseslint, { configs as tseslintConfigs } from "typescript-eslint";
 import type { FlatConfig } from "@typescript-eslint/utils/ts-eslint";
 // @ts-expect-error this package has no types
 import importPlugin from "eslint-plugin-import";
-import reactPlugin from "eslint-plugin-react";
+import reactPlugin, { rules } from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 // @ts-expect-error this package has no types
@@ -90,6 +90,7 @@ const nextConfig = [
       "jsx-a11y/aria-unsupported-elements": "warn",
       "jsx-a11y/role-has-required-aria-props": "warn",
       "jsx-a11y/role-supports-aria-props": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
     },
     settings: {
       react: {

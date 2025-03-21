@@ -1,12 +1,5 @@
 import { withSentryConfig } from "@sentry/nextjs";
-import createMdx from "@next/mdx";
-import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeMDXImportMedia from "rehype-mdx-import-media";
-import rehypeSlug from "rehype-slug";
-import { remarkTableOfContents } from "remark-table-of-contents";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+
 
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
@@ -28,24 +21,6 @@ const nextConfig = (phase) => {
     maxDepth: 3,
   };
 
-  const withMDX = createMdx({
-    extension: /\.mdx?$/,
-    options: {
-      remarkPlugins: [
-        remarkFrontmatter,
-        remarkMdxFrontmatter,
-        remarkGfm,
-        [remarkTableOfContents, remarkTableOfContentsOptions],
-      ],
-
-      rehypePlugins: [
-        [rehypePrettyCode, rehypePrettyCodeOptions],
-        rehypeSlug,
-
-        rehypeMDXImportMedia,
-      ],
-    },
-  });
   switch (phase) {
     case PHASE_DEVELOPMENT_SERVER:
       console.log("开发环境");
@@ -78,7 +53,7 @@ const nextConfig = (phase) => {
       ignoreDuringBuilds: true,
     },
   };
-  return withMDX(nextConfigOptions);
+  return nextConfigOptions;
 };
 
 export default withSentryConfig(nextConfig, {
