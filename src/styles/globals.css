@@ -165,3 +165,22 @@ code[data-line-numbers-max-digits="2"]>[data-line]::before {
 code[data-line-numbers-max-digits="3"]>[data-line]::before {
     width: 3rem;
 }
+
+/* 目录样式 */
+#articleToc {
+    width: 100%;
+    max-width: 400px;
+}
+ 
+#articleToc>nav {
+    position: fixed;
+    top: calc(var(--spacing) + 60px);
+}
+ 
+#articleToc ul {
+    list-style: none;
+}
+ 
+#articleToc ul:first-child {
+    padding-inline: 0;
+}

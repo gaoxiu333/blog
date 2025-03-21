@@ -3,6 +3,10 @@ import createMdx from "@next/mdx";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeMDXImportMedia from "rehype-mdx-import-media";
+import rehypeSlug from "rehype-slug";
+import { remarkTableOfContents } from "remark-table-of-contents";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
@@ -13,16 +17,35 @@ const nextConfig = (phase) => {
 
   /** @type {import('rehype-pretty-code').Options} */
   const rehypePrettyCodeOptions = {
-    theme: "dark-plus", // 自定义主题：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/code-highlighting-plugin#using-a-vscode-theme-from-a-git-repository
+    theme: "github-dark", // 自定义主题：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/code-highlighting-plugin#using-a-vscode-theme-from-a-git-repository
     keepBackground: false,
+  };
+
+  /** @type {import('remark-table-of-contents').IRemarkTableOfContentsOptions} */
+  const remarkTableOfContentsOptions = {
+    containerAttributes: {
+      id: "articleToc",
+    },
+    navAttributes: {
+      "aria-label": "table of contents",
+    },
+    maxDepth: 3,
   };
 
   const withMDX = createMdx({
     extension: /\.mdx?$/,
     options: {
-      remarkPlugins: [[remarkGfm, remarkGFMOptions]],
+      remarkPlugins: [
+        remarkFrontmatter,
+        remarkMdxFrontmatter,
+        remarkGfm,
+        [remarkTableOfContents, remarkTableOfContentsOptions],
+      ],
+
       rehypePlugins: [
         [rehypePrettyCode, rehypePrettyCodeOptions],
+        rehypeSlug,
+
         rehypeMDXImportMedia,
       ],
     },
