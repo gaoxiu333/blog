@@ -62,7 +62,7 @@ export default async function Blog({ params }: { params: any }) {
   }
 
   return (
-    <section>
+    <section className=" container">
       <script
         type="application/ld+json"
         suppressHydrationWarning

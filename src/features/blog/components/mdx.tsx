@@ -106,6 +106,7 @@ let components = {
 };
 
 export function CustomMDX(props: any) {
+  console.log("props", props);
   return (
     <MDXRemote
       {...props}

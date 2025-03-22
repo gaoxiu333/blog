@@ -1,6 +1,5 @@
 import { withSentryConfig } from "@sentry/nextjs";
 
-
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
 const nextConfig = (phase) => {
@@ -52,6 +51,7 @@ const nextConfig = (phase) => {
     eslint: {
       ignoreDuringBuilds: true,
     },
+    transpilePackages: ["next-mdx-remote"],
   };
   return nextConfigOptions;
 };
