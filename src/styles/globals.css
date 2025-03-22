@@ -2,6 +2,7 @@
 
 @plugin "tailwindcss-animate";
 @plugin "@tailwindcss/typography";
+@config "../../tailwind.config.js";
 
 
 @custom-variant dark (&:is(.dark *));
