@@ -8,3 +8,7 @@ npx @sentry/wizard\@latest -i nextjs --disable-telemetry
 
 SENTRY_AUTH_TOKEN=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
 ```
+
+## 技术栈
+
+经会持续保持技术栈的升级
