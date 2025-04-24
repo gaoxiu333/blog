@@ -1,9 +1,9 @@
 "use client";
 
+import styles from "./highlight.module.css";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import type { FC, JSX, PropsWithChildren, ReactNode } from "react";
 import { Children, cloneElement, isValidElement } from "react";
-import styles from "./highlight.module.css";
 
 interface IntersectionObserverProps {
   headingsToObserve?: string;

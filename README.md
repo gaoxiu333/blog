@@ -12,3 +12,9 @@ SENTRY_AUTH_TOKEN=sntrys_eyJpYXQiOjE3NDIwODk3MjMuMDM2NDg0LCJ1cmwiOiJodHRwczovL3N
 ## 技术栈
 
 经会持续保持技术栈的升级
+
+## 参考
+chris.lu
+
+
+

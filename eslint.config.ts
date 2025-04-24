@@ -1,17 +1,14 @@
 import eslintPlugin from "@eslint/js";
 import tseslint, { configs as tseslintConfigs } from "typescript-eslint";
 import type { FlatConfig } from "@typescript-eslint/utils/ts-eslint";
-import pluginImportX from "eslint-plugin-import-x";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 // @ts-expect-error 此包没有类型定义
 import nextPlugin from "@next/eslint-plugin-next";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
-
-import { FlatCompat } from "@eslint/eslintrc";
-
-const compat = new FlatCompat();
+// @ts-expect-error 此包没有类型定义
+import importPlugin from "eslint-plugin-import";
 
 /**
  * ESLint 配置文件
@@ -56,6 +53,8 @@ const tseslintConfig = tseslint.config(
     extends: [
       ...tseslintConfigs.recommended,
       ...tseslintConfigs.stylistic, // 存疑：是否和 prettier 冲突
+      // importPlugin.flatConfigs.recommended,
+      // importPlugin.flatConfigs.typescript,
     ] as FlatConfig.ConfigArray,
     languageOptions: {
       parserOptions: {
@@ -89,7 +88,7 @@ const nextConfig = [
       "jsx-a11y": jsxA11yPlugin, // 可访问性检查
       "react-hooks": reactHooksPlugin, // React Hooks 规则
       "@next/next": nextPlugin, // Next.js 特定规则
-      import: pluginImportX, // import 语句检查
+      import: importPlugin, // ES6 模块导入导出规则
     },
 
     // 规则配置
@@ -104,9 +103,6 @@ const nextConfig = [
       // Next.js 规则
       ...nextPlugin.configs.recommended.rules,
       ...nextPlugin.configs["core-web-vitals"].rules, // Next.js 严格模式
-
-      // Import 规则
-      ...pluginImportX.configs.recommended.rules,
 
       // 可访问性规则 (使用严格模式)
       ...jsxA11yPlugin.configs.strict.rules,
@@ -138,33 +134,7 @@ const nextConfig = [
       react: {
         version: "detect", // 自动检测 React 版本
       },
-      "import/order": [
-        "warn",
-        {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index",
-            "type",
-          ],
-          pathGroups: [
-            {
-              pattern: "@/**",
-              group: "internal",
-              position: "after",
-            },
-          ],
-          alphabetize: {
-            order: "asc",
-            caseInsensitive: true,
-          },
-          "newlines-between": "always",
-          warnOnUnassignedImports: false,
-        },
-      ],
+
       "import/resolver": {
         typescript: {
           alwaysTryTypes: true, // 总是尝试解析类型定义
@@ -178,7 +148,6 @@ const nextConfig = [
 // 导出最终配置
 // =========================================
 export default [
-  ...compat.extends("next/core-web-vitals"), // Next.js 核心配置 TODO:需要保留么
   ...eslintConfig, // 基础配置
   ...ignoresConfig, // 忽略文件配置
   ...tseslintConfig, // TypeScript 配置

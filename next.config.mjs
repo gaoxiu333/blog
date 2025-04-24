@@ -4,21 +4,21 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
 
 const nextConfig = (phase) => {
   /** @type {import('rehype-pretty-code').Options} */
-  const rehypePrettyCodeOptions = {
-    theme: "github-dark", // 自定义主题：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/code-highlighting-plugin#using-a-vscode-theme-from-a-git-repository
-    keepBackground: false,
-  };
+  // const rehypePrettyCodeOptions = {
+  //   theme: "github-dark", // 自定义主题：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/code-highlighting-plugin#using-a-vscode-theme-from-a-git-repository
+  //   keepBackground: false,
+  // };
 
   /** @type {import('remark-table-of-contents').IRemarkTableOfContentsOptions} */
-  const remarkTableOfContentsOptions = {
-    containerAttributes: {
-      id: "articleToc",
-    },
-    navAttributes: {
-      "aria-label": "table of contents",
-    },
-    maxDepth: 3,
-  };
+  // const remarkTableOfContentsOptions = {
+  //   containerAttributes: {
+  //     id: "articleToc",
+  //   },
+  //   navAttributes: {
+  //     "aria-label": "table of contents",
+  //   },
+  //   maxDepth: 3,
+  // };
 
   switch (phase) {
     case PHASE_DEVELOPMENT_SERVER:
