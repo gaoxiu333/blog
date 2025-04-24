@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 export const useIntersectionObserver = (
   querySelector: string,
   rootMargin: string,
-  threshold: number
+  threshold: number,
 ) => {
   const [activeIdState, setActiveIdState] = useState("");
   const observerRef = useRef<IntersectionObserver | null>(null);

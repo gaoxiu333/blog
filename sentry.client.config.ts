@@ -4,7 +4,6 @@
 
 import * as Sentry from "@sentry/nextjs";
 
- 
 let replaysOnErrorSampleRate = 0;
 let tracesSampleRate = 0.1;
 

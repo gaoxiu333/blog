@@ -32,7 +32,7 @@ export const TocHighlight: FC<TocHighlightProps> = (props): JSX.Element => {
 
   function recursiveChildren(
     children: ReactNode[],
-    activeIdState: string
+    activeIdState: string,
   ): ReactNode {
     const newChildren = Children.map(children, (child) => {
       let clonedChild: ReactNode = child;
@@ -62,7 +62,7 @@ export const TocHighlight: FC<TocHighlightProps> = (props): JSX.Element => {
   const { activeIdState } = useIntersectionObserver(
     tocHeadingsToObserve,
     tocRootMargin,
-    tocThreshold
+    tocThreshold,
   );
 
   return (

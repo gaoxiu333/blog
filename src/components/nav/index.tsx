@@ -1,6 +1,7 @@
+import { Logo } from "./logo";
+
 import Link from "next/link";
 import { ModeToggle } from "../theme/mode-toggle";
-import { Logo } from "./logo";
 
 export function Nav() {
   return (
