@@ -145,6 +145,117 @@ npx husky add .husky/pre-commit "npx lint-staged"
 3. 只有通过检查的文件才能提交
 4. 可以使用 `git commit --no-verify` 跳过检查
 
+## 兼容性支持
+
+### 旧版配置兼容
+
+- `@eslint/compat` - 提供与旧版 ESLint 配置的兼容性
+- `@eslint/eslintrc` - 支持传统的 .eslintrc.* 配置格式
+
+```bash
+# 安装兼容性依赖
+npm install --save-dev @eslint/compat @eslint/eslintrc
+```
+
+## 配置调试
+
+### 调试命令
+
+```bash
+# 查看配置解析结果
+npx eslint --print-config eslint.config.ts
+
+# 调试配置
+npx eslint --debug eslint.config.ts
+
+# 检查配置
+npx eslint --inspect-config eslint.config.ts
+```
+
+### package.json 调试脚本
+
+```json
+{
+  "scripts": {
+    "lint-debug-config": "eslint --debug eslint.config.ts",
+    "lint-print-config": "eslint --print-config eslint.config.ts",
+    "lint-inspect-config": "eslint --inspect-config eslint.config.ts"
+  }
+}
+```
+
+### TypeScript 配置支持
+
+当使用 .ts 后缀的配置文件时，需要安装 jiti：
+
+```bash
+npm install --save-dev jiti
+```
+
+## 导入语句排序
+
+### 使用 @trivago/prettier-plugin-sort-imports
+
+```bash
+npm install --save-dev @trivago/prettier-plugin-sort-imports
+```
+
+在 prettier.config.mjs 中配置：
+
+```js
+/** @satisfies {import("prettier").Config} */
+const config = {
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  importOrder: [
+    '^react',
+    '^next',
+    '^@/(.*)$',
+    '^[./]'
+  ],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true
+}
+```
+
+### 使用 eslint-plugin-import
+
+在 eslint.config.ts 中配置：
+
+```ts
+rules: {
+  "import/order": [
+    "error",
+    {
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+      "pathGroups": [
+        {
+          "pattern": "react",
+          "group": "builtin",
+          "position": "before"
+        },
+        {
+          "pattern": "next/**",
+          "group": "builtin"
+        }
+      ],
+      "newlines-between": "always"
+    }
+  ]
+}
+```
+
+### 注意事项
+
+1. **避免同时使用**：选择其中一种方案，避免规则冲突
+2. **prettier 方案**：
+   - 需在 VS Code 中安装 Prettier 插件
+   - 配置 `editor.formatOnSave` 为 true
+   - 适合与其他 prettier 规则配合使用
+3. **eslint 方案**：
+   - 更细粒度的控制
+   - 可以通过 // eslint-disable-next-line 临时禁用
+   - 支持自定义分组和顺序
+
 ## 最佳实践
 
 - 在 CI/CD 中集成 ESLint 检查
@@ -153,20 +264,3 @@ npx husky add .husky/pre-commit "npx lint-staged"
 - 团队统一代码风格配置
 - 记录特殊规则的禁用原因
 
-## 兼容旧
-
-- @eslint/compat
-- @eslint/eslintrc
-
-## debug
-
-npx eslint --print-config eslint.config.ts
-npx eslint --debug eslint.config.ts
-npx eslint --inspect-config eslint.config.ts
-
-```json
-"lint-debug-config": "eslint --debug eslint.config.ts",
-    "lint-print-config": "eslint --print-config eslint.config.ts",
-    "lint-inspect-config": "eslint --inspect-config eslint.config.ts"
-```
-注意：使用 .ts 后缀的配置文件，需要 pnpm add --save-dev jiti
