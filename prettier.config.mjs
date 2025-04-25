@@ -1,6 +1,6 @@
 /** @satisfies {import("prettier").Config} */
 const config = {
-  trailingComma: 'none',
+  trailingComma: 'all',
   singleQuote: true,
   printWidth: undefined,
   plugins: ['@trivago/prettier-plugin-sort-imports'],

@@ -50,10 +50,7 @@ const tseslintConfig = tseslint.config(
   {
     name: 'custom/typescript-eslint/recommended',
     files: ['**/*.mjs', '**/*.ts?(x)'],
-    extends: [
-      ...tseslintConfigs.recommended,
-      ...tseslintConfigs.stylistic // 存疑：是否和 prettier 冲突
-    ] as FlatConfig.ConfigArray,
+    extends: [...tseslintConfigs.recommended] as FlatConfig.ConfigArray,
     languageOptions: {
       parserOptions: {
         // 启用类型检查功能

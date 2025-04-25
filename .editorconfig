@@ -1,11 +1,12 @@
-root = true
+# EditorConfig 文件定义了编辑器的基本行为
+root = true  # 表示这是最顶层的配置文件，不需要继续向上查找
 
-[*]
-end_of_line = lf
-insert_final_newline = true
-charset = utf-8
-indent_style = space
-indent_size = 2
+[*]  # 对所有文件生效的规则
+end_of_line = lf                  # 换行符使用 LF（Unix风格）
+insert_final_newline = true       # 文件末尾自动插入空行
+charset = utf-8                   # 文件编码使用 UTF-8
+indent_style = space             # 使用空格进行缩进
+indent_size = 2                  # 缩进大小为2个空格
 
-[*.{js,jsx,ts,tsx}]
-trim_trailing_whitespace = true
+[*.{js,jsx,ts,tsx}]  # 针对 JavaScript/TypeScript 文件的特殊规则
+trim_trailing_whitespace = true   # 自动删除行尾空格
