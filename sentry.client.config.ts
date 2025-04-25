@@ -1,22 +1,21 @@
 // This file configures the initialization of Sentry on the client.
 // The config you add here will be used whenever a users loads a page in their browser.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
-
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 let replaysOnErrorSampleRate = 0;
 let tracesSampleRate = 0.1;
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   replaysOnErrorSampleRate = 1;
 }
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === 'development') {
   tracesSampleRate = 0;
 }
 
 Sentry.init({
-  dsn: "https://a40e7d7594b92de658ceb16927818d02@o4507161283854336.ingest.us.sentry.io/4508984892063744",
+  dsn: 'https://a40e7d7594b92de658ceb16927818d02@o4507161283854336.ingest.us.sentry.io/4508984892063744',
 
   // Add optional integrations for additional features
   integrations: [Sentry.replayIntegration()],
@@ -34,5 +33,5 @@ Sentry.init({
 
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
-  environment: process.env.NODE_ENV ? process.env.NODE_ENV : "",
+  environment: process.env.NODE_ENV ? process.env.NODE_ENV : ''
 });

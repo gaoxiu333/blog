@@ -1,6 +1,6 @@
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from '@sentry/nextjs';
 
-import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js';
 
 const nextConfig = (phase) => {
   /** @type {import('rehype-pretty-code').Options} */
@@ -22,23 +22,23 @@ const nextConfig = (phase) => {
 
   switch (phase) {
     case PHASE_DEVELOPMENT_SERVER:
-      console.log("开发环境");
+      console.log('开发环境');
       break;
     default:
-      console.log("next config mode:", phase);
+      console.log('next config mode:', phase);
   }
   const nextConfigOptions = {
     reactStrictMode: true,
 
     poweredByHeader: false,
     experimental: {
-      typedRoutes: true,
+      typedRoutes: true
       // mdxRs: true, // 启用 rust 编译 mdx
       // mdxRs: {
       //   mdxType: "gfm",
       // },
     },
-    pageExtensions: ["js", "jsx", "ts", "tsx", "mdx", "md"],
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx', 'md'],
 
     // headers: async () => {
     //   return [
@@ -49,9 +49,9 @@ const nextConfig = (phase) => {
     //   ];
     // },
     eslint: {
-      ignoreDuringBuilds: true,
+      ignoreDuringBuilds: true
     },
-    transpilePackages: ["next-mdx-remote"],
+    transpilePackages: ['next-mdx-remote']
   };
   return nextConfigOptions;
 };
@@ -61,8 +61,8 @@ export default withSentryConfig(nextConfig, {
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
   // 拓展：https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#extend-your-nextjs-configuration
 
-  org: "xiu-cg",
-  project: "blog",
+  org: 'xiu-cg',
+  project: 'blog',
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
@@ -75,14 +75,14 @@ export default withSentryConfig(nextConfig, {
 
   // Automatically annotate React components to show their full name in breadcrumbs and session replay
   reactComponentAnnotation: {
-    enabled: true,
+    enabled: true
   },
 
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
   // side errors will fail.
-  tunnelRoute: "/monitoring",
+  tunnelRoute: '/monitoring',
 
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
@@ -91,7 +91,7 @@ export default withSentryConfig(nextConfig, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true,
+  automaticVercelMonitors: true
 });
 
 // CSP: 内容安全策略->https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/content-security-policy

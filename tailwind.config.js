@@ -4,9 +4,9 @@ module.exports = {
     extend: {
       typography: () => ({
         DEFAULT: {
-          css: [{ maxWidth: "none" }],
-        },
-      }),
-    },
-  },
+          css: [{ maxWidth: 'none' }]
+        }
+      })
+    }
+  }
 };

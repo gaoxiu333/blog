@@ -1,5 +1,6 @@
-import { TocHighlight } from "./components/toc/highlight";
-import type { MDXComponents } from "mdx/types";
+import type { MDXComponents } from 'mdx/types';
+
+import { TocHighlight } from './components/toc/highlight';
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -13,14 +14,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // h1: ({ children }) => <h1 style={{ fontSize: "100px" }}>{children}</h1>,
     aside: ({ children, ...props }) => {
       const tocHighlightProps = {
-        headingsToObserve: "h1, h2, h3",
-        rootMargin: "-5% 0px -50% 0px",
+        headingsToObserve: 'h1, h2, h3',
+        rootMargin: '-5% 0px -50% 0px',
         threshold: 1,
-        ...props,
+        ...props
       };
       return (
         <>
-          {props.id === "articleToc" ? (
+          {props.id === 'articleToc' ? (
             <TocHighlight {...tocHighlightProps}>{children}</TocHighlight>
           ) : (
             <aside {...props}>{children}</aside>
@@ -28,6 +29,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </>
       );
     },
-    ...components,
+    ...components
   };
 }

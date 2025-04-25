@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata } from 'next';
 
 interface PageProps {
   params: Promise<{
@@ -6,7 +6,7 @@ interface PageProps {
   }>;
 }
 export const metadata: Metadata = {
-  title: "Blog page",
+  title: 'Blog page'
 };
 export default async function Page({ params }: PageProps) {
   const slug = (await params).slug;

@@ -1,9 +1,11 @@
-"use client";
+'use client';
 
-import styles from "./highlight.module.css";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import type { FC, JSX, PropsWithChildren, ReactNode } from "react";
-import { Children, cloneElement, isValidElement } from "react";
+import { Children, cloneElement, isValidElement } from 'react';
+import type { FC, JSX, PropsWithChildren, ReactNode } from 'react';
+
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+
+import styles from './highlight.module.css';
 
 interface IntersectionObserverProps {
   headingsToObserve?: string;
@@ -24,15 +26,15 @@ type ValidAnchorElement = ReactNode & ChildProps;
 export const TocHighlight: FC<TocHighlightProps> = (props): JSX.Element => {
   const { headingsToObserve, rootMargin, threshold, ...rest } = props;
 
-  const tocHeadingsToObserve = headingsToObserve ?? "h1, h2, h3";
-  const tocRootMargin = rootMargin ?? "-10% 0px -40% 0px";
+  const tocHeadingsToObserve = headingsToObserve ?? 'h1, h2, h3';
+  const tocRootMargin = rootMargin ?? '-10% 0px -40% 0px';
   const tocThreshold = threshold ?? 1;
 
   const children = Children.toArray(props.children);
 
   function recursiveChildren(
     children: ReactNode[],
-    activeIdState: string,
+    activeIdState: string
   ): ReactNode {
     const newChildren = Children.map(children, (child) => {
       let clonedChild: ReactNode = child;
@@ -41,10 +43,10 @@ export const TocHighlight: FC<TocHighlightProps> = (props): JSX.Element => {
         const children = Children.toArray(child.props.children);
 
         clonedChild = cloneElement(child, {
-          children: recursiveChildren(children, activeIdState),
+          children: recursiveChildren(children, activeIdState)
         });
 
-        if ("href" in child.props) {
+        if ('href' in child.props) {
           const childProps = child.props;
 
           if (childProps.href.substring(1) === activeIdState) {
@@ -62,7 +64,7 @@ export const TocHighlight: FC<TocHighlightProps> = (props): JSX.Element => {
   const { activeIdState } = useIntersectionObserver(
     tocHeadingsToObserve,
     tocRootMargin,
-    tocThreshold,
+    tocThreshold
   );
 
   return (
