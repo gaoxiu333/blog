@@ -16,5 +16,8 @@ SENTRY_AUTH_TOKEN=sntrys_eyJpYXQiOjE3NDIwODk3MjMuMDM2NDg0LCJ1cmwiOiJodHRwczovL3N
 ## 参考
 chris.lu
 
+## TODO
+明天整理一下  next.config.js 里面的配置
+
 
 
