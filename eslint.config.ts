@@ -23,8 +23,8 @@ const eslintConfig = [
   {
     name: 'custom/eslint/recommended',
     files: ['**/*.mjs', '**/*.ts?(x)'],
-    ...eslintPlugin.configs.recommended
-  }
+    ...eslintPlugin.configs.recommended,
+  },
 ];
 
 // =========================================
@@ -38,9 +38,9 @@ const ignoresConfig = [
       '.next/', // Next.js 构建输出
       '.vscode/', // VS Code 配置
       'public/', // 静态资源
-      '.remarkrc.mjs' // Remark 配置
-    ]
-  }
+      '.remarkrc.mjs', // Remark 配置
+    ],
+  },
 ] as FlatConfig.Config[];
 
 // =========================================
@@ -57,16 +57,16 @@ const tseslintConfig = tseslint.config(
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
         // it is recommended to keep version warnings turned on
-        warnOnUnsupportedTypeScriptVersion: true
-      }
-    }
+        warnOnUnsupportedTypeScriptVersion: true,
+      },
+    },
   },
   {
     // 对 .mjs 文件禁用类型检查
     files: ['**/*.mjs'],
     ...tseslintConfigs.disableTypeChecked,
-    name: 'custom/typescript-eslint/disable-type-checked'
-  }
+    name: 'custom/typescript-eslint/disable-type-checked',
+  },
 );
 
 // =========================================
@@ -83,7 +83,7 @@ const nextConfig = [
       'jsx-a11y': jsxA11yPlugin, // 可访问性检查
       'react-hooks': reactHooksPlugin, // React Hooks 规则
       '@next/next': nextPlugin, // Next.js 特定规则
-      import: importPlugin // ES6 模块导入导出规则
+      import: importPlugin, // ES6 模块导入导出规则
     },
 
     // 规则配置
@@ -120,29 +120,29 @@ const nextConfig = [
         'warn',
         {
           elements: ['img'],
-          img: ['Image']
-        }
+          img: ['Image'],
+        },
       ],
       'jsx-a11y/aria-props': 'warn',
       'jsx-a11y/aria-proptypes': 'warn',
       'jsx-a11y/aria-unsupported-elements': 'warn',
       'jsx-a11y/role-has-required-aria-props': 'warn',
-      'jsx-a11y/role-supports-aria-props': 'warn'
+      'jsx-a11y/role-supports-aria-props': 'warn',
     },
 
     // 全局设置
     settings: {
       react: {
-        version: 'detect' // 自动检测 React 版本
+        version: 'detect', // 自动检测 React 版本
       },
 
       'import/resolver': {
         typescript: {
-          alwaysTryTypes: true // 总是尝试解析类型定义
-        }
-      }
-    }
-  }
+          alwaysTryTypes: true, // 总是尝试解析类型定义
+        },
+      },
+    },
+  },
 ] as FlatConfig.Config[];
 
 // =========================================
@@ -153,5 +153,5 @@ export default [
   ...ignoresConfig, // 忽略文件配置
   ...tseslintConfig, // TypeScript 配置
   ...nextConfig, // Next.js 配置
-  eslintPluginPrettier // Prettier 配置
+  eslintPluginPrettier, // Prettier 配置
 ] satisfies FlatConfig.Config[];

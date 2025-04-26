@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 export const useIntersectionObserver = (
   querySelector: string,
   rootMargin: string,
-  threshold: number
+  threshold: number,
 ) => {
   // 存储当前可见元素的 id
   const [activeIdState, setActiveIdState] = useState('');
@@ -33,7 +33,7 @@ export const useIntersectionObserver = (
       // 创建 IntersectionObserver 实例
       observerRef.current = new IntersectionObserver(handleObserver, {
         rootMargin: rootMargin,
-        threshold: threshold
+        threshold: threshold,
       });
 
       // 获取所有匹配选择器的元素

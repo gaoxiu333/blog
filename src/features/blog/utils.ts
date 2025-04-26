@@ -44,7 +44,7 @@ function getMDXData(dir: string) {
     return {
       metadata,
       slug,
-      content
+      content,
     };
   });
 }
@@ -79,7 +79,7 @@ export function formatDate(date: string, includeRelative = false) {
   const fullDate = targetDate.toLocaleString('en-us', {
     month: 'long',
     day: 'numeric',
-    year: 'numeric'
+    year: 'numeric',
   });
 
   if (!includeRelative) {

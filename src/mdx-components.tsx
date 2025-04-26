@@ -17,7 +17,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         headingsToObserve: 'h1, h2, h3',
         rootMargin: '-5% 0px -50% 0px',
         threshold: 1,
-        ...props
+        ...props,
       };
       return (
         <>
@@ -29,6 +29,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </>
       );
     },
-    ...components
+    ...components,
   };
 }

@@ -32,7 +32,7 @@ const nextConfig = (phase) => {
 
     poweredByHeader: false,
     experimental: {
-      typedRoutes: true
+      typedRoutes: true,
       // mdxRs: true, // 启用 rust 编译 mdx
       // mdxRs: {
       //   mdxType: "gfm",
@@ -49,9 +49,9 @@ const nextConfig = (phase) => {
     //   ];
     // },
     eslint: {
-      ignoreDuringBuilds: true
+      ignoreDuringBuilds: true,
     },
-    transpilePackages: ['next-mdx-remote']
+    transpilePackages: ['next-mdx-remote'],
   };
   return nextConfigOptions;
 };
@@ -75,7 +75,7 @@ export default withSentryConfig(nextConfig, {
 
   // Automatically annotate React components to show their full name in breadcrumbs and session replay
   reactComponentAnnotation: {
-    enabled: true
+    enabled: true,
   },
 
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
@@ -91,7 +91,7 @@ export default withSentryConfig(nextConfig, {
   // See the following for more information:
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
+  automaticVercelMonitors: true,
 });
 
 // CSP: 内容安全策略->https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/content-security-policy

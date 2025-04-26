@@ -6,7 +6,7 @@ interface PageProps {
   }>;
 }
 export const metadata: Metadata = {
-  title: 'Blog page'
+  title: 'Blog page',
 };
 export default async function Page({ params }: PageProps) {
   const slug = (await params).slug;

@@ -8,12 +8,12 @@ export async function generateStaticParams() {
   const posts = getBlogPosts();
 
   return posts.map((post) => ({
-    slug: post.slug
+    slug: post.slug,
   }));
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: {
   params: { slug: string };
 }) {
@@ -27,7 +27,7 @@ export async function generateMetadata({
     title,
     publishedAt: publishedTime,
     summary: description,
-    image
+    image,
   } = post.metadata;
   const ogImage = image
     ? image
@@ -44,16 +44,16 @@ export async function generateMetadata({
       url: `${baseUrl}/blog/${post.slug}`,
       images: [
         {
-          url: ogImage
-        }
-      ]
+          url: ogImage,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [ogImage]
-    }
+      images: [ogImage],
+    },
   };
 }
 
@@ -84,9 +84,9 @@ export default async function Blog({ params }: { params: { slug: string } }) {
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               '@type': 'Person',
-              name: 'My Portfolio'
-            }
-          })
+              name: 'My Portfolio',
+            },
+          }),
         }}
       />
       <h1 className="title font-semibold text-2xl tracking-tighter">

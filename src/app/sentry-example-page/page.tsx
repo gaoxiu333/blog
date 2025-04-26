@@ -18,13 +18,13 @@ export default function Page() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
         <h1 style={{ fontSize: '4rem', margin: '14px 0' }}>
           <svg
             style={{
-              height: '1em'
+              height: '1em',
             }}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 200 44"
@@ -47,20 +47,20 @@ export default function Page() {
             border: 'none',
             color: 'white',
             fontSize: '14px',
-            margin: '18px'
+            margin: '18px',
           }}
           onClick={async () => {
             await Sentry.startSpan(
               {
                 name: 'Example Frontend Span',
-                op: 'test'
+                op: 'test',
               },
               async () => {
                 const res = await fetch('/api/sentry-example-api');
                 if (!res.ok) {
                   throw new Error('Sentry Example Frontend Error');
                 }
-              }
+              },
             );
           }}
         >

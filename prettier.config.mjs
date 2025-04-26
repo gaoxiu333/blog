@@ -6,7 +6,7 @@ const config = {
   plugins: ['@trivago/prettier-plugin-sort-imports'],
   importOrder: ['^react', '^next', '^@/(.*)$', '^[./]'],
   importOrderSeparation: true,
-  importOrderSortSpecifiers: true
+  importOrderSortSpecifiers: true,
 };
 
 export default config;
