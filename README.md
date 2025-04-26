@@ -18,8 +18,8 @@ chris.lu
 
 ## TODO
 明天整理一下  next.config.js 里面的配置
-mcp:https://www.producthunt.com/posts/automcp?ref=dailydev
-cursor rule: https://www.adithyan.io/blog/writing-cursor-rules-with-a-cursor-rule?ref=dailydev#how-do-we-do-this-cursor-rules
+
+prompts: https://neon.tech/blog/prompt-engineering-developer-discipline?ref=dailydev
 
 
 
