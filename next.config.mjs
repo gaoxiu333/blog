@@ -13,12 +13,16 @@ import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js';
 const nextConfig = (phase) => {
   switch (phase) {
     case PHASE_DEVELOPMENT_SERVER:
-      console.log('开发环境');
+      console.log(
+        '\x1b[36m%s\x1b[0m',
+        `🚀 当前环境：开发模式 ${PHASE_DEVELOPMENT_SERVER}`,
+      );
       break;
     default:
-      console.log('next config mode:', phase);
+      console.log('\x1b[33m%s\x1b[0m', `⚙️  当前 Next.js 配置阶段: ${phase}`);
   }
   const nextConfigOptions = {
+    allowedDevOrigins: ['*'], // 允许的开发环境来源
     reactStrictMode: true, // 启用 React 严格模式，帮助发现潜在问题
     poweredByHeader: false, // 禁用 "X-Powered-By: Next.js" HTTP 响应头
     experimental: {
