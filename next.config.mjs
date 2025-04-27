@@ -2,24 +2,15 @@ import { withSentryConfig } from '@sentry/nextjs';
 
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js';
 
+/**
+ * Next.js 配置文件
+ *
+ * @todo
+ * - CSP: 内容安全策略
+ *   参考: https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/content-security-policy
+ */
+
 const nextConfig = (phase) => {
-  /** @type {import('rehype-pretty-code').Options} */
-  // const rehypePrettyCodeOptions = {
-  //   theme: "github-dark", // 自定义主题：https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/code-highlighting-plugin#using-a-vscode-theme-from-a-git-repository
-  //   keepBackground: false,
-  // };
-
-  /** @type {import('remark-table-of-contents').IRemarkTableOfContentsOptions} */
-  // const remarkTableOfContentsOptions = {
-  //   containerAttributes: {
-  //     id: "articleToc",
-  //   },
-  //   navAttributes: {
-  //     "aria-label": "table of contents",
-  //   },
-  //   maxDepth: 3,
-  // };
-
   switch (phase) {
     case PHASE_DEVELOPMENT_SERVER:
       console.log('开发环境');
@@ -28,70 +19,42 @@ const nextConfig = (phase) => {
       console.log('next config mode:', phase);
   }
   const nextConfigOptions = {
-    reactStrictMode: true,
-
-    poweredByHeader: false,
+    reactStrictMode: true, // 启用 React 严格模式，帮助发现潜在问题
+    poweredByHeader: false, // 禁用 "X-Powered-By: Next.js" HTTP 响应头
     experimental: {
-      typedRoutes: true,
-      // mdxRs: true, // 启用 rust 编译 mdx
-      // mdxRs: {
-      //   mdxType: "gfm",
-      // },
+      typedRoutes: true, // 启用类型安全的路由系统
     },
-    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx', 'md'],
-
-    // headers: async () => {
-    //   return [
-    //     {
-    //       source: "/(*)",
-    //       headers: securityHeadersConfig(phase),
-    //     },
-    //   ];
-    // },
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx', 'md'], // 定义页面文件的扩展名
     eslint: {
-      ignoreDuringBuilds: true,
+      ignoreDuringBuilds: true, // 构建时忽略 ESLint 错误
     },
-    transpilePackages: ['next-mdx-remote'],
+    transpilePackages: ['next-mdx-remote'], // 需要被 Next.js 编译的外部依赖包
   };
   return nextConfigOptions;
 };
 
+/**
+ * Sentry 配置选项
+ * 详细文档：https://docs.sentry.io/platforms/javascript/guides/nextjs/
+ *
+ * - org: 基础配置
+ * - project: 项目名称
+ * - silent: 仅在 CI 环境中显示源码映射上传日志
+ * - widenClientFileUpload: 上传更多源码映射以获得更详细的堆栈跟踪
+ * - reactComponentAnnotation: 自动注释组件名称，优化面包屑和回放展示
+ * - tunnelRoute: 通过重写路由绕过广告拦截器（可能增加服务器负载）
+ * - disableLogger: 移除 Sentry 日志语句以减小包体积
+ * - automaticVercelMonitors: 启用 Vercel Cron 监控自动检测
+ */
 export default withSentryConfig(nextConfig, {
-  // For all available options, see:
-  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
-  // 拓展：https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#extend-your-nextjs-configuration
-
   org: 'xiu-cg',
   project: 'blog',
-
-  // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
-
-  // For all available options, see:
-  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
-
-  // Automatically annotate React components to show their full name in breadcrumbs and session replay
   reactComponentAnnotation: {
     enabled: true,
   },
-
-  // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-  // side errors will fail.
   tunnelRoute: '/monitoring',
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
 });
-
-// CSP: 内容安全策略->https://chris.lu/web_development/tutorials/next-js-static-first-mdx-starterkit/content-security-policy
