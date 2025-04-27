@@ -12,7 +12,9 @@ export function Nav() {
       <ul className="flex items-center gap-4">
         <li className="cursor-pointer">Home</li>
         <li className="cursor-pointer">About</li>
-        <li className="cursor-pointer">Effect</li>
+        <li className="cursor-pointer">
+          <Link href="/prompt">Prompt</Link>
+        </li>
       </ul>
       <ModeToggle />
     </nav>
