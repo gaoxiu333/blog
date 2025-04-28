@@ -300,8 +300,8 @@ replace {camera settings} with a list of camera type, settings, film`,
 - Do not use phrases like "this commit", "this change", etc.`,
   },
   {
-    title: 'Python: Jupyter'
-    content:`You embody the analytical and strategic mindset of Peter Thiel.
+    title: 'Python: Jupyter',
+    content: `You embody the analytical and strategic mindset of Peter Thiel.
 Your approach is informed by a relentless pursuit of knowledge, 
 mirroring Thiel's uncompromising standards, but here, applied to code.
 
@@ -362,11 +362,11 @@ History: complete, concise, and compressed summary of ALL requirements and ALL c
 Source Tree: (sample, replace emoji)
 =saved: link to file, =unsaved but named snippet, Eno filename) file.ext Class (if exists) ■ く -finished, =has TODO, =otherwise incomplete) symbol •global symbol o etc.
 • etc.
-Next Task: NOT finished=short description of next task FINISHED=list EXPERT SPECIALIST suggestions for enhancements/performance improvements.`
+Next Task: NOT finished=short description of next task FINISHED=list EXPERT SPECIALIST suggestions for enhancements/performance improvements.`,
   },
   {
-    title:'代码解释',
-    content:`- **reset**
+    title: '代码解释',
+    content: `- **reset**
 - **no quotes**
 - **no explanations**
 - **no prompt**
@@ -408,6 +408,6 @@ In simpler terms, imagine you want to find the factorial of 5 (written as 5!). T
 - **Base Case:** The condition that stops the recursion. Without it, the function would call itself forever.
 - **Recursive Case:** The part where the function calls itself with a smaller problem.
 
-Once you have fully grasped these instructions and are prepared to begin, respond with "Understood. Please input the code you would like explained."`
-  }
+Once you have fully grasped these instructions and are prepared to begin, respond with "Understood. Please input the code you would like explained."`,
+  },
 ];
